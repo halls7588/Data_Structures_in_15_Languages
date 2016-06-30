@@ -41,7 +41,7 @@ function List() {
  * @throws none
  **/
 List.prototype.add = function(data) {
-    var node = new Node(data),
+    var node = new Node(data);
     
     if (this.head === null) { // If there is an empty list
         this.head = this.tail = node;
@@ -126,17 +126,18 @@ List.prototype.removeByIndex = function(index) {
         }
         else{
             var tmp2 = tmp.next;
+
             while(tmp2 != null){
-            
-            if(count == index - 1){
-                tmp.next = tmp2.next;
-                delete tmp2;
-                this.length--;
-                return true;
-            }
-            tmp = tmp.next;
-            tmp2 = tmp2.next;
-            count++;
+                if(count == index - 1){
+                    tmp.next = tmp2.next;
+                    delete tmp2;
+                    this.length--;
+                    return true;
+                }
+
+                tmp = tmp.next;
+                tmp2 = tmp2.next;
+                count++;
             }
         }
     }
@@ -152,6 +153,7 @@ List.prototype.removeByIndex = function(index) {
  * @throws none
  **/
 List.prototype.removeByData = function(data) {
+
     return this.removeByIndex(this.searchNodewith(data));
 };
 
@@ -161,4 +163,4 @@ List.prototype.print = function(){
     
     while(tmp != null)
         console.log(tmp.data);
-}
+};
