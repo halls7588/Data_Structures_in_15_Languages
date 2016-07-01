@@ -1,9 +1,9 @@
-/*******************************************************
+/********************************************************
 *  DoublyLinkedList.js
 *  Created by Stephen Hall on 6/29/16.
 *  Copyright (c) 2016 Stephen Hall. All rights reserved.
 *  A doubly linked list implementation in JavaScript
-********************************************************/
+*********************************************************/
 
 /** 
  * Node Object declaration
