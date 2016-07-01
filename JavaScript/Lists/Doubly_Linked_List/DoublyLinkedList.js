@@ -2,7 +2,7 @@
 *  LinkedList.js
 *  Created by Stephen Hall on 6/29/16.
 *  Copyright (c) 2016 Stephen Hall. All rights reserved.
-*  A singly linked list implementation in JavaScript
+*  A doubly linked list implementation in JavaScript
 ********************************************************/
 
 /** 
@@ -16,6 +16,7 @@
 function Node(data) {
     this.data = data;
     this.next = null;
+    this.prev = null;
 }
 
 /** 
@@ -34,6 +35,7 @@ function List() {
 
 /** 
  * List object add method
+ *      add object to the list
  * 
  * @param  generic data
  *
@@ -50,13 +52,16 @@ List.prototype.add = function(data) {
     }
     else{ // if List is not empty
         this.tail.next = node;
+        node.prev = this.tail;
         this.tail = node;
+        this.length++;
         return node;
     }
 };
 
 /** 
  * List object search by index method
+ *      search for object 
  * 
  * @param  int index
  *
@@ -79,6 +84,7 @@ List.prototype.searchNodeAt = function(index) {
 
 /** 
  * List object search by data method
+ *      search for object 
  * 
  * @param  generic data
  *
@@ -101,6 +107,7 @@ List.prototype.searchNodewith = function(data) {
 
 /** 
  * List object remove method
+ *      remove opject from the list
  * 
  * @param  index to be removed
  *
@@ -146,8 +153,9 @@ List.prototype.removeByIndex = function(index) {
 
 /** 
  * List object remove method
+ *      remove opject from the list
  * 
- * @param  data to be removed
+ * @param  index to be removed
  *
  * @return remove true, false, or null
  * @throws none
@@ -157,10 +165,40 @@ List.prototype.removeByData = function(data) {
     return this.removeByIndex(this.searchNodewith(data));
 };
 
-List.prototype.print = function(){
+/** 
+ * List object PrintForwards method
+ *      prints the list
+ * 
+ * @param  data to be removed
+ *
+ * @return remove true, false, or null
+ * @throws none
+ **/
+List.prototype.printForwards = function(){
 
     var tmp = this.head;
     
-    while(tmp != null)
+    while(tmp != null){
         console.log(tmp.data);
+        tmp = tmp.next;
+    }
+};
+
+/** 
+ * List object PrintBackwords method
+ *      prints the list
+ * 
+ * @param  data to be removed
+ *
+ * @return remove true, false, or null
+ * @throws none
+ **/
+List.prototype.printBackwords = function(){
+
+    var tmp = this.tail;
+    
+    while(tmp != null){
+        console.log(tmp.data);
+        tmp = tmp.prev;
+    }
 };
