@@ -582,12 +582,12 @@ RedBlackTree.prototype.insert = function(key, value) {
   nstack[0].color = BLACK;
   return new RedBlackTree(cmp, nstack[0]);
 };
-//---------------------------------------------------------------------------------------------------------------
+
 /** 
  * RedBlackTree forEach method
  *     visit nodes in tree
  * 
- * @param key value pair to be inserted
+ * @param visit, hi and lo node
  *
  * @return new RedBlacktree
  * @throws none
@@ -614,41 +614,47 @@ RedBlackTree.prototype.forEach = function rbTreeForEach(visit, lo, hi) {
     break;
   }
 };
+
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTree at  method
+ *     Find the ith item in the tree
  * 
- * @param Object to define property on, namw of property, function description
+ * @param index in tree
  *
- * @return if iterator is valid
+ * @return RedBlackTreeIterator
  * @throws none
  **/
-//Find the ith item in the tree
-RedBlackTree.prototype.at = function(idx) {
-  if(idx < 0) {
+RedBlackTree.prototype.at = function(index) {
+  if(index < 0) {
     return new RedBlackTreeIterator(this, [])
   }
-  var n = this.root;
+  var node = this.root;
   var stack = [];
+    
   while(true) {
-    stack.push(n);
-    if(n.left) {
-      if(idx < n.left.count) {
-        n = n.left;
+    stack.push(node);
+      
+    if(node.left) {
+      if(index < n.left.count) {
+        node = node.left;
         continue;
       }
-      idx -= n.left.count;
+      index -= node.left.count;
     }
-    if(!idx) {
+      
+    if(!index) {
       return new RedBlackTreeIterator(this, stack);
     }
-    idx -= 1;
+      
+    index -= 1;
+      
     if(n.right) {
-      if(idx >= n.right.count) {
+      if(index >= node.right.count) {
         break;
       }
-      n = n.right;
-    } else {
+      node = node.right;
+    } 
+    else {
       break;
     }
   }
@@ -656,29 +662,33 @@ RedBlackTree.prototype.at = function(idx) {
 }
 
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTree ge method
+ *      greater then equal to iterator by key 
  * 
- * @param Object to define property on, namw of property, function description
+ * @param key
  *
- * @return if iterator is valid
+ * @return RedBlackTreeIterator
  * @throws none
  **/
 RedBlackTree.prototype.ge = function(key) {
   var cmp = this.compare;
-  var n = this.root;
+  var node = this.root;
   var stack = [];
   var last_ptr = 0;
-  while(n) {
-    var d = cmp(key, n.key);
-    stack.push(n);
-    if(d <= 0) {
+    
+  while(node) {
+    var tmp = cmp(key, node.key);
+    stack.push(node);
+      
+    if(tmp <= 0) {
       last_ptr = stack.length;
     }
-    if(d <= 0) {
-      n = n.left;
-    } else {
-      n = n.right;
+      
+    if(tmp <= 0) {
+      node = node.left;
+    } 
+    else {
+      node = node.right;
     }
   }
   stack.length = last_ptr;
@@ -686,29 +696,33 @@ RedBlackTree.prototype.ge = function(key) {
 }
 
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTree gt method
+ *     greater then iterator by key 
  * 
- * @param Object to define property on, namw of property, function description
+ * @param key
  *
- * @return if iterator is valid
+ * @return RedBlackTreeIterator
  * @throws none
  **/
 RedBlackTree.prototype.gt = function(key) {
   var cmp = this.compare;
-  var n = this.root;
+  var node = this.root;
   var stack = [];
   var last_ptr = 0;
-  while(n) {
-    var d = cmp(key, n.key);
-    stack.push(n);
-    if(d < 0) {
+    
+  while(node) {
+    var tmp = cmp(key, node.key);
+    stack.push(node);
+      
+    if(tmp < 0) {
       last_ptr = stack.length;
     }
-    if(d < 0) {
-      n = n.left;
-    } else {
-      n = n.right;
+      
+    if(tmp < 0) {
+      node = node.left;
+    } 
+    else {
+      node = node.right;
     }
   }
   stack.length = last_ptr;
@@ -716,29 +730,32 @@ RedBlackTree.prototype.gt = function(key) {
 }
 
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTree lt method
+ *      less then iterator by key 
  * 
- * @param Object to define property on, namw of property, function description
+ * @param key
  *
- * @return if iterator is valid
+ * @return RedBlackTreeIterator
  * @throws none
  **/
 RedBlackTree.prototype.lt = function(key) {
   var cmp = this.compare;
-  var n = this.root;
+  var node = this.root;
   var stack = [];
   var last_ptr = 0;
-  while(n) {
-    var d = cmp(key, n.key);
-    stack.push(n);
-    if(d > 0) {
+    
+  while(node) {
+    var tmp = cmp(key, node.key);
+    stack.push(node);
+      
+    if(tmp > 0) {
       last_ptr = stack.length;
     }
-    if(d <= 0) {
-      n = n.left;
-    } else {
-      n = n.right;
+    if(tmp <= 0) {
+      node = node.left;
+    } 
+    else {
+      node = node.right;
     }
   }
   stack.length = last_ptr;
@@ -746,77 +763,81 @@ RedBlackTree.prototype.lt = function(key) {
 }
 
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTree le method
+ *      less then equal to iterator by key 
  * 
- * @param Object to define property on, namw of property, function description
+ * @param key
  *
- * @return if iterator is valid
+ * @return RedBlackTreeIterator
  * @throws none
  **/
 RedBlackTree.prototype.le = function(key) {
   var cmp = this.compare;
-  var n = this.root;
+  var node = this.root;
   var stack = [];
   var last_ptr = 0;
-  while(n) {
-    var d = cmp(key, n.key);
-    stack.push(n);
-    if(d >= 0) {
+    
+  while(node) {
+    var tmp = cmp(key, node.key);
+    stack.push(node);
+      
+    if(tmp >= 0) {
       last_ptr = stack.length;
     }
-    if(d < 0) {
-      n = n.left;
-    } else {
-      n = n.right;
+      
+    if(tmp < 0) {
+      node = node.left;
+    } 
+    else {
+      node = node.right;
     }
   }
   stack.length = last_ptr;
   return new RedBlackTreeIterator(this, stack);
 }
+
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTree find method
+ *     Finds the item with key if it exists
  * 
- * @param Object to define property on, namw of property, function description
+ * @param key to find
  *
- * @return if iterator is valid
+ * @return RedBlackTreeIterator
  * @throws none
  **/
-//Finds the item with key if it exists
 RedBlackTree.prototype.find = function(key) {
   var cmp = this.compare;
-  var n = this.root;
+  var node = this.root;
   var stack = [];
     
-  while(n) {
-    var d = cmp(key, n.key);
-    stack.push(n);
+  while(node) {
+    var tmp = cmp(key, node.key);
+    stack.push(node);
       
-    if(d === 0) {
+    if(tmp === 0) {
       return new RedBlackTreeIterator(this, stack);
     }
       
-    if(d <= 0) {
-      n = n.left;
+    if(tmp <= 0) {
+      node = node.left;
     } 
     else {
-      n = n.right;
+      node = node.right;
     }
   }
     
   return new RedBlackTreeIterator(this, []);
 }
+
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTree remove method
+ *      Removes item with key from tree
  * 
- * @param Object to define property on, namw of property, function description
+ * @param key to remove
  *
- * @return if iterator is valid
+ * @return RedBlackTree
  * @throws none
  **/
-//Removes item with key from tree
 RedBlackTree.prototype.remove = function(key) {
   var iter = this.find(key);
     
@@ -826,32 +847,32 @@ RedBlackTree.prototype.remove = function(key) {
     
   return this;
 }
+
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTree get method
+ *       get item with key
  * 
- * @param Object to define property on, namw of property, function description
+ * @param key to get
  *
- * @return if iterator is valid
+ * @return data
  * @throws none
  **/
-//Returns the item at `key`
 RedBlackTree.prototype.get = function(key) {
   var cmp = this.compare;
-  var n = this.root;
+  var node = this.root;
     
-  while(n) {
-    var d = cmp(key, n.key);
+  while(node) {
+    var tmp = cmp(key, node.key);
       
-    if(d === 0) {
-      return n.value;
+    if(tmp === 0) {
+      return node.value;
     }
       
-    if(d <= 0) {
-      n = n.left;
+    if(tmp <= 0) {
+      node = node.left;
     } 
     else {
-      n = n.right;
+      node = node.right;
     }
   }
     
@@ -860,205 +881,228 @@ RedBlackTree.prototype.get = function(key) {
 
 
 /*******************************************************
-* RedBlackTree Methods Declerations
+* RedBlackTreeIterator Methods Declerations
 ********************************************************/
+
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTreeIterator clone method
+ *      Makes a copy of an iterator
  * 
- * @param Object to define property on, namw of property, function description
+ * @param none
  *
- * @return if iterator is valid
+ * @return RedBlackTreeIterator
  * @throws none
  **/
-//Makes a copy of an iterator
-RedBlackTreeIterator.prototype;.clone = function() {
+RedBlackTreeIterator.prototype.clone = function() {
   return new RedBlackTreeIterator(this.tree, this.stack.slice());
 }
+
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTreeIterator remove method
+ *      Removes item at iterator from tree
  * 
- * @param Object to define property on, namw of property, function description
+ * @param none
  *
- * @return if iterator is valid
+ * @return RedBlackTree
  * @throws none
  **/
-//Removes item at iterator from tree
-RedBlackTreeIterator.prototype;.remove = function() {
+RedBlackTreeIterator.prototype.remove = function() {
   var stack = this.stack;
+    
   if(stack.length === 0) {
     return this.tree;
   }
+    
   //First copy path to node
   var cstack = new Array(stack.length);
-  var n = stack[stack.length-1];
-  cstack[cstack.length-1] = new Node(n.color, n.key, n.value, n.left, n.right, n.count);
-  for(var i=stack.length-2; i>=0; --i) {
+  var node = stack[stack.length - 1];
+  cstack[cstack.length - 1] = new Node(node.color, node.key, node.value, node.left, node.right, node.count);
+    
+  for(var i = stack.length - 2; i >= 0; --i) {
     var n = stack[i];
-    if(n.left === stack[i+1]) {
-      cstack[i] = new Node(n.color, n.key, n.value, cstack[i+1], n.right, n.count);
-    } else {
-      cstack[i] = new Node(n.color, n.key, n.value, n.left, cstack[i+1], n.count);
-    }
-  }
-
-  //Get node
-  n = cstack[cstack.length-1];
-  //console.log("start remove: ", n.value)
-
-  //If not leaf, then swap with previous node
-  if(n.left && n.right) {
-    //console.log("moving to leaf")
-
-    //First walk to previous leaf
-    var split = cstack.length;
-    n = n.left;
-    while(n.right) {
-      cstack.push(n);
-      n = n.right;
-    }
-    //Copy path to leaf
-    var v = cstack[split-1];
-    cstack.push(new Node(n.color, v.key, v.value, n.left, n.right, n.count));
-    cstack[split-1].key = n.key;
-    cstack[split-1].value = n.value;
-
-    //Fix up stack
-    for(var i=cstack.length-2; i>=split; --i) {
-      n = cstack[i];
-      cstack[i] = new Node(n.color, n.key, n.value, n.left, cstack[i+1], n.count);
-    }
-    cstack[split-1].left = cstack[split];
-  }
-  //console.log("stack=", cstack.map(function(v) { return v.value }))
-
-  //Remove leaf node
-  n = cstack[cstack.length-1];
-  if(n.color === RED) {
-    //Easy case: removing red leaf
-    //console.log("RED leaf")
-    var p = cstack[cstack.length-2];
-    if(p.left === n) {
-      p.left = null;
-    } else if(p.right === n) {
-      p.right = null;
-    }
-    cstack.pop();
-    for(var i=0; i<cstack.length; ++i) {
-      cstack[i].count--;
-    }
-    return new RedBlackTree(this.tree.compare, cstack[0]);
-  } else {
-    if(n.left || n.right) {
-      //Second easy case:  Single child black parent
-      //console.log("BLACK single child")
-      if(n.left) {
-        swapNode(n, n.left);
-      } else if(n.right) {
-        swapNode(n, n.right);
-      }
-      //Child must be red, so repaint it black to balance color
-      n.color = BLACK
-      for(var i=0; i<cstack.length-1; ++i) {
-        cstack[i].count--;
-      }
-      return new RedBlackTree(this.tree.compare, cstack[0]);
-    } else if(cstack.length === 1) {
-      //Third easy case: root
-      //console.log("ROOT")
-      return new RedBlackTree(this.tree.compare, null);
-    } else {
-      //Hard case: Repaint n, and then do some nasty stuff
-      //console.log("BLACK leaf no children")
-      for(var i=0; i<cstack.length; ++i) {
-        cstack[i].count--;
-      }
-      var parent = cstack[cstack.length-2];
-      fixDoubleBlack(cstack);
-      //Fix up links
-      if(parent.left === n) {
-        parent.left = null;
-      } else {
-        parent.right = null;
-      }
-    }
-  }
-  return new RedBlackTree(this.tree.compare, cstack[0]);
-};
-/** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
- * 
- * @param Object to define property on, namw of property, function description
- *
- * @return if iterator is valid
- * @throws none
- **/
-//Advances iterator to next element in list
-RedBlackTreeIterator.prototype;.next = function() {
-  var stack = this.stack;
-  if(stack.length === 0) {
-    return;
-  }
-  var n = stack[stack.length-1]
-  if(n.right) {
-    n = n.right;
-    while(n) {
-      stack.push(n);
-      n = n.left;
-    }
-  } else {
-    stack.pop();
-    while(stack.length > 0 && stack[stack.length-1].right === n) {
-      n = stack[stack.length-1];
-      stack.pop();
-    }
-  }
-};
-/** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
- * 
- * @param Object to define property on, namw of property, function description
- *
- * @return if iterator is valid
- * @throws none
- **/
-//Update value
-RedBlackTreeIterator.prototype;.update = function(value) {
-  var stack = this.stack;
-  if(stack.length === 0) {
-    throw new Error("Can't update empty node!");
-  }
-  var cstack = new Array(stack.length);
-  var n = stack[stack.length-1];
-    
-  cstack[cstack.length-1] = new Node(n.color, n.key, value, n.left, n.right, n.count);
-    
-  for(var i=stack.length-2; i>=0; --i) {
-    n = stack[i];
       
-    if(n.left === stack[i+1]) {
+    if(n.left === stack[i + 1]) {
       cstack[i] = new Node(n.color, n.key, n.value, cstack[i+1], n.right, n.count);
     } 
     else {
       cstack[i] = new Node(n.color, n.key, n.value, n.left, cstack[i+1], n.count);
     }
   }
+
+  //Get node
+  node = cstack[cstack.length - 1];
+  //start remove: n.value
+
+  //If not leaf, then swap with previous node
+  if(node.left && node.right) {
+    //moving to leaf
+
+    //First walk to previous leaf
+    var split = cstack.length;
+    node = node.left;
+      
+    while(node.right) {
+      cstack.push(node);
+      node = node.right;
+    }
+      
+    //Copy path to leaf
+    var v = cstack[split - 1];
+    cstack.push(new Node(node.color, v.key, v.value, node.left, node.right, node.count));
+    cstack[split - 1].key = node.key;
+    cstack[split - 1].value = node.value;
+
+    //Fix up stack
+    for(var i = cstack.length - 2; i >= split; --i) {
+      node = cstack[i];
+      cstack[i] = new Node(node.color, node.key, node.value, node.left, cstack[i + 1], node.count);
+    }
+    cstack[split - 1].left = cstack[split];
+  }
+
+  //Remove leaf node
+  node = cstack[cstack.length - 1];
+    
+  if(node.color === RED) {
+    //Easy case: removing red leaf
+    var p = cstack[cstack.length - 2];
+      
+    if(p.left === node) {
+      p.left = null;
+    } 
+    else if(p.right === node) {
+      p.right = null;
+    }
+      
+    cstack.pop();
+    for(var i = 0; i < cstack.length; ++i) {
+      cstack[i].count--;
+    }
+    return new RedBlackTree(this.tree.compare, cstack[0]);
+  } 
+  else {
+    if(node.left || node.right) {
+      //Second easy case:  Single child black parent
+      if(node.left) {
+        swapNode(node, node.left);
+      } 
+      else if(node.right) {
+        swapNode(node, node.right);
+      }
+        
+      //Child must be red, so repaint it black to balance color
+      node.color = BLACK
+      
+      for(var i = 0; i < cstack.length - 1; ++i) {
+        cstack[i].count--;
+      }
+      return new RedBlackTree(this.tree.compare, cstack[0]);
+    } 
+    else if(cstack.length === 1) {
+      //Third easy case: root
+      return new RedBlackTree(this.tree.compare, null);
+    } 
+    else {
+      //Hard case:  BLACK leaf no children
+      for(var i = 0; i<cstack.length; ++i) {
+        cstack[i].count--;
+      }
+        
+      var parent = cstack[cstack.length - 2];
+      fixDoubleBlack(cstack);
+        
+      //Fix up links
+      if(parent.left === node) {
+        parent.left = null;
+      } 
+      else {
+        parent.right = null;
+      }
+    }
+  }
   return new RedBlackTree(this.tree.compare, cstack[0]);
 };
+
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
+ * RedBlackTreeIterator next method
+ *      Advances iterator to next element in list
  * 
  * @param Object to define property on, namw of property, function description
  *
- * @return if iterator is valid
+ * @return node
  * @throws none
  **/
-//Moves iterator backward one element
-RedBlackTreeIterator.prototype;.prev = function() {
+RedBlackTreeIterator.prototype;.next = function() {
+  var stack = this.stack;
+    
+  if(stack.length === 0) {
+    return;
+  }
+    
+  var node = stack[stack.length-1];
+    
+  if(node.right) {
+    node = node.right;
+      
+    while(node) {
+      stack.push(node);
+      node = node.left;
+    }
+  } 
+  else {
+    stack.pop();
+      
+    while(stack.length > 0 && stack[stack.length - 1].right === node) {
+      node = stack[stack.length - 1];
+      stack.pop();
+    }
+  }
+};
+
+/** 
+ * RedBlackTreeIterator updae method 
+ *      Update value
+ * 
+ * @param value
+ *
+ * @return RedBlackTree
+ * @throws Error
+ **/
+RedBlackTreeIterator.prototype.update = function(value) {
+  var stack = this.stack;
+    
+  if(stack.length === 0) {
+    throw new Error("Can't update empty node!");
+  }
+    
+  var cstack = new Array(stack.length);
+  var node = stack[stack.length - 1];
+    
+  cstack[cstack.length - 1] = new Node(node.color, node.key, value, node.left, node.right, node.count);
+    
+  for(var i = stack.length - 2; i >= 0; --i) {
+    node = stack[i];
+      
+    if(node.left === stack[i + 1]) {
+      cstack[i] = new Node(node.color, node.key, node.value, cstack[i + 1], node.right, node.count);
+    } 
+    else {
+      cstack[i] = new Node(node.color, node.key, node.value, node.left, cstack[i + 1], node.count);
+    }
+  }
+  return new RedBlackTree(this.tree.compare, cstack[0]);
+};
+
+/** 
+ * RedBlackTreeIterator prev method 
+ *      Moves iterator backward one element
+ * 
+ * @param value
+ *
+ * @return RedBlackTree
+ * @throws Error
+ **/
+RedBlackTreeIterator.prototype.prev = function() {
     
   var stack = this.stack;
     
@@ -1066,22 +1110,22 @@ RedBlackTreeIterator.prototype;.prev = function() {
     return;
   }
     
-  var n = stack[stack.length-1];
+  var node = stack[stack.length - 1];
     
-  if(n.left) {
-    n = n.left;
+  if(node.left) {
+    node = node.left;
       
-    while(n) {
-      stack.push(n);
-      n = n.right;
+    while(node) {
+      stack.push(node);
+      node = node.right;
     }
       
   } 
   else {
     stack.pop();
       
-    while(stack.length > 0 && stack[stack.length-1].left === n) {
-      n = stack[stack.length-1];
+    while(stack.length > 0 && stack[stack.length - 1].left === node) {
+      node = stack[stack.length - 1];
       stack.pop();
     }
   }
@@ -1090,6 +1134,7 @@ RedBlackTreeIterator.prototype;.prev = function() {
 /*******************************************************
 * Helper Functions
 ********************************************************/
+
 /** 
  * RedBlackTreeIterator valid Propery declaration
  *      determin if iterator is valid
@@ -1108,35 +1153,35 @@ function swapNode(n, v) {
   n.color = v.color;
   n.count = v.count;
 }
+
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
- * 
- * @param Object to define property on, namw of property, function description
+ * Helper Function declaration
+ *    Default comparison function
  *
- * @return if iterator is valid
+ * @param 
+ *
+ * @return nodes to campare
  * @throws none
  **/
-//Default comparison function
 function defaultCompare(a, b) {
   if(a < b) {
-    return -1;
+    return - 1;
   }
   if(a > b) {
     return 1;
   }
   return 0;
 }
+
 /** 
- * RedBlackTreeIterator valid Propery declaration
- *      determin if iterator is valid
- * 
- * @param Object to define property on, namw of property, function description
+ * Helper Function declaration
+ *    Build a tree
  *
- * @return if iterator is valid
+ * @param compare function
+ *
+ * @return RedBlackTree
  * @throws none
  **/
-//Build a tree
 function createRBTree(compare) {
   return new RedBlackTree(compare || defaultCompare, null);
 }
@@ -1145,9 +1190,9 @@ function createRBTree(compare) {
  * Helper Function declaration
  *     Visit all nodes inorder
  *
- * @param 
+ * @param nodes to visit
  *
- * @return visit node
+ * @return node
  * @throws none
  **/
 function doVisitFull(visit, node) {
