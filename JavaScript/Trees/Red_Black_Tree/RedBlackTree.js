@@ -1,6 +1,6 @@
 /*******************************************************
 *  RedBlackTree.js
-*  Created by Stephen Hall on 7/1/16.
+*  Created by Stephen Hall on 7/2/16.
 *  Copyright (c) 2016 Stephen Hall. All rights reserved.
 *  A Red BlackTree implementation in JavaScript
 ********************************************************/
