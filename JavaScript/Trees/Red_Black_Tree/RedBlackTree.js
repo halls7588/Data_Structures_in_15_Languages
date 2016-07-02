@@ -1452,7 +1452,7 @@ function fixDoubleBlack(stack) {
         stack[i - 1] = s;
         stack[i] = p;
           
-        if(i+1 < stack.length) {
+        if(i + 1 < stack.length) {
           stack[i + 1] = n;
         } 
         else {
