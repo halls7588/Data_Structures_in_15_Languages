@@ -13,17 +13,15 @@ function BinaryTree(){
         if(node == null || data == null)
             return null;
         
-        if(node.data > data){
+        if(node.data > data)
             return 1;
-        }
         
-        if(node.data < data){
+        if(node.data < data)
             return -1;
-        }
         
-        if(node.data == data){
+        if(node.data == data)
             return 0;
-        }
+        
         return null;
     };
     
@@ -153,7 +151,7 @@ BinaryTree.prototype.depthFirstSearch = function(node){
         stack.push(node);
         
 		while (stack.length > 0) {
-			console.log(stack.pop());
+			console.log(node = stack.pop());
 			if(x.right!=null) 
                 stack.push(node.right);
 			if(x.left!=null) 
@@ -171,9 +169,9 @@ BinaryTree.prototype.breadthFirstSearch = function(node){
 
     while (stack.length > 0) {
         console.log((node = queue.shift()));
-        if(node.right != null) 
-            queue.push(node.left);			
         if(node.left != null) 
+            queue.push(node.left);			
+        if(node.right != null) 
             queue.push(node.right);
 
     }
