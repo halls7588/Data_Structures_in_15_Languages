@@ -8,90 +8,53 @@ function Node(data){
 
 function BinaryTree(){
     this.root = null;
-    
-    var compare = function(data, node){
-        if(node == null || data == null)
-            return null;
-        
-        if(node.data > data)
-            return 1;
-        
-        if(node.data < data)
-            return -1;
-        
-        if(node.data == data)
-            return 0;
-        
-        return null;
-    };
-    
-    var insertHelper = function(data, node){
-        var cmp = this.compare(data, node);
-        if(cmp !- null){
-            if(cmp == 1){
-                if(!node.right){
-                    newNode = new Node(data);
-                    node.right = newNode;
-                    newNode.parent = node;
-                    return newNode;
-                }
-                else
-                    return insertHelper(data, node.right);
-            }
-            if(cmp <= 0){
-                if(!node.left){
-                    newNode = new Node(data);
-                    node.left = newNode;
-                    newNode.parent = node;
-                    return newNode;
-                }
-                else
-                    return insertHelper(data, node.left);
-            }
-        }
-        else
-            return null;
-    };
-    
-    var removeHelper = function(data, node){
-        var cmp = this.compare(data, node);
-        if(cmp !- null){
-            if(cmp == 1)
-                return removeHelper(data, node.right);
-            if(cmp == -1)
-                return removeHelper(data, node.left);
-            if(cmp == 0){
-                //has no children
-                if(!node.left && !node.right){
-                    pnode = node.parent;
-                    if(pnode.left)
-                }
-                //has one child
-                
-                //has 2 children
-                
-            }
-
-        }
-        else
-            return null;
-    };
-    
 }
 
 BinaryTree.prototype.insert = function(data){
+    
+    
     if(!this.root){
-       return this.root = new Node(data);
+       return (this.root = new node);
     }
-    return insertHelper(data, this.root);
+    
+    var node = new Node(data);
+    var tnp = this.root;
+    
+    while(tmp){
+        if(node.data > tmp.data){
+            if(tmp.right == null){
+                tmp.right = node;
+                return node;
+            }
+            else{
+                tmp = tmp.right;
+            }
+        }
+        else if(node.data <= tmp.data){
+            if(tmp.left == null){
+                tmp.left = node;
+                return node;
+            }
+            else{
+                tmp = tmp..left;
+            }
+        }
+    }
+    
 };
 
 
 BinaryTree.prototype.remove = function (data) {
     if(!this.root)
         return null;
-    return this.removeHelper(data, this.root);
-
+    
+    // is root
+    
+    // has no child
+    
+    // has one child
+    
+    // has two children
 };
     
 BinaryTree.prototype.getMin = function(){
