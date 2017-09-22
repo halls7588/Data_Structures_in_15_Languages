@@ -10,8 +10,32 @@ namespace DataStructures
     /// <typeparam name="T">Generic type</typeparam>
     class Node<T>
     {
-        public T Data { set; get; }
-        public Node<T> Next { set; get; }
+        public T Data
+        {
+            set
+            {
+                this.data = value;
+            }
+            get
+            {
+                return data;
+            }
+        }
+
+        public Node<T> Next
+        {
+            set
+            {
+                this.next = value;
+            }
+            get
+            {
+                return next;
+            }
+        }
+
+        private T data;
+        private Node<T> next;
 
         public Node(T data)
         {
