@@ -107,7 +107,7 @@ namespace DataStructures
         }
 
         /// <summary>
-        /// Private method to resize the array if capasity has been reached
+        /// Private method to resize the array if capacity has been reached
         /// </summary>
         private void Resize()
         {
