@@ -1,4 +1,9 @@
-﻿
+'==========================================================
+'  Linked_List.vb
+'  Created by Stephen Hall on 9/22/17.
+'  Copyright (c) 2017 Stephen Hall. All rights reserved.
+'  A singly linked list implementation in Visual Basic.NET 
+'==========================================================
 Imports System.Collections.Generic
 Imports System.Text
 
