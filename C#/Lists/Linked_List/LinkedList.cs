@@ -1,4 +1,10 @@
-﻿using System;
+/*************************************************************
+*  LinkedList.cs
+*  Created by Stephen Hall on 9/22/17.
+*  Copyright (c) 2017 Stephen Hall. All rights reserved.
+*  A singly linked list implementation in C#.NET 
+*************************************************************/
+using System;
 using System.Collections.Generic;
 using System.Text;
 
