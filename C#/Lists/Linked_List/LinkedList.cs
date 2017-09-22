@@ -4,6 +4,7 @@
 *  Copyright (c) 2017 Stephen Hall. All rights reserved.
 *  A singly linked list implementation in C#.NET 
 *************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,36 +14,36 @@ namespace DataStructures
     /// <summary>
     /// Node class for singlely linked list
     /// </summary>
-    /// <typeparam name="T">Generic type</typeparam>
-    class Node<T>
+    /// <typeparam name="T">Generic type to be used</typeparam>
+    public class Node<T>
     {
+        /// <summary>
+        /// Set and get property for private data member
+        /// </summary>
         public T Data
         {
-            set
-            {
-                this.data = value;
-            }
-            get
-            {
-                return data;
-            }
+            set { this.data = value; }
+            get { return this.data; }
         }
-
+        /// <summary>
+        /// Set and get property for private next member
+        /// </summary>
         public Node<T> Next
         {
-            set
-            {
-                this.next = value;
-            }
-            get
-            {
-                return next;
-            }
+            set { this.next = value; }
+            get { return this.next; }
         }
 
+        /// <summary>
+        /// Private members to be used 
+        /// </summary>
         private T data;
         private Node<T> next;
 
+        /// <summary>
+        /// Node class constructor
+        /// </summary>
+        /// <param name="data">data for Node instance to hold</param>
         public Node(T data)
         {
             this.Data = data;
@@ -52,18 +53,18 @@ namespace DataStructures
     /// <summary>
     /// Singlely linked list class 
     /// </summary>
-    /// <typeparam name="T">Generic type</typeparam>
-    class LinkedList<T>
+    /// <typeparam name="T">Generic type to be used</typeparam>
+    public class LinkedList<T>
     {
         /// <summary>
-        /// Internal varriables
+        /// Private members
         /// </summary>
-        int count;
-        Node<T> head;
-        Node<T> tail;
+        private int count;
+        private Node<T> head;
+        private Node<T> tail;
         
         /// <summary>
-        /// Class constructor
+        /// LinkedList class constructor
         /// </summary>
         public LinkedList()
         {
@@ -213,3 +214,4 @@ namespace DataStructures
         }
     }
 }
+
