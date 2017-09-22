@@ -1,8 +1,8 @@
 /*******************************************************
-*  CirculayArray.js
+*  CircularArray.js
 *  Created by Stephen Hall on 6/29/16.
 *  Copyright (c) 2016 Stephen Hall. All rights reserved.
-*  A singly linked list implementation in JavaScript
+*  A Circular Array implementation in JavaScript
 ********************************************************/
 
 /** 
@@ -69,8 +69,8 @@ CircularArray.prototype.dataAt = function (i) {
  * @throws none
  **/
 CircularArray.prototype.remove = function (i) {
-	var tmp = this.array[i];
-	this.array[i] = this.array[this.zeroIndex];
+	var tmp = this.array[i + this.zeroIndex % this.size];
+	this.array[i + this.zeroIndex % this.size] = this.array[this.zeroIndex];
 	this.array[this.zeroIndex] = null;
 	this.count--;
 	this.zeroIndex = (this.zeroIndex + 1) % this.size;
