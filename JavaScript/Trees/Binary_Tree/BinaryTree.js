@@ -1,5 +1,5 @@
 /*******************************************************
-*  LinkedList.js
+*  BinaryTree.js
 *  Created by Stephen Hall on 6/29/16.
 *  Copyright (c) 2016 Stephen Hall. All rights reserved.
 *  A Binary Tree implementation in JavaScript
