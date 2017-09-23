@@ -5,18 +5,18 @@
  *  A Circular Array implementation in Java
  ********************************************************/
 
-package Java.Arrays;
+package DataStructures.Arrays;
 
 /**
  * Circular Array Class
- * @param <T> Generic type
+ * @param <E> Generic type
  */
-public class CircularArray<T> {
+public class CircularArray<E> {
 
     /**
      * Private Members
      */
-    private T[] array;
+    private E[] array;
     private int count;
     private int size;
     private int zeroIndex;
@@ -27,7 +27,7 @@ public class CircularArray<T> {
     public CircularArray(){
         count = zeroIndex = 0;
         size = 10;
-        array = (T[]) new Object[size];
+        array = (E[]) new Object[size];
     }
 
     /**
@@ -37,7 +37,7 @@ public class CircularArray<T> {
     public CircularArray(int size){
         count = zeroIndex = 0;
         this.size = 10;
-        array = (T[]) new Object[this.size];
+        array = (E[]) new Object[this.size];
     }
 
     /**
@@ -45,7 +45,7 @@ public class CircularArray<T> {
      * @param data Data to add into the array
      * @return Data added into the array
      */
-    public T Add(T data)
+    public E Add(E data)
     {
         int tmp = (zeroIndex + count) % size;
         array[tmp] = data;
@@ -62,7 +62,7 @@ public class CircularArray<T> {
      * @param index Index to get data at
      * @return Data at the given index or default value of T if index does not exist
      */
-    public T DataAt(int index)
+    public E DataAt(int index)
     {
         if ((index + zeroIndex) % size < count && array[(index + zeroIndex) % size] != null)
         {
@@ -76,12 +76,12 @@ public class CircularArray<T> {
      * @param index Index to remove
      * @return Data removed from the array or default T value if index does not exist
      */
-    public T Remove(int index)
+    public E Remove(int index)
     {
         if (index > size)
             return null;
 
-        T tmp = array[(index + zeroIndex % size)];
+        E tmp = array[(index + zeroIndex % size)];
         array[(index + zeroIndex % size)] = array[zeroIndex];
         array[zeroIndex] = null;
         count--;
@@ -104,12 +104,11 @@ public class CircularArray<T> {
     private void Resize()
     {
         size = size * 2;
-        T[] arr = (T[])new Object[size];
+        E[] arr = (E[])new Object[size];
         for(int i = 0; i < array.length; i++)
         {
             arr[i] = array[i];
         }
         array = arr;
     }
-
 }
