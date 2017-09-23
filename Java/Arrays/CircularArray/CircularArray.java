@@ -9,14 +9,14 @@ package DataStructures.Arrays;
 
 /**
  * Circular Array Class
- * @param <E> Generic type
+ * @param <T> Generic type
  */
-public class CircularArray<E> {
+public class CircularArray<T> {
 
     /**
      * Private Members
      */
-    private E[] array;
+    private T[] array;
     private int count;
     private int size;
     private int zeroIndex;
@@ -27,7 +27,7 @@ public class CircularArray<E> {
     public CircularArray(){
         count = zeroIndex = 0;
         size = 10;
-        array = (E[]) new Object[size];
+        array = (T[]) new Object[size];
     }
 
     /**
@@ -37,7 +37,7 @@ public class CircularArray<E> {
     public CircularArray(int size){
         count = zeroIndex = 0;
         this.size = 10;
-        array = (E[]) new Object[this.size];
+        array = (T[]) new Object[this.size];
     }
 
     /**
@@ -45,7 +45,7 @@ public class CircularArray<E> {
      * @param data Data to add into the array
      * @return Data added into the array
      */
-    public E Add(E data)
+    public T Add(T data)
     {
         int tmp = (zeroIndex + count) % size;
         array[tmp] = data;
@@ -62,7 +62,7 @@ public class CircularArray<E> {
      * @param index Index to get data at
      * @return Data at the given index or default value of T if index does not exist
      */
-    public E DataAt(int index)
+    public T DataAt(int index)
     {
         if ((index + zeroIndex) % size < count && array[(index + zeroIndex) % size] != null)
         {
@@ -76,12 +76,12 @@ public class CircularArray<E> {
      * @param index Index to remove
      * @return Data removed from the array or default T value if index does not exist
      */
-    public E Remove(int index)
+    public T Remove(int index)
     {
         if (index > size)
             return null;
 
-        E tmp = array[(index + zeroIndex % size)];
+        T tmp = array[(index + zeroIndex % size)];
         array[(index + zeroIndex % size)] = array[zeroIndex];
         array[zeroIndex] = null;
         count--;
@@ -104,7 +104,7 @@ public class CircularArray<E> {
     private void Resize()
     {
         size = size * 2;
-        E[] arr = (E[])new Object[size];
+        T[] arr = (T[])new Object[size];
         for(int i = 0; i < array.length; i++)
         {
             arr[i] = array[i];
