@@ -5,7 +5,7 @@
  *  A Circular Array implementation in Java
  ********************************************************/
 
-package Java.Arrays;
+package DataStructures.Arrays;
 
 /**
  * Circular Array Class
