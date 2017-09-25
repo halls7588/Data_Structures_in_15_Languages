@@ -1,8 +1,8 @@
 /*******************************************************
- *  LinkedStack.java
+ *  ArrayedStack.java
  *  Created by Stephen Hall on 9/23/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
- *  A Linked Stack implementation in Java
+ *  A Arrayed Stack implementation in Java
  ********************************************************/
 package DataStructures.Lists;
 
@@ -77,7 +77,7 @@ public class ArrayedStack<T> {
 
     /**
      * Returns a value indicating if the stack is full
-     * @return False, Linked stack is never full
+     * @return True if full, false if not
      */
     public boolean IsFull(){
         return (count == size);
