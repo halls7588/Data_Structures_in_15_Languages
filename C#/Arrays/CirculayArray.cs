@@ -2,7 +2,7 @@
 *  CircularArray.cs
 *  Created by Stephen Hall on 9/22/17.
 *  Copyright (c) 2017 Stephen Hall. All rights reserved.
-*  A Circular Array implementation in C#.Net
+*  A Circular Array implementation in C#
 ********************************************************/
 
 using System;
