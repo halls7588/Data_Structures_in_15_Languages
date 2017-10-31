@@ -10,10 +10,9 @@
 * @param none
 */
 function ArrayedStack() {
-
-    var arr = new array(10);
-    var count = 0;
-    var size = 10;
+    this.arr = new array(10);
+    this.count = 0;
+    this.size = 10;
 }
 
 /**
@@ -22,10 +21,10 @@ function ArrayedStack() {
  * @return Node added to the stack
  */
 ArrayedStack.prototype.Push = function (data){
-    if(!IsFull()) {
-        array[count] = data;
-        count++;
-        return Top();
+    if(!this.IsFull()) {
+        this.array[count] = data;
+        this.count++;
+        return this.Top();
     }
     return null;
 }
@@ -35,8 +34,8 @@ ArrayedStack.prototype.Push = function (data){
  * @return Node popped off of the stack
  */
 ArrayedStack.prototype.Pop = function(){
-    var data = array[count-1];
-    count--;
+    var data = this.array[count-1];
+    this.count--;
     return data;
 }
 
@@ -45,7 +44,7 @@ ArrayedStack.prototype.Pop = function(){
  * @return Node on top of the stack
  */
 ArrayedStack.prototype.Top = function(){
-    return array[count-1];
+    return this.array[count-1];
 }
 
 /**
@@ -53,7 +52,7 @@ ArrayedStack.prototype.Top = function(){
  * @return true if empty, false if not
  */
 ArrayedStack.prototype.IsEmpty = function(){
-    return (count == 0);
+    return (this.count == 0);
 }
 
 /**
@@ -61,5 +60,5 @@ ArrayedStack.prototype.IsEmpty = function(){
  * @return True if full, false if not
  */
 ArrayedStack.prototype.IsFull = function(){
-    return (count == size);
+    return (this.count == size);
 }
