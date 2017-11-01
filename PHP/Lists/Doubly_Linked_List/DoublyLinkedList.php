@@ -191,4 +191,24 @@ public class DoublyLinkedList
     {
         return $this->count;
     }
+    
+    /**
+     * Prints the list
+     */
+    public function printList()
+    {
+        $items = [];
+        $current = $this->head;
+        while($current != null) 
+        {
+            array_push($items, $current->data);
+            $current = $current->next;
+        }
+        $str = '';
+        foreach($items as $item)
+        {
+            $str .= $item . '->';
+        }
+        echo $str;
+    }
 }
