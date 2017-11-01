@@ -73,7 +73,7 @@ class LinkList
         if ($data == null)
             return null;
 
-        $node = new Node(data);
+        $node = new Node($data);
         // The Linked list is empty
         if ($this->head == null)
         {
