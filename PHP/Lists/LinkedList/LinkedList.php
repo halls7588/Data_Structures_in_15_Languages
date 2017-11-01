@@ -150,7 +150,8 @@ class LinkList
     {
         $items = [];
         $current = $this->head;
-        while($current != null) {
+        while($current != null) 
+        {
             array_push($items, $current->data);
             $current = $current->next;
         }
