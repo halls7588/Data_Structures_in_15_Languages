@@ -27,7 +27,9 @@ Whats been implimented so far:
 <details>
   <summary>JavaScript</summary>
   
-  [Circular Array in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Arrays/CircularArray.js)
+  [Circular Array in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Arrays/CircularArray/CircularArray.js)
+  
+  [ArrayList in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Arrays/ArrayList/ArrayList.js)
   
   [Doubly Linked List in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Lists/Doubly_Linked_List/DoublyLinkedList.js)
   
