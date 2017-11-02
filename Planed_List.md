@@ -11,6 +11,7 @@
   * Circular Array
   * ArrayList
   * Sorted Array
+  * Associative array
   
 # Stacks
   * Arrayed Stack
@@ -27,6 +28,7 @@
   * Arrayed Heap
   * Linked Heap
   * Sorted Heap
+      * Heap Sort
   
 # Trees 
   * Binary Tree
@@ -42,3 +44,10 @@
   
 # Hashtables
   * Hashtable
+  * Hash-Set
+  * Hash-Tree
+  
+# Graphs
+  * Undirected Graph
+  * Directed Graph
+
