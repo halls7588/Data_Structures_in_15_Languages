@@ -1,13 +1,12 @@
 # Lists
   * Linked List
   * Doubly Linked List
-  * Array list
   * Sort List
   * Skip List
   
 # Arrays
   * Circular Array
-  * Dynamic Array
+  * ArrayList
   * Sorted Array
   
 # Stacks
