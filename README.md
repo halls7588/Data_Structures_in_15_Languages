@@ -1,6 +1,8 @@
 # Data Structures
 A general list of Data Structures implemented in many different programming languages.
-This project is intended to help newer developers, code school graduates, and self-taught developers learn and grasp the basic concepts of Data Structures to help build a foundation of basic engineering concepts and algorithm design in whatever language they feel most comfortable with. Whats been implimented so far:
+This project is intended to help newer developers, code school graduates, and self-taught developers learn and grasp the basic concepts of Data Structures to help build a foundation of basic engineering concepts and algorithm design in whatever language they feel most comfortable with. The Goal on this project is to demonstrate beginning and advanced computer science and engineering principals in a simple and easy to use way. The code is written in a very simple for so that newer developer can follow along and grasp advanced topics easily.
+
+Whats been implimented so far:
 
 <details>
   <summary>PHP</summary>
