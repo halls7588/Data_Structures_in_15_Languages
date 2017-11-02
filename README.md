@@ -1,4 +1,4 @@
-# Data_Structures
+# Data Structures
 A general list of Data Structures implemented in many different programming languages.
 This project is intended to help newer developers, code school graduates, and self-taught developers learn and grasp the basic concepts of Data Structures to help build a foundation of basic engineering concepts and algorithm design in whatever language they feel most comfortable with. Whats been implimented so far:
 
