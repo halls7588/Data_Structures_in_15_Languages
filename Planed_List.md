@@ -38,7 +38,6 @@
      * In Order Traversal
      * Depth Frist Search
      * Breadth First Search
-  * Binary Search Tree
   * Self Balancing Binary Tree
   * AVL Tree
   * Splay Tree
