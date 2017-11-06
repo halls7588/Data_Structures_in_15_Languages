@@ -2,6 +2,12 @@
   * Linked List
   * Doubly Linked List
   * Skip List
+  * Sorted List
+      * Merge Sort 
+      * Bubble Sort
+      * Quick Sort
+      * Insertion Sort
+      * Selection Sort
   
 # Arrays
   * Circular Array
