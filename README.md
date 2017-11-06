@@ -54,17 +54,23 @@ Whats been implimented so far:
   
   [Circular Array in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/CircularArray/CircularArray.java)
   
+  [ArrayList in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/ArrayList/ArrayList.java)
+  
   [Doubly Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Doubly_Linked_List/DoublyLinkedList.java)
   
   [Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Linked_List/LinkedList.java)
   
   [Binary Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/Binary_Tree/BinaryTree.java)
   
+  [Red Black Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/RedBlackTree/RedBlackTree.java)
+  
   [Arrayed Stack in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Stacks/Arrayed_Stack/ArrayedStack.java)
   
   [Linked Stack in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Stacks/Linked_Stack/LinkedStack.java)
   
   [Arrayed Queue in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/Arrayed_Queue/ArrayedQueue.java)
+  
+  [Deque in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/Deque/Deque.java)
   
   [Linked Queue in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/Linked_Queue/LinkedQueue.java)  
 </details>
