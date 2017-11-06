@@ -1,7 +1,6 @@
 # Lists
   * Linked List
   * Doubly Linked List
-  * Sorted List
   * Skip List
   
 # Arrays
@@ -11,6 +10,8 @@
       * Merge Sort 
       * Bubble Sort
       * Quick Sort
+      * Insertion Sort
+      * Selection Sort
   * Associative array
   
 # Stacks
