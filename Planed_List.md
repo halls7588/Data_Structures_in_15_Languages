@@ -1,7 +1,7 @@
 # Lists
   * Linked List
   * Doubly Linked List
-  * Sort List
+  * Sorted List
       * Merge Sort 
       * Bubble Sort
       * Quick Sort
@@ -23,6 +23,7 @@
   * Linked Queue
   * Circular Queue
   * Priority Queue
+  * Deque
   
 # Heaps
   * Arrayed Heap
