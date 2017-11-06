@@ -2,15 +2,15 @@
   * Linked List
   * Doubly Linked List
   * Sorted List
-      * Merge Sort 
-      * Bubble Sort
-      * Quick Sort
   * Skip List
   
 # Arrays
   * Circular Array
   * ArrayList
   * Sorted Array
+      * Merge Sort 
+      * Bubble Sort
+      * Quick Sort
   * Associative array
   
 # Stacks
@@ -39,6 +39,7 @@
      * Depth Frist Search
      * Breadth First Search
   * Binary Search Tree
+  * Self Balancing Binary Tree
   * AVL Tree
   * Splay Tree
   * Red Balck Tree
