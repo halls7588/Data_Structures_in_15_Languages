@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Rec Black Tree implementation in Java
  ********************************************************/
-
+package DataStructures.Trees;
 
 import java.util.ArrayList;
 import java.util.List;
