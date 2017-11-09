@@ -153,6 +153,11 @@ public class ArrayedSet<T> {
         this.count = 0;
     }
 
+    /**
+     * Tests to see if the data is contained in the set
+     * @param data: data to find
+     * @return boolean: true|false
+     */
     public boolean Contains(T data){
         for(int i = 0; i < this.size; i++){
             if(this.array[i] == data)
