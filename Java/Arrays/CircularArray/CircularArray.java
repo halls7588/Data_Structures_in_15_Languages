@@ -11,7 +11,7 @@ package DataStructures.Arrays;
  * Circular Array Class
  * @param <T> Generic type
  */
-public class CircularArray<T> {
+public class CircularArray<T extends Comparable<T>> {
 
     /**
      * Private Members
@@ -36,7 +36,7 @@ public class CircularArray<T> {
      */
     public CircularArray(int size){
         count = zeroIndex = 0;
-        this.size = 10;
+        this.size = size;
         array = (T[]) new Object[this.size];
     }
 
@@ -110,5 +110,35 @@ public class CircularArray<T> {
             arr[i] = array[i];
         }
         array = arr;
+    }
+
+    /**
+     * Determins if a is less than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: ture|false
+     */
+    private boolean LessThan(T a, T b) {
+        return a.compareTo(b) < 0;
+    }
+
+    /**
+     * Determins if a is equal to b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean EqualTo(T a, T b) {
+        return a.compareTo(b) == 0;
+    }
+
+    /**
+     * Determins if a is greater than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean GreaterThan(T a, T b) {
+        return a.compareTo(b) > 0;
     }
 }

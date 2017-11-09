@@ -11,7 +11,7 @@ package DataStructures.Arrays;
  * ArrayList Class
  * @param <T> Generic type
  */
-public class ArrayList<T> {
+public class ArrayList<T extends Comparable<T>> {
 
     /**
      * Private Members
@@ -155,6 +155,36 @@ public class ArrayList<T> {
      */
     public int Count(){
         return count;
+    }
+
+    /**
+     * Determins if a is less than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: ture|false
+     */
+    private boolean LessThan(T a, T b) {
+        return a.compareTo(b) < 0;
+    }
+
+    /**
+     * Determins if a is equal to b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean EqualTo(T a, T b) {
+        return a.compareTo(b) == 0;
+    }
+
+    /**
+     * Determins if a is greater than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean GreaterThan(T a, T b) {
+        return a.compareTo(b) > 0;
     }
 
 }

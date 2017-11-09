@@ -11,7 +11,7 @@ package DataStructures.Arrays;
  * ArrayedSet Class
  * @param <T> Generic type
  */
-public class ArrayedSet<T> {
+public class ArrayedSet<T extends Comparable<T>> {
 
     /**
      * Private Members
@@ -160,12 +160,11 @@ public class ArrayedSet<T> {
      */
     public boolean Contains(T data){
         for(int i = 0; i < this.size; i++){
-            if(this.array[i] == data)
+            if(EqualTo(array[i],data))
                 return true;
         }
         return false;
     }
-
 
     /**
      * Gets the current count of the array
@@ -173,6 +172,36 @@ public class ArrayedSet<T> {
      */
     public int Count(){
         return count;
+    }
+
+    /**
+     * Determins if a is less than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: ture|false
+     */
+    private boolean LessThan(T a, T b) {
+        return a.compareTo(b) < 0;
+    }
+
+    /**
+     * Determins if a is equal to b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean EqualTo(T a, T b) {
+        return a.compareTo(b) == 0;
+    }
+
+    /**
+     * Determins if a is greater than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean GreaterThan(T a, T b) {
+        return a.compareTo(b) > 0;
     }
 
 }

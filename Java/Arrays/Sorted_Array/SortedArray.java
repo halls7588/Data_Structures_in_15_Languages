@@ -11,7 +11,7 @@ package DataStructures.Arrays;
  * ArrayList Class
  * @param <T> Generic type
  */
-public class SortedArray<T> {
+public class SortedArray<T extends Comparable<T>> {
 
     /**
      * Private Members
@@ -183,7 +183,7 @@ public class SortedArray<T> {
         j = 0; // Initial index of second subarray
         k = l; // Initial index of merged subarray
         while (i < n1 && j < n2) {
-            if (L[i] <= R[j]) {
+            if (LessThan(L[i], R[j]) || EqualTo(L[i], R[j])) {
                 arr[k] = L[i];
                 i++;
             }
@@ -223,7 +223,7 @@ public class SortedArray<T> {
 
             // Sort first and second halves
             mergeSortHelper(arr, l, m);
-            mergeSortHelper(arr, m+1, r);
+            mergeSortHelper(arr, (m + 1), r);
 
             merge(arr, l, m, r);
         }
@@ -238,7 +238,7 @@ public class SortedArray<T> {
         for(int i = 0; i < count; i++){
             tmp[i] = arr[i];
         }
-        mergeSortHelper(tmp, 0, count -1);
+        mergeSortHelper(tmp, 0, (count - 1));
         return tmp;
     }
 
@@ -254,7 +254,7 @@ public class SortedArray<T> {
 
         for (int i = 0; i < count - 1; i++)
             for (int j = 0; j < count-i-1; j++) {
-                if (tmp[j] > tmp[j + 1]) {
+                if (GreaterThan(tmp[j], tmp[j + 1])) {
                     // swap temp and arr[i]
                     T temp = tmp[j];
                     tmp[j] = tmp[j + 1];
@@ -272,14 +272,13 @@ public class SortedArray<T> {
      * @return int: pivot index
      */
     private int partition(T arr[], int low, int high) {
-        int pivot = arr[high];
+        T pivot = arr[high];
         int i = (low - 1); // index of smaller element
         for (int j = low; j < high; j++) {
             // If current element is smaller than or
             // equal to pivot
-            if (arr[j] <= pivot) {
+            if (LessThan(arr[j], pivot) || EqualTo(arr[j], pivot)) {
                 i++;
-
                 // swap arr[i] and arr[j]
                 T temp = arr[i];
                 arr[i] = arr[j];
@@ -307,8 +306,8 @@ public class SortedArray<T> {
             int pivot = partition(arr, low, high);
 
             // Recursively sort elements before and after pivot
-            quickSortHelper(arr, low, pivot-1);
-            quickSortHelper(arr, pivot+1, high);
+            quickSortHelper(arr, low, (pivot - 1));
+            quickSortHelper(arr, (pivot + 1), high);
         }
     }
 
@@ -321,7 +320,7 @@ public class SortedArray<T> {
         for(int i = 0; i < count; i++){
             tmp[i] = arr[i];
         }
-        quickSortHelper(tmp, 0 count - 1);
+        quickSortHelper(tmp, 0, (count - 1));
 
         return tmp;
     }
@@ -341,7 +340,7 @@ public class SortedArray<T> {
             int j = i - 1;
 
             // Move elements of arr[0..i-1], that are greater than key, to one position ahead
-            while (j >= 0 && tmp[j] > key) {
+            while (j >= 0 && LessThan(tmp[j],key)) {
                 tmp[j + 1] = tmp[j];
                 j = j - 1;
             }
@@ -366,7 +365,7 @@ public class SortedArray<T> {
             // Find the minimum element in unsorted array
             int min = i;
             for (int j = i + 1; j < count; j++)
-                if (tmp[j] < tmp[min])
+                if (LessThan(tmp[j],tmp[min]))
                     min = j;
 
             // Swap the found minimum element with the first
@@ -376,5 +375,35 @@ public class SortedArray<T> {
             tmp[i] = temp;
         }
         return tmp;
+    }
+
+    /**
+     * Determins if a is less than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: ture|false
+     */
+    private boolean LessThan(T a, T b) {
+        return a.compareTo(b) < 0;
+    }
+
+    /**
+     * Determins if a is equal to b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean EqualTo(T a, T b) {
+        return a.compareTo(b) == 0;
+    }
+
+    /**
+     * Determins if a is greater than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean GreaterThan(T a, T b) {
+        return a.compareTo(b) > 0;
     }
 }
