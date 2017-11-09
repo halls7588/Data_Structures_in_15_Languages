@@ -5,13 +5,11 @@
  *  ArrayList implementation in Java
  ********************************************************/
 
-package DataStructures.Arrays;
-
 /**
  * ArrayList Class
  * @param <T> Generic type
  */
-public class ArrayList<T extends Comparable<T>> {
+public class ArrayList<T> {
 
     /**
      * Private Members
@@ -47,11 +45,11 @@ public class ArrayList<T extends Comparable<T>> {
      */
     private void Resize(){
         size *= 2;
-        T[] tmp = new Object[this.size];
+        T[] tmp = (T[]) new Object[this.size];
         for(int i = 0; i < this.count; i++){
-            tmp[i] = this.arr[i];
+            tmp[i] = this.array[i];
         }
-        this.arr = tmp;
+        this.array = tmp;
     }
 
     /**
@@ -64,9 +62,9 @@ public class ArrayList<T extends Comparable<T>> {
             return null;
 
         if(this.count == size)
-            this.resize();
+            this.Resize();
 
-        this.arr[this.count] = data;
+        this.array[this.count] = data;
         this.count++;
 
         return data;
@@ -81,7 +79,7 @@ public class ArrayList<T extends Comparable<T>> {
         if(data != null){
             for (int i = 0; i < data.length; i++) {
                 if(data[i] != null )
-                    this.add(data[i]);
+                    this.Add(data[i]);
             }
             return true;
         }
@@ -96,7 +94,7 @@ public class ArrayList<T extends Comparable<T>> {
      */
     public boolean Set(int index, T data){
         if(index >= 0 && index < this.size) {
-            this.arr[index] = data;
+            this.array[index] = data;
             return true;
         }
         return false;
@@ -109,7 +107,7 @@ public class ArrayList<T extends Comparable<T>> {
      */
     public T Get(int index){
         if(index >= 0 && index < this.size)
-            return this.arr[index];
+            return this.array[index];
         return null;
     }
 
@@ -143,7 +141,7 @@ public class ArrayList<T extends Comparable<T>> {
      */
     public void Clear(){
         for(int i = 0; i < this.count; i++){
-            this.arr[i] = null;
+            this.array[i] = null;
         }
         this.count = 0;
     }
@@ -156,35 +154,4 @@ public class ArrayList<T extends Comparable<T>> {
     public int Count(){
         return count;
     }
-
-    /**
-     * Determins if a is less than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: ture|false
-     */
-    private boolean LessThan(T a, T b) {
-        return a.compareTo(b) < 0;
-    }
-
-    /**
-     * Determins if a is equal to b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean EqualTo(T a, T b) {
-        return a.compareTo(b) == 0;
-    }
-
-    /**
-     * Determins if a is greater than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean GreaterThan(T a, T b) {
-        return a.compareTo(b) > 0;
-    }
-
 }

@@ -159,6 +159,7 @@ public class ArrayedSet<T> {
         return false;
     }
 
+
     /**
      * Gets the current count of the array
      * @return Number of items in the array
@@ -166,4 +167,5 @@ public class ArrayedSet<T> {
     public int Count(){
         return count;
     }
+
 }

@@ -5,13 +5,11 @@
  *  A Circular Array implementation in Java
  ********************************************************/
 
-package DataStructures.Arrays;
-
 /**
  * Circular Array Class
  * @param <T> Generic type
  */
-public class CircularArray<T extends Comparable<T>> {
+public class CircularArray<T> {
 
     /**
      * Private Members
@@ -45,14 +43,13 @@ public class CircularArray<T extends Comparable<T>> {
      * @param data Data to add into the array
      * @return Data added into the array
      */
-    public T Add(T data)
-    {
-        int tmp = (zeroIndex + count) % size;
-        array[tmp] = data;
-        if (((count + 1) / size) >= 1)
-        {
+    public T Add(T data) {
+        if(count == size - 1) {
             Resize();
         }
+
+        int tmp = (zeroIndex + count) % size;
+        array[tmp] = data;
         count++;
         return array[tmp];
     }
@@ -62,10 +59,8 @@ public class CircularArray<T extends Comparable<T>> {
      * @param index Index to get data at
      * @return Data at the given index or default value of T if index does not exist
      */
-    public T DataAt(int index)
-    {
-        if ((index + zeroIndex) % size < count && array[(index + zeroIndex) % size] != null)
-        {
+    public T DataAt(int index) {
+        if ((index + zeroIndex) % size < count && array[(index + zeroIndex) % size] != null){
             return (array[index + zeroIndex % size]);
         }
         return null;
@@ -76,8 +71,7 @@ public class CircularArray<T extends Comparable<T>> {
      * @param index Index to remove
      * @return Data removed from the array or default T value if index does not exist
      */
-    public T Remove(int index)
-    {
+    public T Remove(int index){
         if (index > size)
             return null;
 
@@ -93,52 +87,28 @@ public class CircularArray<T extends Comparable<T>> {
      * Gets the current count of the array
      * @return Number of items in the array
      */
-    public int Count()
-    {
+    public int Count(){
         return count;
     }
 
     /**
      * Private method to resize the array if capacity has been reached
      */
-    private void Resize()
-    {
-        size = size * 2;
-        T[] arr = (T[])new Object[size];
-        for(int i = 0; i < array.length; i++)
-        {
-            arr[i] = array[i];
+    private void Resize() {
+
+        T[] arr = (T[])new Object[size * 2];
+        for(int i = 0; i < count; i++) {
+            arr[i] = array[(zeroIndex + i) % size];
         }
+        size *= 2;
+        zeroIndex = 0;
         array = arr;
     }
 
-    /**
-     * Determins if a is less than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: ture|false
-     */
-    private boolean LessThan(T a, T b) {
-        return a.compareTo(b) < 0;
+    public void Print() {
+        for(int i = 0; i < count; i++) {
+            System.out.println(array[(zeroIndex + i % size)]);
+        }
     }
 
-    /**
-     * Determins if a is equal to b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean EqualTo(T a, T b) {
-        return a.compareTo(b) == 0;
-    }
-
-    /**
-     * Determins if a is greater than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean GreaterThan(T a, T b) {
-        return a.compareTo(b) > 0;
-    }
 }
