@@ -58,6 +58,8 @@ What’s been implemented so far:
   
   [Arrayed Set in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/ArrayedSet/ArrayedSet.java)
   
+  [Sorted Array in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/Sorted_Array/SortedArray.java)
+  
   [Doubly Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Doubly_Linked_List/DoublyLinkedList.java)
   
   [Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Linked_List/LinkedList.java)
