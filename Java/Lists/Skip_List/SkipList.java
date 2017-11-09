@@ -10,7 +10,7 @@ package DataStructures.Lists;
  * Skip list class
  * @param <T> Generic type
  */
-public class SkipList<T> {
+public class SkipList<T extends Comparable<T>> {
     private Node<T> head;
     private int max;
     private int size;

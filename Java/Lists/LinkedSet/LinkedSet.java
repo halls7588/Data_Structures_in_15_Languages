@@ -10,7 +10,7 @@ package DataStructures.Lists;
  * Singlely linked set class
  * @param <T> Generic type
  */
-public class LinkedSet<T> {
+public class LinkedSet<T extends Comparable<T>> {
     /**
      * Node class for singly linked set
      * @param <T> Generic type
@@ -91,7 +91,7 @@ public class LinkedSet<T> {
 
         Node<T> tmp = head;
         // The data to remove what found in the first Node in the list
-        if(tmp.data.equals(data))
+        if(EqualTo(tmp.data, data))
         {
             head = head.next;
             count--;
@@ -101,7 +101,7 @@ public class LinkedSet<T> {
         while (tmp.next != null)
         {
             // Node was found, Remove it from the list
-            if (tmp.next.data.equals(data))
+            if (EqualTo(tmp.next.data, data))
             {
                 Node<T> node = tmp.next;
                 tmp.next = tmp.next.next;
@@ -129,7 +129,7 @@ public class LinkedSet<T> {
         while(tmp != null)
         {
             // Data was found
-            if (tmp.data.equals(data))
+            if (EqualTo(tmp.data, data))
                 return tmp;
 
             tmp = tmp.next;
@@ -164,5 +164,35 @@ public class LinkedSet<T> {
      */
     public int Size(){
         return count;
+    }
+
+    /**
+     * Determins if a is less than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: ture|false
+     */
+    private boolean LessThan(T a, T b) {
+        return a.compareTo(b) < 0;
+    }
+
+    /**
+     * Determins if a is equal to b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean EqualTo(T a, T b) {
+        return a.compareTo(b) == 0;
+    }
+
+    /**
+     * Determins if a is greater than b
+     * @param a: generic type to test
+     * @param b: generic type to test
+     * @return boolean: true|false
+     */
+    private boolean GreaterThan(T a, T b) {
+        return a.compareTo(b) > 0;
     }
 }
