@@ -56,9 +56,13 @@ Whats been implimented so far:
   
   [ArrayList in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/ArrayList/ArrayList.java)
   
+  [Arrayed Set in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/ArrayedSet/ArrayedSet.java)
+  
   [Doubly Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Doubly_Linked_List/DoublyLinkedList.java)
   
   [Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Linked_List/LinkedList.java)
+  
+  [Linked Set in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/LinkedSet/LinkedSet.java)
   
   [Binary Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/Binary_Tree/BinaryTree.java)
   
