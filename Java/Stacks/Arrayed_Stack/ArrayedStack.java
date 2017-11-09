@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Arrayed Stack implementation in Java
  ********************************************************/
-package DataStructures.Lists;
+package DataStructures.Stacks;
 
 /**
  * Arrayed Stack Class
