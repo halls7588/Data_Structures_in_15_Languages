@@ -4,6 +4,7 @@
  *  Copyright (c) 2016 Stephen Hall. All rights reserved.
  *  A Binary Tree implementation in Java
  ********************************************************/
+package DataStructures.Trees;
 
 import java.util.PriorityQueue;
 import java.util.Stack;
