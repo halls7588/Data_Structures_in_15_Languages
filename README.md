@@ -64,6 +64,8 @@ What’s been implemented so far:
   
   [Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Linked_List/LinkedList.java)
   
+  [Skip List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Skip_List/SkipList.java)
+  
   [Linked Set in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/LinkedSet/LinkedSet.java)
   
   [Binary Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/Binary_Tree/BinaryTree.java)
