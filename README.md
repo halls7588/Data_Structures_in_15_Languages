@@ -1,8 +1,8 @@
 # Data Structures
-A general list of Data Structures implemented in many different programming languages.
+A general list of Data Structures implemented in 13 different programming languages. Java, JavaScript, Kotlin, C#, C++, Objective-C, Swift, PHP, Python, Ruby, Type Script, Visual Basic and Go. I will be implementing 32 different Data Structures and many Algorithms with them as well as providing detailed explanations about each data structure. This is a work in progress and is a very massive project so please be patient as i have a life and a full time job and I am the only one working on this at the moment.
 This project is intended to help newer developers, code school graduates, and self-taught developers learn and grasp the basic concepts of Data Structures to help build a foundation of basic engineering concepts and algorithm design in whatever language they feel most comfortable with. The Goal on this project is to demonstrate beginning and advanced computer science and engineering principals in a simple and easy to use way. The code is written in a very simple for so that newer developer can follow along and grasp advanced topics easily.
 
-Whats been implimented so far:
+What’s been implemented so far:
 
 <details>
   <summary>PHP</summary>
@@ -137,7 +137,7 @@ ect. ect.
 ```
 ## Deployment
 
-Please note, this code was intended to help newer developers to grasp the concepts of various Data Structures. None of this code has been tested and may need modification to work properly. 
+Please note, this code was intended to help newer developers to grasp the concepts of various Data Structures. View the projects section of for the language and data structure you want. If the data structure in question has not been moved to the closed column, then the code has not been tested and may not work or may need modification to work properly. 
 
 ## Contributing
 Please read [CONTRIBUTING.md](https://github.com/halls7588/Data_Structures/blob/master/CONTRIBUTING.md) And [CODE_OF_CONDUCT.md](https://github.com/halls7588/Data_Structures/blob/master/CODE_OF_CONDUCT.md)
