@@ -5,13 +5,12 @@
  *  SortedArray implementation in Java
  ********************************************************/
 
-package DataStructures.Arrays;
 
 /**
  * ArrayList Class
  * @param <T> Generic type
  */
-public class SortedArray<T extends Comparable<T>> {
+public class SortedArray<T extends Comparable<T>>{
 
     /**
      * Private Members
@@ -23,23 +22,23 @@ public class SortedArray<T extends Comparable<T>> {
     /**
      * SortedArray default constructor
      */
-    public ArrayList(){
+    public SortedArray(){
         count = 0;
         size = 4;
-        array = (T[]) new Object[size];
+        array = (T[]) new Comparable[size];
     }
 
     /**
      * SortedArray constructor initialized to a specific size
      * @param size Size to initialize the array to
      */
-    public ArrayList(int size){
+    public SortedArray(int size){
         count = 0;
         if(size > 0)
             this.size = size;
         else
             this.size = 4;
-        array = (T[]) new Object[this.size];
+        array = (T[]) new Comparable[this.size];
     }
 
     /**
@@ -47,11 +46,11 @@ public class SortedArray<T extends Comparable<T>> {
      */
     private void Resize(){
         size *= 2;
-        T[] tmp = new Object[this.size];
+        T[] tmp = (T[]) new Comparable[this.size];
         for(int i = 0; i < this.count; i++){
-            tmp[i] = this.arr[i];
+            tmp[i] = this.array[i];
         }
-        this.arr = tmp;
+        this.array = tmp;
     }
 
     /**
@@ -64,9 +63,9 @@ public class SortedArray<T extends Comparable<T>> {
             return null;
 
         if(this.count == size)
-            this.resize();
+            this.Resize();
 
-        this.arr[this.count] = data;
+        this.array[this.count] = data;
         this.count++;
 
         return data;
@@ -81,7 +80,7 @@ public class SortedArray<T extends Comparable<T>> {
         if(data != null){
             for (int i = 0; i < data.length; i++) {
                 if(data[i] != null )
-                    this.add(data[i]);
+                    this.Add(data[i]);
             }
             return true;
         }
@@ -96,7 +95,7 @@ public class SortedArray<T extends Comparable<T>> {
      */
     public boolean Set(int index, T data){
         if(index >= 0 && index < this.size) {
-            this.arr[index] = data;
+            this.array[index] = data;
             return true;
         }
         return false;
@@ -109,7 +108,7 @@ public class SortedArray<T extends Comparable<T>> {
      */
     public T Get(int index){
         if(index >= 0 && index < this.size)
-            return this.arr[index];
+            return this.array[index];
         return null;
     }
 
@@ -135,7 +134,7 @@ public class SortedArray<T extends Comparable<T>> {
     public void Reset(){
         this.count = 0;
         this.size = 4;
-        this.array = (T[]) new Object[this.size];
+        this.array = (T[]) new Comparable[this.size];
     }
 
     /**
@@ -143,7 +142,7 @@ public class SortedArray<T extends Comparable<T>> {
      */
     public void Clear(){
         for(int i = 0; i < this.count; i++){
-            this.arr[i] = null;
+            this.array[i] = null;
         }
         this.count = 0;
     }
@@ -158,7 +157,7 @@ public class SortedArray<T extends Comparable<T>> {
     }
 
     /**
-     * Private helper method for Merger Sort. Merges two subarrays of arr[].
+     * Private helper method for Merger Sort. Merges two sub-arrays of arr[].
      * @param arr: array to be sorted
      * @param l: index of first sub array
      * @param m: merge point
@@ -170,7 +169,8 @@ public class SortedArray<T extends Comparable<T>> {
         int n2 =  r - m;
 
         // create temp arrays
-        T L[n1], R[n2];
+        T[] L = (T[]) new Comparable[n1];
+        T[] R = (T[]) new Comparable[n2];
 
         // Copy data to temp arrays L[] and R[]
         for (i = 0; i < n1; i++)
@@ -179,9 +179,9 @@ public class SortedArray<T extends Comparable<T>> {
             R[j] = arr[m + 1+ j];
 
         // Merge the temp arrays back into arr[l..r]
-        i = 0; // Initial index of first subarray
-        j = 0; // Initial index of second subarray
-        k = l; // Initial index of merged subarray
+        i = 0; // Initial index of first sub-array
+        j = 0; // Initial index of second sub-array
+        k = l; // Initial index of merged sub-array
         while (i < n1 && j < n2) {
             if (LessThan(L[i], R[j]) || EqualTo(L[i], R[j])) {
                 arr[k] = L[i];
@@ -230,26 +230,26 @@ public class SortedArray<T extends Comparable<T>> {
     }
 
     /**
-     * Preforms Merge Sort on internal array
+     * Performs Merge Sort on internal array
      * @return T[]: sorted copy of the internal array
      */
     public T[] MergeSort(){
-        T[] tmp = = (T[]) new Object[count];
+        T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
-            tmp[i] = arr[i];
+            tmp[i] = array[i];
         }
         mergeSortHelper(tmp, 0, (count - 1));
         return tmp;
     }
 
     /**
-     * Preforms Bubble sort on internal array
+     * Performs Bubble sort on internal array
      * @return T[]: sorted copy of the internal array
      */
     public T[] BubbleSort(){
-        T[] tmp = = (T[]) new Object[count];
+        T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
-            tmp[i] = arr[i];
+            tmp[i] = array[i];
         }
 
         for (int i = 0; i < count - 1; i++)
@@ -265,7 +265,7 @@ public class SortedArray<T extends Comparable<T>> {
     }
 
     /**
-     * Helper method for Quicksort. Swaps data in the partition
+     * Helper method for Quick Sort. Swaps data in the partition
      * @param arr: array to be sorted
      * @param low: low index
      * @param high: high index
@@ -295,7 +295,7 @@ public class SortedArray<T extends Comparable<T>> {
     }
 
     /**
-     * Helper method for recursive quicksort
+     * Helper method for recursive Quick Sort
      * @param arr: array to be sorted
      * @param low: low index
      * @param high: high index
@@ -312,13 +312,13 @@ public class SortedArray<T extends Comparable<T>> {
     }
 
     /**
-     * Preforms Quick Sort on the internal array
+     * Performs Quick Sort on the internal array
      * @return T[]: sorted copy of the internal array
      */
     public T[] QuickSort(){
-        T[] tmp = = (T[]) new Object[count];
+        T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
-            tmp[i] = arr[i];
+            tmp[i] = array[i];
         }
         quickSortHelper(tmp, 0, (count - 1));
 
@@ -326,13 +326,13 @@ public class SortedArray<T extends Comparable<T>> {
     }
 
     /**
-     * Preforsms Insertion sort on the internal array
+     * Performs Insertion sort on the internal array
      * @return T[]: sorted copy of the internal array
      */
     public T[] InsertionSort(){
-        T[] tmp = = (T[]) new Object[count];
+        T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
-            tmp[i] = arr[i];
+            tmp[i] = array[i];
         }
 
         for (int i=1; i < count; ++i) {
@@ -351,16 +351,16 @@ public class SortedArray<T extends Comparable<T>> {
     }
 
     /**
-     * Preforms Selection Sort on internal array
+     * Performs Selection Sort on internal array
      * @return T[]: Sorted copy of the internal data
      */
     public T[] SelectionSort(){
-        T[] tmp = = (T[]) new Object[count];
+        T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
-            tmp[i] = arr[i];
+            tmp[i] = array[i];
         }
 
-        // One by one move boundary of unsorted subarray
+        // One by one move boundary of unsorted sub-array
         for (int i = 0; i < count-1; i++) {
             // Find the minimum element in unsorted array
             int min = i;
@@ -378,17 +378,17 @@ public class SortedArray<T extends Comparable<T>> {
     }
 
     /**
-     * Determins if a is less than b
+     * Determines if a is less than b
      * @param a: generic type to test
      * @param b: generic type to test
-     * @return boolean: ture|false
+     * @return boolean: true|false
      */
     private boolean LessThan(T a, T b) {
         return a.compareTo(b) < 0;
     }
 
     /**
-     * Determins if a is equal to b
+     * Determines if a is equal to b
      * @param a: generic type to test
      * @param b: generic type to test
      * @return boolean: true|false
@@ -398,7 +398,7 @@ public class SortedArray<T extends Comparable<T>> {
     }
 
     /**
-     * Determins if a is greater than b
+     * Determines if a is greater than b
      * @param a: generic type to test
      * @param b: generic type to test
      * @return boolean: true|false
