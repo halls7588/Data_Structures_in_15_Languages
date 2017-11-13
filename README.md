@@ -58,6 +58,8 @@ What’s been implemented so far:
   
   [Arrayed Set in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/ArrayedSet/ArrayedSet.java)
   
+  [Associative Array in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/AssociativeArray/AssociativeArray.java)
+  
   [Sorted Array in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/Sorted_Array/SortedArray.java)
   
   [Doubly Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Doubly_Linked_List/DoublyLinkedList.java)
@@ -72,6 +74,8 @@ What’s been implemented so far:
   
   [Red Black Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/RedBlackTree/RedBlackTree.java)
   
+  [AVL Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/AVL_Tree/AVLTree.java)
+  
   [Arrayed Stack in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Stacks/Arrayed_Stack/ArrayedStack.java)
   
   [Circular Stack in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Stacks/CircularStack/CricularStack.java)
@@ -79,6 +83,8 @@ What’s been implemented so far:
   [Linked Stack in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Stacks/Linked_Stack/LinkedStack.java)
   
   [Arrayed Queue in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/Arrayed_Queue/ArrayedQueue.java)
+  
+  [Priority Queue in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/PriorityQueue/PriorityQueue.java)
   
   [Circular Queue in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/CircularQueue/CricularQueue.java)
   
