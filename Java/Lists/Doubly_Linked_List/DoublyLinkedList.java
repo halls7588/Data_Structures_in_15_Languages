@@ -4,7 +4,6 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked List implementation in Java
  ********************************************************/
-package DataStructures.Lists;
 
 /**
  * Doubly linked list class
@@ -16,13 +15,13 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * Node class for singly linked list
      * @param <T> Generic type
      */
-    public class Node<T>{
+    public class Node{
         /**
          * Public Members
          */
         public T data;
-        public Node<T> next;
-        public Node<T> previous;
+        public Node next;
+        public Node previous;
 
         /**
          * Node Class Constructor
@@ -38,8 +37,8 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     /**
      * Private Members
      */
-    private Node<T> head;
-    private Node<T> tail;
+    private Node head;
+    private Node tail;
     int count;
 
     /**
@@ -61,7 +60,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         if (data == null)
             return null;
 
-        Node<T> node = new Node<T>(data);
+        Node node = new Node(data);
 
         // The Linked list is empty
         if (head == null) {
@@ -84,13 +83,13 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @param data Data to remove from the list
      * @return Node removed from the list
      */
-    public Node<T> Remove(T data){
+    public Node Remove(T data){
 
         // List is empty or no data to remove
         if (head == null || data == null)
             return null;
 
-        Node<T> tmp = head;
+        Node tmp = head;
         // The data to remove what found in the first Node in the list
         if(EqualTo(tmp.data, data)) {
             head = head.next;
@@ -110,7 +109,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
                     return tmp;
                 }
                 else {
-                    Node<T> node = tmp.next;
+                    Node node = tmp.next;
                     tmp.next = tmp.next.next;
                     tmp.next.next.previous = tmp;
                     node.next = node.previous = null;
@@ -118,6 +117,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
                     return node;
                 }
             }
+            tmp = tmp.next;
         }
         // The data was not found in the list
         return null;
@@ -128,13 +128,13 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @param data Data to find in the list
      * @return Node First node with matching data or null if no node was found
      */
-    public Node<T> Find(T data)
+    public Node Find(T data)
     {
         // No list or data to find
         if (head == null || data == null)
             return null;
 
-        Node<T> tmp = head;
+        Node tmp = head;
         // Try to find the data in the list
         while(tmp != null) {
             // Data was found
@@ -152,12 +152,12 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @param index Index of the Node to get
      * @return Node at passed in index
      */
-    public Node<T> IndexAt(int index){
+    public Node IndexAt(int index){
         //Index was negative or larger then the amount of Nodes in the list
         if (index < 0 || index > Size())
             return null;
 
-        Node<T> tmp = head;
+        Node tmp = head;
 
         // Move to index
         for (int i = 0; i < index; i++) {
