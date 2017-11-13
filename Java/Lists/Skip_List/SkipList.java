@@ -4,14 +4,13 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Skip List implementation in Java
  ********************************************************/
-package DataStructures.Lists;
 
 /**
  * Skip list class
  * @param <T> Generic type
  */
 public class SkipList<T extends Comparable<T>> {
-    private Node<T> head;
+    private Node head;
     private int max;
     private int size;
     private static final double PROBABILITY = 0.5;
@@ -20,9 +19,9 @@ public class SkipList<T extends Comparable<T>> {
      * Node for Skip List class
      * @param <T> generic Type
      */
-    public class Node<T> {
+    public class Node {
         public T data;
-        public List<Node<T>> nodeList;
+        public List<Node> nodeList;
 
         /**
          * Node Constructor
@@ -30,7 +29,7 @@ public class SkipList<T extends Comparable<T>> {
          */
         public Node(T data) {
             this.data = data;
-            nodeList = new ArrayList<Node<T> >();
+            nodeList = new ArrayList<Node>();
         }
 
         /**
@@ -49,7 +48,7 @@ public class SkipList<T extends Comparable<T>> {
         size = 0;
         max = 0;
         // a Node with value null marks the beginning
-        head = new Node<T>(null);
+        head = new Node(null);
         // null marks the end
         head.nodeList.add(null);
     }
@@ -80,7 +79,7 @@ public class SkipList<T extends Comparable<T>> {
             max++;
         }
 
-        Node node = new Node<T>(data);
+        Node node = new Node(data);
         Node current = head;
 
         do {
