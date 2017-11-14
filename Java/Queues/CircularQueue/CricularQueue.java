@@ -4,10 +4,9 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Circular Queue implementation in Java
  ********************************************************/
-package DataStructures.Queues;
 
 /**
- * Arrayed Queue Class
+ * Circular Queue Class
  * @param <T> Generic type
  */
 public class CircularQueue<T> {
@@ -23,8 +22,7 @@ public class CircularQueue<T> {
      * Default Constructor
      */
     public CircularQueue(){
-        array = (T[]) new Object[(size = 10)];
-        count = zeroIndex = 0;
+        this(10);
     }
 
     /**
@@ -41,11 +39,11 @@ public class CircularQueue<T> {
      * @param data Data to be added to the queue
      * @return Node added to the queue
      */
-    public T Enqueue(T data){
-        if(!IsFull()) {
+    public T enqueue(T data){
+        if(!isFull()) {
             array[(zeroIndex + count) % size] = data;
             count++;
-            return Top();
+            return top();
         }
         return null;
     }
@@ -54,15 +52,14 @@ public class CircularQueue<T> {
      * Removes item from the queue
      * @return item removed from the queue
      */
-    public T Dequeue(){
-        if(IsEmpty())
+    public T dequeue(){
+        if(isEmpty())
             return null;
 
         T tmp = array[(zeroIndex)];
         array[zeroIndex] = null;
         count--;
         zeroIndex = (zeroIndex + 1) % size;
-
         return tmp;
     }
 
@@ -70,17 +67,15 @@ public class CircularQueue<T> {
      * Gets the top item of the queue
      * @return item on top of the queue
      */
-    public T Top(){
-        if(IsEmpty())
-            return null;
-        return array[zeroIndex];
+    public T top(){
+        return (IsEmpty()) ? null : array[zeroIndex];
     }
 
     /**
      * Returns a value indicating if the queue is empty
      * @return true if empty, false if not
      */
-    public boolean IsEmpty(){
+    public boolean isEmpty(){
         return (count == 0);
     }
 
@@ -88,7 +83,7 @@ public class CircularQueue<T> {
      * Returns a value indicating if the queue is full
      * @return True if full, false if not
      */
-    public boolean IsFull(){
+    public boolean isFull(){
         return (count == size);
     }
 }
