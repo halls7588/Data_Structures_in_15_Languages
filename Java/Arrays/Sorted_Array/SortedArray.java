@@ -7,11 +7,10 @@
 
 
 /**
- * ArrayList Class
+ * SortedArray Class
  * @param <T> Generic type
  */
 public class SortedArray<T extends Comparable<T>>{
-
     /**
      * Private Members
      */
@@ -23,9 +22,7 @@ public class SortedArray<T extends Comparable<T>>{
      * SortedArray default constructor
      */
     public SortedArray(){
-        count = 0;
-        size = 4;
-        array = (T[]) new Comparable[size];
+        this(4);
     }
 
     /**
@@ -44,13 +41,13 @@ public class SortedArray<T extends Comparable<T>>{
     /**
      * Doubles the size of the internal array
      */
-    private void Resize(){
+    private void resize(){
         size *= 2;
-        T[] tmp = (T[]) new Comparable[this.size];
-        for(int i = 0; i < this.count; i++){
-            tmp[i] = this.array[i];
+        T[] tmp = (T[]) new Comparable[size];
+        for(int i = 0; i < count; i++){
+            tmp[i] = array[i];
         }
-        this.array = tmp;
+        array = tmp;
     }
 
     /**
@@ -58,15 +55,15 @@ public class SortedArray<T extends Comparable<T>>{
      * @param data Data to add into the array
      * @return Data added into the array
      */
-    public T Add(T data){
+    public T add(T data){
         if(data == null)
             return null;
 
         if(this.count == size)
-            this.Resize();
+            resize();
 
-        this.array[this.count] = data;
-        this.count++;
+        array[count] = data;
+        count++;
 
         return data;
     }
@@ -76,11 +73,11 @@ public class SortedArray<T extends Comparable<T>>{
      * @param data: array to append
      * @return boolean: success|fail
      */
-    public boolean Append(T[] data){
+    public boolean append(T[] data){
         if(data != null){
             for (int i = 0; i < data.length; i++) {
                 if(data[i] != null )
-                    this.Add(data[i]);
+                    add(data[i]);
             }
             return true;
         }
@@ -93,9 +90,9 @@ public class SortedArray<T extends Comparable<T>>{
      * @param data: data to set index to
      * @return boolean: success|fail
      */
-    public boolean Set(int index, T data){
-        if(index >= 0 && index < this.size) {
-            this.array[index] = data;
+    public boolean set(int index, T data){
+        if(index >= 0 && index < size) {
+            array[index] = data;
             return true;
         }
         return false;
@@ -106,9 +103,9 @@ public class SortedArray<T extends Comparable<T>>{
      * @param index Index to get data at
      * @return Data at the given index or default value of T if index does not exist
      */
-    public T Get(int index){
-        if(index >= 0 && index < this.size)
-            return this.array[index];
+    public T get(int index){
+        if(index >= 0 && index < size)
+            return array[index];
         return null;
     }
 
@@ -117,8 +114,7 @@ public class SortedArray<T extends Comparable<T>>{
      * @param index Index to remove
      * @return Data removed from the array or default T value if index does not exist
      */
-    public T Remove(int index)
-    {
+    public T remove(int index){
         if (index < 0 || index > count)
             return null;
 
@@ -131,18 +127,18 @@ public class SortedArray<T extends Comparable<T>>{
     /**
      * Resets the internal array to default size with no data
      */
-    public void Reset(){
-        this.count = 0;
-        this.size = 4;
-        this.array = (T[]) new Comparable[this.size];
+    public void reset(){
+        count = 0;
+        size = 4;
+        array = (T[]) new Comparable[this.size];
     }
 
     /**
      * Clears all data in the array leaving size intact
      */
-    public void Clear(){
-        for(int i = 0; i < this.count; i++){
-            this.array[i] = null;
+    public void clear(){
+        for(int i = 0; i < count; i++){
+            array[i] = null;
         }
         this.count = 0;
     }
@@ -152,7 +148,7 @@ public class SortedArray<T extends Comparable<T>>{
      * Gets the current count of the array
      * @return Number of items in the array
      */
-    public int Count(){
+    public int count(){
         return count;
     }
 
@@ -183,7 +179,7 @@ public class SortedArray<T extends Comparable<T>>{
         j = 0; // Initial index of second sub-array
         k = l; // Initial index of merged sub-array
         while (i < n1 && j < n2) {
-            if (LessThan(L[i], R[j]) || EqualTo(L[i], R[j])) {
+            if (lessThan(L[i], R[j]) || equalTo(L[i], R[j])) {
                 arr[k] = L[i];
                 i++;
             }
@@ -233,7 +229,7 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Merge Sort on internal array
      * @return T[]: sorted copy of the internal array
      */
-    public T[] MergeSort(){
+    public T[] mergeSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];
@@ -246,7 +242,7 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Bubble sort on internal array
      * @return T[]: sorted copy of the internal array
      */
-    public T[] BubbleSort(){
+    public T[] bubbleSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];
@@ -254,7 +250,7 @@ public class SortedArray<T extends Comparable<T>>{
 
         for (int i = 0; i < count - 1; i++)
             for (int j = 0; j < count-i-1; j++) {
-                if (GreaterThan(tmp[j], tmp[j + 1])) {
+                if (greaterThan(tmp[j], tmp[j + 1])) {
                     // swap temp and arr[i]
                     T temp = tmp[j];
                     tmp[j] = tmp[j + 1];
@@ -277,7 +273,7 @@ public class SortedArray<T extends Comparable<T>>{
         for (int j = low; j < high; j++) {
             // If current element is smaller than or
             // equal to pivot
-            if (LessThan(arr[j], pivot) || EqualTo(arr[j], pivot)) {
+            if (lessThan(arr[j], pivot) || equalTo(arr[j], pivot)) {
                 i++;
                 // swap arr[i] and arr[j]
                 T temp = arr[i];
@@ -315,7 +311,7 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Quick Sort on the internal array
      * @return T[]: sorted copy of the internal array
      */
-    public T[] QuickSort(){
+    public T[] quickSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];
@@ -329,7 +325,7 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Insertion sort on the internal array
      * @return T[]: sorted copy of the internal array
      */
-    public T[] InsertionSort(){
+    public T[] insertionSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];
@@ -340,13 +336,12 @@ public class SortedArray<T extends Comparable<T>>{
             int j = i - 1;
 
             // Move elements of arr[0..i-1], that are greater than key, to one position ahead
-            while (j >= 0 && LessThan(tmp[j],key)) {
+            while (j >= 0 && lessThan(tmp[j],key)) {
                 tmp[j + 1] = tmp[j];
                 j = j - 1;
             }
             tmp[j + 1] = key;
         }
-
         return tmp;
     }
 
@@ -354,18 +349,17 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Selection Sort on internal array
      * @return T[]: Sorted copy of the internal data
      */
-    public T[] SelectionSort(){
+    public T[] selectionSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];
         }
-
         // One by one move boundary of unsorted sub-array
         for (int i = 0; i < count-1; i++) {
             // Find the minimum element in unsorted array
             int min = i;
             for (int j = i + 1; j < count; j++)
-                if (LessThan(tmp[j],tmp[min]))
+                if (lessThan(tmp[j],tmp[min]))
                     min = j;
 
             // Swap the found minimum element with the first
@@ -383,7 +377,7 @@ public class SortedArray<T extends Comparable<T>>{
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean LessThan(T a, T b) {
+    private boolean lessThan(T a, T b) {
         return a.compareTo(b) < 0;
     }
 
@@ -393,7 +387,7 @@ public class SortedArray<T extends Comparable<T>>{
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean EqualTo(T a, T b) {
+    private boolean equalTo(T a, T b) {
         return a.compareTo(b) == 0;
     }
 
@@ -403,7 +397,7 @@ public class SortedArray<T extends Comparable<T>>{
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean GreaterThan(T a, T b) {
+    private boolean greaterThan(T a, T b) {
         return a.compareTo(b) > 0;
     }
 }
