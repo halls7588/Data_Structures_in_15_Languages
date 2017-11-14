@@ -6,7 +6,7 @@
  ********************************************************/
 
 /**
- * Singlely linked set class
+ * Linked set class
  * @param <T> Generic type
  */
 public class LinkedSet<T extends Comparable<T>> {
@@ -51,19 +51,18 @@ public class LinkedSet<T extends Comparable<T>> {
      * @param data Data to add into the list<
      * @return Node added into the list
      */
-    public Node Add(T data){
+    public Node add(T data){
 
         // No data to insert into list
         if (data == null)
             return null;
 
-        if(Find(data) != null)
+        if(find(data) != null)
             return null;
 
         Node node = new Node(data);
         // The Linked list is empty
-        if (head == null)
-        {
+        if (head == null) {
             head = node;
             tail = head;
             count++;
@@ -82,27 +81,23 @@ public class LinkedSet<T extends Comparable<T>> {
      * @param data Data to remove from the list
      * @return Node removed from the list
      */
-    public Node Remove(T data){
-
+    public Node remove(T data){
         // List is empty or no data to remove
         if (head == null || data == null)
             return null;
 
         Node tmp = head;
         // The data to remove what found in the first Node in the list
-        if(EqualTo(tmp.data, data))
-        {
+        if(equalTo(tmp.data, data)) {
             head = head.next;
             count--;
             return tmp;
         }
         // Try to find the node in the list
-        while (tmp.next != null)
-        {
+        while (tmp.next != null) {
             // Node was found, Remove it from the list
-            if (EqualTo(tmp.next.data, data))
-            {
-                Node<T> node = tmp.next;
+            if (equalTo(tmp.next.data, data)){
+                Node node = tmp.next;
                 tmp.next = tmp.next.next;
                 count--;
                 return node;
@@ -118,18 +113,16 @@ public class LinkedSet<T extends Comparable<T>> {
      * @param data Data to find in the list
      * @return Node First node with matching data or null if no node was found
      */
-    public Node Find(T data)
-    {
+    public Node find(T data){
         // No list or data to find
         if (head == null || data == null)
             return null;
 
         Node tmp = head;
         // Try to find the data in the list
-        while(tmp != null)
-        {
+        while(tmp != null) {
             // Data was found
-            if (EqualTo(tmp.data, data))
+            if (equalTo(tmp.data, data))
                 return tmp;
 
             tmp = tmp.next;
@@ -143,9 +136,9 @@ public class LinkedSet<T extends Comparable<T>> {
      * @param index Index of the Node to get
      * @return Node at passed in index
      */
-    public Node IndexAt(int index){
+    public Node indexAt(int index){
         //Index was negative or larger then the amount of Nodes in the list
-        if (index < 0 || index > Size())
+        if (index < 0 || index > size())
             return null;
 
         Node tmp = head;
@@ -161,18 +154,8 @@ public class LinkedSet<T extends Comparable<T>> {
      * Gets the current count of the array
      * @return Number of items in the array
      */
-    public int Size(){
+    public int size(){
         return count;
-    }
-
-    /**
-     * Determins if a is less than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: ture|false
-     */
-    private boolean LessThan(T a, T b) {
-        return a.compareTo(b) < 0;
     }
 
     /**
@@ -181,17 +164,7 @@ public class LinkedSet<T extends Comparable<T>> {
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean EqualTo(T a, T b) {
+    private boolean equalTo(T a, T b) {
         return a.compareTo(b) == 0;
-    }
-
-    /**
-     * Determins if a is greater than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean GreaterThan(T a, T b) {
-        return a.compareTo(b) > 0;
     }
 }
