@@ -206,7 +206,7 @@ What’s been implemented so far:
   #### Graphs
 </details>
 
-###Visual Basic
+### Visual Basic
 
 <details>
   <summary>Data Structures implemented</summary>
@@ -221,7 +221,7 @@ What’s been implemented so far:
   
   [Linked List in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Lists/Linked_List/Linked_List.vb)
   
-  # Trees
+  #### Trees
   
   [Binary Tree in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Trees/BinaryTree/BinaryTree.vb)
   
