@@ -23,9 +23,7 @@ public class CircularArray<T> {
      * CircularArray default constructor
      */
     public CircularArray(){
-        count = zeroIndex = 0;
-        size = 10;
-        array = (T[]) new Object[size];
+        this(10);
     }
 
     /**
@@ -43,11 +41,11 @@ public class CircularArray<T> {
      * @param data Data to add into the array
      * @return Data added into the array
      */
-    public T Add(T data) {
+    public T add(T data) {
         if(count == size - 1) {
-            Resize();
+            resize();
         }
-
+        
         int tmp = (zeroIndex + count) % size;
         array[tmp] = data;
         count++;
@@ -59,7 +57,7 @@ public class CircularArray<T> {
      * @param index Index to get data at
      * @return Data at the given index or default value of T if index does not exist
      */
-    public T DataAt(int index) {
+    public T dataAt(int index) {
         if ((index + zeroIndex) % size < count && array[(index + zeroIndex) % size] != null){
             return (array[index + zeroIndex % size]);
         }
@@ -71,7 +69,7 @@ public class CircularArray<T> {
      * @param index Index to remove
      * @return Data removed from the array or default T value if index does not exist
      */
-    public T Remove(int index){
+    public T remove(int index){
         if (index > size)
             return null;
 
@@ -87,14 +85,14 @@ public class CircularArray<T> {
      * Gets the current count of the array
      * @return Number of items in the array
      */
-    public int Count(){
+    public int count(){
         return count;
     }
 
     /**
      * Private method to resize the array if capacity has been reached
      */
-    private void Resize() {
+    private void resize() {
 
         T[] arr = (T[])new Object[size * 2];
         for(int i = 0; i < count; i++) {
@@ -105,7 +103,7 @@ public class CircularArray<T> {
         array = arr;
     }
 
-    public void Print() {
+    public void print() {
         for(int i = 0; i < count; i++) {
             System.out.println(array[(zeroIndex + i % size)]);
         }
