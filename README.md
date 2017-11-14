@@ -4,36 +4,62 @@ This project is intended to help newer developers, code school graduates, and se
 
 What’s been implemented so far:
 
+### PHP
+
 <details>
-  <summary>PHP</summary>
+  <summary>Data Structures implemented</summary>
+  
+  #### Arrays
   
   [Circular Array in PHP](https://github.com/halls7588/Data_Structures/blob/master/PHP/Arrays/CircularArray/CircularArray.php)
+  
+  #### Lists
   
   [Doubly Linked List in PHP](https://github.com/halls7588/Data_Structures/blob/master/PHP/Lists/Doubly_Linked_List/DoublyLinkedList.php)
   
   [Linked List in PHP](https://github.com/halls7588/Data_Structures/blob/master/PHP/Lists/LinkedList/LinkedList.php)
   
+  #### Trees
+  
   [Binary Tree in PHP](https://github.com/halls7588/Data_Structures/blob/master/PHP/Trees/BinaryTree.php)
+  
+  #### Stacks
   
   [Arrayed Stack in PHP](https://github.com/halls7588/Data_Structures/blob/master/PHP/Stacks/ArrayedStack/ArrayedStack.php)
   
   [Linked Stack in PHP](https://github.com/halls7588/Data_Structures/blob/master/PHP/Stacks/LinkedStack/LinkedStack.php)
   
+  #### Queues
+  
   [Arrayed Queue in PHP](https://github.com/halls7588/Data_Structures/blob/master/PHP/Queue/Arrayed_Queues/ArrayedQueue.php)
   
   [Linked Queue in PHP](https://github.com/halls7588/Data_Structures/blob/master/PHP/Queue/Linked_Queue/Linked_Queue/LinkedQueue.php)  
+  
+  #### Heaps
+  
+  #### Hashtabels
+  
+  #### Graphs
 </details>
 
+### JavaScript
+
 <details>
-  <summary>JavaScript</summary>
+  <summary>Data Structures implemented</summary>
+  
+  #### Arrays 
   
   [Circular Array in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Arrays/CircularArray/CircularArray.js)
   
   [ArrayList in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Arrays/ArrayList/ArrayList.js)
   
+  #### Lists
+  
   [Doubly Linked List in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Lists/Doubly_Linked_List/DoublyLinkedList.js)
   
   [Linked List in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Lists/Linked_List/LinkedList.js)
+  
+  #### Trees
   
   [Binary Tree in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Trees/Binary_Tree/BinaryTree.js)
   
@@ -41,16 +67,31 @@ What’s been implemented so far:
     
   [Red Black Tree in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Trees/Red_Black_Tree/RedBlackTree.js)
   
+  #### Stacks
+  
   [Arrayed Stack in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Stacks/Arrayed_Stack/Arrayed_Stack.js)
   
   [Linked Stack in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Stacks/Stack_Linked/LinkedStack.js)
   
+  #### Queues
+  
   [Arrayed Queue in JavaScript](https://github.com/halls7588/Data_Structures/tree/master/JavaScript/Queues/ArrayedQueue)
   
-  [Linked Queue in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Queues/LinkedQueue/LinkedQueue.js)  
+  [Linked Queue in JavaScript](https://github.com/halls7588/Data_Structures/blob/master/JavaScript/Queues/LinkedQueue/LinkedQueue.js) 
+  
+  #### Heaps
+  
+  #### Hashtabels
+  
+  #### Graphs
 </details>
+
+### Java
+
 <details>
-  <summary>Java</summary>
+  <summary>Data Structures implemented</summary>
+  
+  #### Arrays
   
   [Circular Array in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/CircularArray/CircularArray.java)
   
@@ -62,6 +103,8 @@ What’s been implemented so far:
   
   [Sorted Array in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Arrays/Sorted_Array/SortedArray.java)
   
+  #### Lists
+  
   [Doubly Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Doubly_Linked_List/DoublyLinkedList.java)
   
   [Linked List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Linked_List/LinkedList.java)
@@ -69,6 +112,8 @@ What’s been implemented so far:
   [Skip List in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/Skip_List/SkipList.java)
   
   [Linked Set in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Lists/LinkedSet/LinkedSet.java)
+  
+  #### Trees
   
   [Binary Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/Binary_Tree/BinaryTree.java)
   
@@ -82,11 +127,15 @@ What’s been implemented so far:
   
   [AVL Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/AVL_Tree/AVLTree.java)
   
+  #### Stacks
+  
   [Arrayed Stack in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Stacks/Arrayed_Stack/ArrayedStack.java)
   
   [Circular Stack in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Stacks/CircularStack/CricularStack.java)
   
   [Linked Stack in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Stacks/Linked_Stack/LinkedStack.java)
+  
+  #### Queues
   
   [Arrayed Queue in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/Arrayed_Queue/ArrayedQueue.java)
   
@@ -98,48 +147,101 @@ What’s been implemented so far:
   
   [Linked Queue in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/Linked_Queue/LinkedQueue.java) 
   
+  #### Heaps
+  
   [Linked Heap in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Heaps/LinkedHeap/LinkedHeap.java) 
   
-  [Arrayed Heap in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Heaps/ArrayedHeap/ArrayedHeap.java) 
+  [Arrayed Heap in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Heaps/ArrayedHeap/ArrayedHeap.java)
+  
+  [Heap Sort in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Heaps/HeapSort/HeapSort.java) 
+  
+  #### Hashtabels
+  
+  [Hashset in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Hashtables/HashSet/HashSet.java) 
+  
+  [Hashtabel in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Hashtables/HashTable/Hashtable.java) 
+  
+  #### Graphs
+  
+  [Undirected Graph in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Graphs/Undirected-Graph/UndirectedGraph.java)
+  
+  [Directed Graph in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Graphs/Directed-Graph/DirectedGraph.java) 
 </details>
 
+### C#
+
 <details>
-  <summary>C#</summary>
+  <summary>Data Structures implemented</summary>
+  
+  #### Arrays
   
   [Circular Array in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Arrays/CirculayArray.cs)
+  
+  #### Lists
   
   [Doubly Linked List in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Lists/DoublyLinkedList/DoublyLinkedList.cs)
   
   [Linked List in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Lists/Linked_List/LinkedList.cs)
   
+  #### Trees
+  
   [Binary Tree in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Trees/Binary_Tree/BinaryTree.cs)
+  
+  #### Stacks
   
   [Arrayed Stack in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Stacks/Arrayed_Stack/ArrayedStack.cs)
   
   [Linked Stack in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Stacks/Linked_Stack/LinkedStack.cs)
   
+  #### Queues
+  
   [Arrayed Queue in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Queues/Arrayed_Queue/ArrayedQueue.cs)
   
-  [Linked Queue in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Queues/Linked_Queue/LinkedQueue.cs)  
+  [Linked Queue in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Queues/Linked_Queue/LinkedQueue.cs) 
+  
+  #### Heaps
+  
+  #### Hashtabels
+  
+  #### Graphs
 </details>
+
+###Visual Basic
+
 <details>
-  <summary>Visual Basic</summary>
+  <summary>Data Structures implemented</summary>
+  
+  #### Arrays
   
   [Circular Array in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Arrays/CircularArray.vb)
+  
+  #### Lists
   
   [Doubly Linked List in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Lists/DoublyLinkedList/DoublyLinkedList.vb)
   
   [Linked List in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Lists/Linked_List/Linked_List.vb)
   
+  # Trees
+  
   [Binary Tree in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Trees/BinaryTree/BinaryTree.vb)
+  
+  #### Stacks
   
   [Arrayed Stack in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Stacks/Arrayed_Stack/ArrayedStack.vb)
   
   [Linked Stack in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Stacks/Linked_Stack/LinkedStack.vb)
   
+  #### Queues 
+  
   [Arrayed Queue in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Queues/Arrayed_Queue/ArrayedQueue.vb)
   
-  [Linked Queue in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Queues/Linked_Queue/LinkedQueue.vb)  
+  [Linked Queue in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Queues/Linked_Queue/LinkedQueue.vb)
+  
+  #### Heaps
+  
+  #### Hashtabels
+  
+  #### Graphs
 </details>
 
 ## Getting Started
