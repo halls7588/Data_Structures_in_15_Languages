@@ -31,7 +31,6 @@ public class DoublyLinkedList<T extends Comparable<T>> {
             this.data = data;
             next = previous = null;
         }
-
     }
 
     /**
@@ -39,7 +38,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      */
     private Node head;
     private Node tail;
-    int count;
+    private int count;
 
     /**
      * Linked List Constructor
@@ -54,7 +53,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @param data Data to add into the list
      * @return Node added into the list
      */
-    public Node<T> Add(T data){
+    public Node add(T data){
 
         // No data to insert into list
         if (data == null)
@@ -83,7 +82,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @param data Data to remove from the list
      * @return Node removed from the list
      */
-    public Node Remove(T data){
+    public Node remove(T data){
 
         // List is empty or no data to remove
         if (head == null || data == null)
@@ -91,7 +90,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
         Node tmp = head;
         // The data to remove what found in the first Node in the list
-        if(EqualTo(tmp.data, data)) {
+        if(equalTo(tmp.data, data)) {
             head = head.next;
             count--;
             return tmp;
@@ -100,7 +99,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         // Try to find the node in the list
         while (tmp.next != null) {
             // Node was found, Remove it from the list
-            if (EqualTo(tmp.next.data, data)) {
+            if (equalTo(tmp.next.data, data)) {
                 if(tmp.next == tail){
                     tail = tmp;
                     tmp = tmp.next;
@@ -128,7 +127,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @param data Data to find in the list
      * @return Node First node with matching data or null if no node was found
      */
-    public Node Find(T data)
+    public Node find(T data)
     {
         // No list or data to find
         if (head == null || data == null)
@@ -138,9 +137,8 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         // Try to find the data in the list
         while(tmp != null) {
             // Data was found
-            if (EqualTo(tmp.data, data))
+            if (equalTo(tmp.data, data))
                 return tmp;
-
             tmp = tmp.next;
         }
         // Data was not found in the list
@@ -152,7 +150,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @param index Index of the Node to get
      * @return Node at passed in index
      */
-    public Node IndexAt(int index){
+    public Node indexAt(int index){
         //Index was negative or larger then the amount of Nodes in the list
         if (index < 0 || index > Size())
             return null;
@@ -171,37 +169,17 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * Gets the current count of the array
      * @return Number of items in the array
      */
-    public int Size(){
+    public int size(){
         return count;
     }
-
-    /**
-     * Determins if a is less than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: ture|false
-     */
-    private boolean LessThan(T a, T b) {
-        return a.compareTo(b) < 0;
-    }
-
+    
     /**
      * Determins if a is equal to b
      * @param a: generic type to test
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean EqualTo(T a, T b) {
+    private boolean equalTo(T a, T b) {
         return a.compareTo(b) == 0;
-    }
-
-    /**
-     * Determins if a is greater than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean GreaterThan(T a, T b) {
-        return a.compareTo(b) > 0;
     }
 }
