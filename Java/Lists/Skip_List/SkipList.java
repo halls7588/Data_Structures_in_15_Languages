@@ -17,7 +17,6 @@ public class SkipList<T extends Comparable<T>> {
 
     /**
      * Node for Skip List class
-     * @param <T> generic Type
      */
     public class Node {
         public T data;
@@ -37,7 +36,7 @@ public class SkipList<T extends Comparable<T>> {
          * @return int: level of the node
          */
         public int Level() {
-            return nodeList.size()-1;
+            return nodeList.size() - 1;
         }
     }
 
@@ -53,23 +52,19 @@ public class SkipList<T extends Comparable<T>> {
         head.nodeList.add(null);
     }
 
-    // Adds data to the skiplist.
-    // Returns false if already in skiplist, true otherwise.
-
     /**
      * Adds a node into the Skip List
      * @param data: data to add into the list
      * @return boolean: success|fail
      */
-    public boolean Add(T data) {
-        if(Contains(data))
+    public boolean add(T data) {
+        if(contains(data))
             return false;
-
-        size++;
-
-        // random number from 0 to max+1 (inclusive)
+        
+        size++;        
         int level = 0;
-
+        
+        // random number from 0 to max + 1 (inclusive)
         while (Math.random() < PROBABILITY)
             level++;
 
@@ -83,11 +78,10 @@ public class SkipList<T extends Comparable<T>> {
         Node current = head;
 
         do {
-            current = FindNext(data, current, level);
+            current = findNext(data, current, level);
             node.nodeList.add(0, current.nodeList.get(level));
             current.nodeList.set(level, node);
         } while ((level--) > 0);
-
         return true;
     }
 
@@ -96,10 +90,9 @@ public class SkipList<T extends Comparable<T>> {
      * @param data: data to find
      * @return Node: Node found
      */
-    private Node Find(T data) {
-        return Find(data, head, max);
+    private Node find(T data) {
+        return find(data, head, max);
     }
-
 
     /**
      * Returns node with the greatest value
@@ -108,11 +101,10 @@ public class SkipList<T extends Comparable<T>> {
      * @param level: level to start form
      * @return Node: current node
      */
-    private Node Find(T data, Node current, int level) {
+    private Node find(T data, Node current, int level) {
         do {
-            current = FindNext(data, current, level);
+            current = findNext(data, current, level);
         } while((level--) > 0);
-
         return current;
     }
 
@@ -123,15 +115,14 @@ public class SkipList<T extends Comparable<T>> {
      * @param level: current level
      * @return Node: highest node
      */
-    private Node FindNext(T data, Node current, int level) {
+    private Node findNext(T data, Node current, int level) {
         Node next = (Node)current.nodeList.get(level);
 
         while(next != null) {
             T value = (T) next.data;
-
-            if(LessThan(data, value))
+            if(lessThan(data, value))
                 break;
-
+            
             current = next;
             next = (Node)current.nodeList.get(level);
         }
@@ -151,10 +142,10 @@ public class SkipList<T extends Comparable<T>> {
      * @param o: object to test
      * @return boolean: true|false
      */
-    public boolean Contains(Object o) {
+    public boolean contains(Object o) {
         T data = (T)o;
-        Node node = Find(data);
-        return (node != null && node.data != null && EqualTo((T)node.data, data));
+        Node node = find(data);
+        return (node != null && node.data != null && equalTo((T)node.data, data));
     }
 
     /**
@@ -163,7 +154,7 @@ public class SkipList<T extends Comparable<T>> {
      * @param b: generic type to test
      * @return boolean: ture|false
      */
-    private boolean LessThan(T a, T b) {
+    private boolean lessThan(T a, T b) {
         return a.compareTo(b) < 0;
     }
 
@@ -173,7 +164,7 @@ public class SkipList<T extends Comparable<T>> {
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean EqualTo(T a, T b) {
+    private boolean equalTo(T a, T b) {
         return a.compareTo(b) == 0;
     }
 
@@ -183,7 +174,7 @@ public class SkipList<T extends Comparable<T>> {
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean GreaterThan(T a, T b) {
+    private boolean greaterThan(T a, T b) {
         return a.compareTo(b) > 0;
     }
 
