@@ -4,44 +4,41 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Deque implementation in Java
  ********************************************************/
-package DataStructures.Queues;
 
 /**
  * Linked Queue Class
  * @param <T> Generic Type
  */
 public class Deque<T> {
-
-/**
- * Node Class for Linked Queue
- * @param <T> Generic Type
- */
-public class Node<T>{
-
     /**
-     * Public Member
+     * Node Class for Linked Queue
+     * @param <T> Generic Type
      */
-    public T data;
-    public Node<T> next;
-    public Node<T> previous;
+    public class Node{
+        /**
+         * Public Member
+         */
+        public T data;
+        public Node next;
+        public Node previous;
 
-    /**
-     * Node Class Constructor
-     * @param data Data to be held in the node
-     */
-    public Node(T data){
-        this.data = data;
-        next = null;
-        previous = null;
+        /**
+         * Node Class Constructor
+         * @param data Data to be held in the node
+         */
+        public Node(T data){
+            this.data = data;
+            next = null;
+            previous = null;
+        }
     }
-}
 
     /**
      * Private Members
      */
     private int count;
-    private Node<T> head;
-    private Node<T> tail;
+    private Node head;
+    private Node tail;
 
     /**
      * Linked Queue Constructor
@@ -56,15 +53,15 @@ public class Node<T>{
      * @param data Data to be added to the deque
      * @return Node added to the deque
      */
-    public Node<T> EnqueueFront(T data){
-        if(IsEmpty()){
-            Node<T> node = new Node(data);
+    public Node enqueueFront(T data){
+        if(isEmpty()){
+            Node node = new Node(data);
             head = tail = node;
             count++;
             return node;
         }
 
-        Node<T> node = new Node(data);
+        Node node = new Node(data);
         node.next = head;
         head.previous = node;
         head = node;
@@ -77,15 +74,15 @@ public class Node<T>{
      * @param data Data to be added to the deque
      * @return Node added to the deque
      */
-    public Node<T> EnqueueBack(T data){
-        if(IsEmpty()){
-            Node<T> node = new Node(data);
+    public Node enqueueBack(T data){
+        if(isEmpty()){
+            Node node = new Node(data);
             head = tail = node;
             count++;
             return node;
         }
 
-        Node<T> node = new Node(data);
+        Node node = new Node(data);
         node.next = tail;
         tail.previous = node;
         tail = node;
@@ -98,10 +95,10 @@ public class Node<T>{
      * Removes item off the front of the deque
      * @return Node popped off of the deque
      */
-    public Node<T> DequeueFront(){
-        if(IsEmpty())
+    public Node dequeueFront(){
+        if(isEmpty())
             return null;
-        Node<T> node = head;
+        Node node = head;
         head = head.next;
         head.previous = null;
         node.next = null;
@@ -113,10 +110,10 @@ public class Node<T>{
      * Removes item off the back of the deque
      * @return Node removes from the back of the deque
      */
-    public Node<T> DequeueBack(){
-        if(IsEmpty())
+    public Node dequeueBack(){
+        if(isEmpty())
             return null;
-        Node<T> node = tail;
+        Node node = tail;
         tail = tail.previous;
         tail.next = null;
         node.previous = null;
@@ -128,7 +125,7 @@ public class Node<T>{
      * Gets the Node at the front of the deque
      * @return Node on top of the deque
      */
-    public Node<T> PeekFront(){
+    public Node peekFront(){
         return head;
     }
 
@@ -136,7 +133,7 @@ public class Node<T>{
      * Gets the Node at the back of the deque
      * @return Node on bottom of the deque
      */
-    public Node<T> PeekBack(){
+    public Node peekBack(){
         return tail;
     }
 
@@ -144,7 +141,7 @@ public class Node<T>{
      * Returns a value indicating if the deque is empty
      * @return true if empty, false if not
      */
-    public boolean IsEmpty(){
+    public boolean isEmpty(){
         return (count == 0);
     }
 
@@ -152,6 +149,6 @@ public class Node<T>{
      * Returns a value indicating if the deque is full
      * @return False, deque is never full
      */
-    public boolean IsFull(){
+    public boolean isFull(){
         return false;
     }
