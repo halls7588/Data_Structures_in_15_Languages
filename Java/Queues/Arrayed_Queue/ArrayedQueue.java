@@ -4,7 +4,6 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Arrayed Queue implementation in Java
  ********************************************************/
-package DataStructures.Queues;
 
 /**
  * Arrayed Queue Class
@@ -22,8 +21,7 @@ public class ArrayedQueue<T> {
      * Default Constructor
      */
     public ArrayedQueue(){
-        array = (T[]) new Object[(size = 10)];
-        count = 0;
+       this(10);
     }
 
     /**
@@ -40,11 +38,11 @@ public class ArrayedQueue<T> {
      * @param data Data to be added to the queue
      * @return Node added to the queue
      */
-    public T Enqueue(T data){
-        if(!IsFull()) {
+    public T enqueue(T data){
+        if(!isFull()) {
             array[count] = data;
             count++;
-            return Top();
+            return top();
         }
         return null;
     }
@@ -53,8 +51,8 @@ public class ArrayedQueue<T> {
      * Removes item from the queue
      * @return item removed from the queue
      */
-    public T Dequeue(){
-        if(IsEmpty())
+    public T dequeue(){
+        if(isEmpty())
             return null;
         T data = array[0];
         T[] tmp = new (T[]) new Object[(this.size)];
@@ -70,17 +68,15 @@ public class ArrayedQueue<T> {
      * Gets the top item of the queue
      * @return item on top of the queue
      */
-    public T Top(){
-        if(IsEmpty())
-            return null;
-        return array[0];
+    public T top(){
+        return (isEmpty()) ? null : array[0];
     }
 
     /**
      * Returns a value indicating if the queue is empty
      * @return true if empty, false if not
      */
-    public boolean IsEmpty(){
+    public boolean isEmpty(){
         return (count == 0);
     }
 
@@ -88,7 +84,7 @@ public class ArrayedQueue<T> {
      * Returns a value indicating if the queue is full
      * @return True if full, false if not
      */
-    public boolean IsFull(){
+    public boolean isFull(){
         return (count == size);
     }
 }
