@@ -19,14 +19,14 @@ public class ArrayList<T> {
     private int size;
 
     /**
-     * CircularArray default constructor
+     * ArrayList default constructor
      */
     public ArrayList(){
         this(4);
     }
 
     /**
-     * CircularArray constructor initialized to a specific size
+     * ArrayList constructor initialized to a specific size
      * @param size Size to initialize the array to
      */
     public ArrayList(int size){
@@ -109,8 +109,8 @@ public class ArrayList<T> {
 
     /**
      * Removes the data at arrays given index
-     * @param index Index to remove
-     * @return Data removed from the array or default T value if index does not exist
+     * @param index: Index to remove
+     * @return T: Data removed from the array or default T value if index does not exist
      */
     public T remove(int index){
         if (index < 0 || index > count)
@@ -140,7 +140,6 @@ public class ArrayList<T> {
         }
         count = 0;
     }
-
 
     /**
      * Gets the current count of the array
