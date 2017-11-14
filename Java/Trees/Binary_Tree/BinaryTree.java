@@ -4,8 +4,6 @@
  *  Copyright (c) 2016 Stephen Hall. All rights reserved.
  *  A Binary Tree implementation in Java
  ********************************************************/
-package DataStructures.Trees;
-
 import java.util.PriorityQueue;
 import java.util.Stack;
 
@@ -13,18 +11,18 @@ import java.util.Stack;
  * Binary Tree Class
  * @param <T> Generic Type
  */
-public class BinaryTree<T> {
+public class BinaryTree<T extends Comparable<T>> {
     /**
      * Node class for the binary tree
      * @param <T> Generic Type
      */
-    public class Node<T>{
+    public class Node{
         /**
          * public members
          */
-        public Node<T> left;
-        public Node<T> right;
-        public Node<T> parent;
+        public Node left;
+        public Node right;
+        public Node parent;
         public T data;
 
         /**
@@ -40,7 +38,7 @@ public class BinaryTree<T> {
     /**
      * Private members
      */
-    private Node<T> root;
+    private Node root;
 
     /**
      * Binary tree class constructor
@@ -55,7 +53,7 @@ public class BinaryTree<T> {
      * @param node Node to compare to
      * @return 1 if greater then, 0 if equal to, -1 if less then
      */
-    private int compare(T data, Node<T> node){
+    private int compare(T data, Node node){
        return ((Comparable)node).compareTo(data);
     }
 
@@ -64,11 +62,11 @@ public class BinaryTree<T> {
      * @param data data to insert into the tree
      * @return Node inserted into the tree
      */
-    public Node<T> Insert(T data){
+    public Node insert(T data){
         if(root == null){
             return (root = new Node(data));
         }
-        return this.insertHelper(data, root);
+        return insertHelper(data, root);
     }
 
     /**
@@ -77,27 +75,27 @@ public class BinaryTree<T> {
      * @param node Current node in the tree
      * @return Node inserted into the tree
      */
-    private Node<T> insertHelper(T data, Node<T> node){
+    private Node insertHelper(T data, Node node){
         try {
-            int cmp = this.compare(data, node);
+            int cmp = compare(data, node);
             switch(cmp){
                 case 1:
                     if (node.right == null) {
-                        Node<T> newNode = new Node(data);
+                        Node newNode = new Node(data);
                         node.right = newNode;
                         newNode.parent = node;
                         return newNode;
                     } else
-                        return this.insertHelper(data, node.right);
+                        return insertHelper(data, node.right);
 
                 default:
                     if (node.left == null) {
-                        Node<T> newNode = new Node(data);
+                        Node newNode = new Node(data);
                         node.left = newNode;
                         newNode.parent = node;
                         return newNode;
                     } else
-                        return this.insertHelper(data, node.left);
+                        return insertHelper(data, node.left);
             }
         }catch(Exception e) {
             return null;
@@ -109,10 +107,10 @@ public class BinaryTree<T> {
      * @param data Data to remove from the tree
      * @return Node removed from the tree
      */
-    public Node<T> Remove(T data){
+    public Node remove(T data){
         if(root != null)
             return null;
-        return this.removeHelper(data, root);
+        return removeHelper(data, root);
     }
 
     /**
@@ -121,17 +119,16 @@ public class BinaryTree<T> {
      * @param node Current node
      * @return Node removed from the tree
      */
-    private Node<T> removeHelper(T data, Node<T> node){
-
+    private Node removeHelper(T data, Node node){
         try{
-            int cmp = this.compare(data, node);
+            int cmp = compare(data, node);
             if(cmp == 1)
-                return this.removeHelper(data, node.right);
+                return removeHelper(data, node.right);
             if(cmp == -1)
-                return this.removeHelper(data, node.left);
+                return removeHelper(data, node.left);
             if(cmp == 0){
                 //has no children
-                Node<T> tempNode;
+                Node tempNode;
 
                 if(node.left == null && node.right == null) {
                     node = node.parent;
@@ -145,15 +142,15 @@ public class BinaryTree<T> {
                     if(node.right != null) {
                         tempNode = node.right;
                         tempNode.parent = null;
-                        this.root.right = null;
-                        this.root = tempNode;
+                        root.right = null;
+                        root = tempNode;
                         return node;
                     }
                     else {
                         tempNode = node.left;
                         tempNode.parent = null;
-                        this.root.left = null;
-                        this.root = tempNode;
+                        root.left = null;
+                        root = tempNode;
                         return node;
                     }
                 }
@@ -201,11 +198,11 @@ public class BinaryTree<T> {
      * Returns the smallest node in the tree
      * @return Smallest Node int he tree
      */
-    public Node<T> GetMin(){
+    public Node getMin(){
         if(root == null)
             return null;
 
-        Node<T> node = this.root;
+        Node node = root;
 
         while(node.left != null)
             node = node.left;
@@ -217,11 +214,11 @@ public class BinaryTree<T> {
      * Return the largest node in the tree
      * @return Largest Node in the tree
      */
-    public Node<T> GetMax(){
+    public Node getMax(){
         if(root == null)
             return null;
 
-        Node<T> node = this.root;
+        Node node = root;
 
         while(node.right != null)
             node = node.right;
@@ -233,11 +230,11 @@ public class BinaryTree<T> {
      * Prints out the tree using Pre Order Traversal
      * @param node Node to start the Pre Order Traversal at
      */
-    public void PreOrederTraversal(Node<T> node){
+    public void preOrederTraversal(Node node){
         if(node != null){
             System.out.println(node.data);
-            PreOrederTraversal(node.left);
-            PreOrederTraversal(node.right);
+            preOrederTraversal(node.left);
+            preOrederTraversal(node.right);
         }
     }
 
@@ -245,10 +242,10 @@ public class BinaryTree<T> {
      * Prints out the Tree using Post Order Traversal
      * @param node Node to start the Post Order Traversal at
      */
-    public void PostPrderTraversal(Node<T> node){
+    public void postPrderTraversal(Node node){
         if(node != null){
-            PostPrderTraversal(node.left);
-            PostPrderTraversal(node.right);
+            postPrderTraversal(node.left);
+            postPrderTraversal(node.right);
             System.out.println(node.data);
         }
     }
@@ -257,11 +254,11 @@ public class BinaryTree<T> {
      * Pints out the tree using in order Traversal
      * @param node Node to start the In Order Traversal at
      */
-    public void InOrderedTraversal(Node<T> node){
+    public void inOrderedTraversal(Node node){
         if(node != null){
-            InOrderedTraversal(node.left);
+            inOrderedTraversal(node.left);
             System.out.println(node.data);
-            InOrderedTraversal(node.right);
+            inOrderedTraversal(node.right);
         }
     }
 
@@ -269,11 +266,11 @@ public class BinaryTree<T> {
      *  Prints out the tree using Depth First Search
      * @param node Node to start the Depth First Search at
      */
-    public void DepthFirstSearch(Node<T> node){
+    public void depthFirstSearch(Node node){
         if(node == null)
             return;
 
-        Stack<Node<T>> stack = new Stack();
+        Stack<Node> stack = new Stack();
         stack.push(node);
 
         while (!stack.empty()) {
@@ -289,11 +286,11 @@ public class BinaryTree<T> {
      * Prints out the tree using breadth first search
      * @param node Node to start Breadth First Search at
      */
-    public void BreadthFirstSearch(Node<T> node){
+    public void breadthFirstSearch(Node node){
         if(node == null)
             return;
 
-        PriorityQueue<Node<T>> queue = new PriorityQueue();
+        PriorityQueue<Node> queue = new PriorityQueue();
         queue.add(node);
 
         while (queue.size() > 0) {
