@@ -4,7 +4,6 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Arrayed Stack implementation in Java
  ********************************************************/
-package DataStructures.Stacks;
 
 /**
  * Arrayed Stack Class
@@ -22,8 +21,7 @@ public class ArrayedStack<T> {
      * Default Constructor
      */
     public ArrayedStack(){
-        array = (T[]) new Object[(size = 10)];
-        count = 0;
+       this(10);
     }
 
     /**
@@ -40,11 +38,11 @@ public class ArrayedStack<T> {
      * @param data Data to be added to the stack
      * @return Node added to the stack
      */
-    public T Push(T data){
-        if(!IsFull()) {
+    public T push(T data){
+        if(!isFull()) {
             array[count] = data;
             count++;
-            return Top();
+            return top();
         }
         return null;
     }
@@ -53,7 +51,7 @@ public class ArrayedStack<T> {
      * Pops item off the stack
      * @return Node popped off of the stack
      */
-    public T Pop(){
+    public T pop(){
         T data = array[count-1];
         count--;
         return data;
@@ -63,7 +61,7 @@ public class ArrayedStack<T> {
      * Gets the Node onto of the stack
      * @return Node on top of the stack
      */
-    public T Top(){
+    public T top(){
         return array[count-1];
     }
 
@@ -71,7 +69,7 @@ public class ArrayedStack<T> {
      * Returns a value indicating if the stack is empty
      * @return true if empty, false if not
      */
-    public boolean IsEmpty(){
+    public boolean isEmpty(){
         return (count == 0);
     }
 
@@ -79,7 +77,7 @@ public class ArrayedStack<T> {
      * Returns a value indicating if the stack is full
      * @return True if full, false if not
      */
-    public boolean IsFull(){
+    public boolean isFull(){
         return (count == size);
     }
 }
