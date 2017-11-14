@@ -19,16 +19,14 @@ public class ArrayedSet<T> {
     private int size;
 
     /**
-     * CircularArray default constructor
+     * ArrayedSet default constructor
      */
     public ArrayedSet(){
-        count = 0;
-        size = 4;
-        array = (T[]) new Object[size];
+        this(4);
     }
 
     /**
-     * CircularArray constructor initialized to a specific size
+     * ArrayedSet constructor initialized to a specific size
      * @param size Size to initialize the array to
      */
     public ArrayedSet(int size){
@@ -43,13 +41,13 @@ public class ArrayedSet<T> {
     /**
      * Doubles the size of the internal array
      */
-    private void Resize(){
+    private void resize(){
         size *= 2;
-        T[] tmp = (T[]) new Object[this.size];
-        for(int i = 0; i < this.count; i++){
-            tmp[i] = this.array[i];
+        T[] tmp = (T[]) new Object[size];
+        for(int i = 0; i < count; i++){
+            tmp[i] = array[i];
         }
-        this.array = tmp;
+        array = tmp;
     }
 
     /**
@@ -57,19 +55,18 @@ public class ArrayedSet<T> {
      * @param data Data to add into the array
      * @return Data added into the array
      */
-    public T Add(T data){
+    public T add(T data){
         if(data == null)
             return null;
 
-        if(Contains(data))
+        if(contains(data))
             return null;
 
-        if(this.count == size)
-            this.Resize();
+        if(count == size)
+            resize();
 
-        this.array[this.count] = data;
-        this.count++;
-
+        array[count] = data;
+        count++;
         return data;
     }
 
@@ -78,11 +75,11 @@ public class ArrayedSet<T> {
      * @param data: array to append
      * @return boolean: success|fail
      */
-    public boolean Append(T[] data){
+    public boolean append(T[] data){
         if(data != null){
             for (int i = 0; i < data.length; i++) {
                 if(data[i] != null )
-                    this.Add(data[i]);
+                    add(data[i]);
             }
             return true;
         }
@@ -95,10 +92,10 @@ public class ArrayedSet<T> {
      * @param data: data to set index to
      * @return boolean: success|fail
      */
-    public boolean Set(int index, T data){
-        if(!Contains(data)){
-            if(index >= 0 && index < this.size) {
-                this.array[index] = data;
+    public boolean set(int index, T data){
+        if(!contains(data)){
+            if(index >= 0 && index < size) {
+                array[index] = data;
                 return true;
             }
         }
@@ -110,9 +107,9 @@ public class ArrayedSet<T> {
      * @param index Index to get data at
      * @return Data at the given index or default value of T if index does not exist
      */
-    public T Get(int index){
-        if(index >= 0 && index < this.size)
-            return this.array[index];
+    public T get(int index){
+        if(index >= 0 && index < size)
+            return array[index];
         return null;
     }
 
@@ -121,8 +118,7 @@ public class ArrayedSet<T> {
      * @param index Index to remove
      * @return Data removed from the array or default T value if index does not exist
      */
-    public T Remove(int index)
-    {
+    public T remove(int index){
         if (index < 0 || index > count)
             return null;
 
@@ -135,36 +131,39 @@ public class ArrayedSet<T> {
     /**
      * Resets the internal array to default size with no data
      */
-    public void Reset(){
-        this.count = 0;
-        this.size = 4;
-        this.array = (T[]) new Object[this.size];
+    public void reset(){
+        count = 0;
+        size = 4;
+        array = (T[]) new Object[size];
     }
 
     /**
      * Clears all data in the array leaving size intact
      */
-    public void Clear(){
+    public void clear(){
         for(int i = 0; i < this.count; i++){
-            this.array[i] = null;
+            array[i] = null;
         }
-        this.count = 0;
+        count = 0;
     }
-
-    public boolean Contains(T data){
-        for(int i = 0; i < this.size; i++){
-            if(this.array[i] == data)
+    
+    /**
+    * Tests to see if the data exist in the list
+    * @param data: data to find
+    */
+    public boolean contains(T data){
+        for(int i = 0; i < size; i++){
+            if(array[i] == data)
                 return true;
         }
         return false;
     }
 
-
     /**
      * Gets the current count of the array
      * @return Number of items in the array
      */
-    public int Count(){
+    public int count(){
         return count;
     }
 
