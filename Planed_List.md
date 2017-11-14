@@ -29,6 +29,7 @@
 # Heaps
   * Arrayed Heap
   * Linked Heap
+  * Heap Sort
   
 # Trees 
   * Binary Tree
@@ -46,7 +47,6 @@
 # Hashtables
   * Hashtable
   * Hash-Set
-  * Hash-Tree
   
 # Graphs
   * Undirected Graph
