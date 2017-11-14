@@ -4,25 +4,21 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked Queue implementation in Java
  ********************************************************/
-package DataStructures.Queues;
 
 /**
  * Linked Queue Class
  * @param <T> Generic Type
  */
 public class LinkedQueue<T> {
-
     /**
      * Node Class for Linked Queue
-     * @param <T> Generic Type
      */
-    public class Node<T>{
-
+    public class Node{
         /**
          * Public Member
          */
         public T data;
-        public Node<T> next;
+        public Node next;
 
         /**
          * Node Class Constructor
@@ -38,8 +34,8 @@ public class LinkedQueue<T> {
      * Private Members
      */
     private int count;
-    private Node<T> head;
-    private Node<T> tail;
+    private Node head;
+    private Node tail;
 
     /**
      * Linked Queue Constructor
@@ -54,15 +50,15 @@ public class LinkedQueue<T> {
      * @param data Data to be added to the queue
      * @return Node added to the queue
      */
-    public Node<T> Enqueue(T data){
-        if(IsEmpty()){
-            Node<T> node = new Node(data);
+    public Node enqueue(T data){
+        if(isEmpty()){
+            Node node = new Node(data);
             head = tail = node;
             count++;
             return node;
         }
 
-        Node<T> node = new Node(data);
+        Node node = new Node(data);
         node.next = tail;
         tail = node;
         count++;
@@ -73,8 +69,8 @@ public class LinkedQueue<T> {
      * Removes item off the queue
      * @return Node popped off of the queue
      */
-    public Node<T> Dequeue(){
-        Node<T> node = head;
+    public Node dequeue(){
+        Node node = head;
         head = head.next;
         node.next = null;
         count--;
@@ -85,7 +81,7 @@ public class LinkedQueue<T> {
      * Gets the Node onto of the queue
      * @return Node on top of the queue
      */
-    public Node<T> Top(){
+    public Node top(){
         return head;
     }
 
@@ -93,7 +89,7 @@ public class LinkedQueue<T> {
      * Returns a value indicating if the queue is empty
      * @return true if empty, false if not
      */
-    public boolean IsEmpty(){
+    public boolean isEmpty(){
         return (count == 0);
     }
 
@@ -101,7 +97,7 @@ public class LinkedQueue<T> {
      * Returns a value indicating if the queue is full
      * @return False, Linked queue is never full
      */
-    public boolean IsFull(){
+    public boolean isFull(){
         return false;
     }
 }
