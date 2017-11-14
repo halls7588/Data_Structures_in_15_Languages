@@ -4,7 +4,6 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Circular Stack implementation in Java
  ********************************************************/
-package DataStructures.Stacks;
 
 /**
  * Circular Stack Class
@@ -23,8 +22,7 @@ public class CircularStack<T> {
      * Default Constructor
      */
     public CircularStack(){
-        array = (T[]) new Object[(this.size = 10)];
-        count = zeroIndex = 0;
+        this(10);
     }
 
     /**
@@ -41,11 +39,11 @@ public class CircularStack<T> {
      * @param data Data to be added to the stack
      * @return item added to the stack
      */
-    public T Push(T data){
-        if(!IsFull()) {
+    public T push(T data){
+        if(!isFull()) {
             array[(zeroIndex + count) % size] = data;
             count++;
-            return Top();
+            return top();
         }
         return null;
     }
@@ -54,8 +52,8 @@ public class CircularStack<T> {
      * Pops item off the stack
      * @return item popped off of the stack
      */
-    public T Pop(){
-        if(IsEmpty())
+    public T pop(){
+        if(isEmpty())
             return null;
         T data = array[(count + zeroIndex % size) -1];
         array[(count + zeroIndex % size) -1] = array[zeroIndex];
@@ -69,7 +67,7 @@ public class CircularStack<T> {
      * Gets the item onto of the stack
      * @return item on top of the stack
      */
-    public T Top(){
+    public T top(){
         return array[((zeroIndex + count) % size) - 1];
     }
 
@@ -77,7 +75,7 @@ public class CircularStack<T> {
      * Returns a value indicating if the stack is empty
      * @return true if empty, false if not
      */
-    public boolean IsEmpty(){
+    public boolean isEmpty(){
         return (count == 0);
     }
 
@@ -85,7 +83,7 @@ public class CircularStack<T> {
      * Returns a value indicating if the stack is full
      * @return True if full, false if not
      */
-    public boolean IsFull(){
+    public boolean isFull(){
         return (count == size);
     }
 }
