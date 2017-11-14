@@ -7,7 +7,6 @@
 
 
 public class AvlTree<T extends Comparable<T>> {
-
     /**
      * Node class for AVL Tree
      */
@@ -54,7 +53,7 @@ public class AvlTree<T extends Comparable<T>> {
      * @param node: node to test
      * @return int: height of the node
      */
-    public int Height(Node node){
+    public int height(Node node){
         return node == null ? -1 : node.height;
     }
 
@@ -64,7 +63,7 @@ public class AvlTree<T extends Comparable<T>> {
      * @param b Second number
      * @return Maximum value
      */
-    public int Max(int a, int b){
+    public int max(int a, int b){
         if (a > b)
             return a;
         return b;
@@ -75,12 +74,13 @@ public class AvlTree<T extends Comparable<T>> {
      * @param data: data to insert into the tree
      * @return boolean: success|fail
      */
-    public boolean Insert(T data){
+    public boolean insert(T data){
         try {
-            root = Insert (data, root);
+            root = insert (data, root);
             count++;
             return true;
-        } catch(Exception e){
+        } 
+        catch(Exception e){
             return false;
         }
     }
@@ -92,37 +92,35 @@ public class AvlTree<T extends Comparable<T>> {
      * @return Node: New root of the tree
      * @throws Exception: failure or duplicate value
      */
-    private Node Insert(T data, Node node) throws Exception{
+    private Node insert(T data, Node node) throws Exception{
         if (node == null)
             node = new Node(data);
         else if (data.compareTo (node.data) < 0){
-            node.left = Insert (data, node.left);
-
-            if (Height(node.left) - Height(node.right) == 2){
+            node.left = insert (data, node.left);
+            if (height(node.left) - height(node.right) == 2){
                 if (data.compareTo (node.left.data) < 0){
-                    node = RotateLeft(node);
+                    node = rotateLeft(node);
                 }
                 else {
-                    node = RotateRightLeft(node);
+                    node = rotateRightLeft(node);
                 }
             }
         }
         else if (data.compareTo (node.data) > 0){
-            node.right = Insert(data, node.right);
+            node.right = insert(data, node.right);
 
-            if (Height(node.right) - Height(node.left) == 2)
+            if (height(node.right) - height(node.left) == 2)
                 if (data.compareTo (node.right.data) > 0){
-                    node = RotateRight(node);
+                    node = rotateRight(node);
                 }
                 else{
-                    node = RotateLeftRight(node);
+                    node = rotateLeftRight(node);
                 }
         }
         else {
             throw new Exception("Attempting to insert duplicate value");
         }
-
-        node.height = Max(Height(node.left), Height(node.right)) + 1;
+        node.height = max(Height(node.left), height(node.right)) + 1;
         return node;
     }
 
@@ -131,16 +129,16 @@ public class AvlTree<T extends Comparable<T>> {
      * @param node: node to rotate
      * @return Node: new root node
      */
-     private Node RotateLeft (Node node){
+     private Node rotateLeft (Node node){
         Node tmp = node.left;
 
         node.left = tmp.right;
         tmp.right = node;
 
-        node.height = Max(Height(node.left), Height(node.right)) + 1;
-        tmp.height = Max(Height(tmp.left), node.height) + 1;
+        node.height = max(height(node.left), height(node.right)) + 1;
+        tmp.height = max(height(tmp.left), node.height) + 1;
 
-        return (tmp);
+        return tmp;
     }
 
 
@@ -149,9 +147,9 @@ public class AvlTree<T extends Comparable<T>> {
      * @param node: node to rotate
      * @return Node: new root node
      */
-    private Node RotateRightLeft(Node node){
-        node.left = RotateRight(node.left);
-        return RotateLeft (node);
+    private Node rotateRightLeft(Node node){
+        node.left = rotateRight(node.left);
+        return rotateLeft (node);
     }
 
     /**
@@ -159,14 +157,14 @@ public class AvlTree<T extends Comparable<T>> {
      * @param node: node to rotate
      * @return Node: new root node
      */
-    private Node RotateRight(Node node){
+    private Node rotateRight(Node node){
         Node tmp = node.right;
 
         node.right = tmp.left;
         tmp.left = node;
 
-        node.height = Max(Height(node.left), Height(node.right)) + 1;
-        tmp.height = Max(Height(tmp.right), node.height) + 1;
+        node.height = max(height(node.left), height(node.right)) + 1;
+        tmp.height = max(height(tmp.right), node.height) + 1;
 
         return (tmp);
     }
@@ -176,15 +174,15 @@ public class AvlTree<T extends Comparable<T>> {
      * @param node: node to rotate
      * @return Node: new root node
      */
-    private Node RotateLeftRight (Node node){
-        node.right = RotateLeft(node.right);
-        return RotateRight(node);
+    private Node rotateLeftRight (Node node){
+        node.right = rotateLeft(node.right);
+        return rotateRight(node);
     }
 
     /**
      * Deletes all nodes from the tree.
      */
-    public void MakeEmpty(){
+    public void makeEmpty(){
         root = null;
     }
 
@@ -192,7 +190,7 @@ public class AvlTree<T extends Comparable<T>> {
      * Determine if the tree is empty.
      * @return True if the tree is empty
      */
-    public boolean IsEmpty(){
+    public boolean isEmpty(){
         return (root == null);
     }
 
@@ -200,21 +198,16 @@ public class AvlTree<T extends Comparable<T>> {
      * Find the smallest item in the tree.
      * @return T: smallest item or null if empty.
      */
-    public T FindMin(){
-        if(IsEmpty())
-            return null;
-
-        return FindMin(root).data;
+    public T findMin(){
+        return (isEmpty()) ? null : findMin(root).data;
     }
 
     /**
      * Find the largest item in the tree.
      * @return T: the largest item or null if empty.
      */
-    public T FindMax(){
-        if(IsEmpty( ))
-            return null;
-        return FindMax(root).data;
+    public T findMax(){
+        reutrn (IsEmpty( )) ? null : findMax(root).data;
     }
 
     /**
@@ -222,7 +215,7 @@ public class AvlTree<T extends Comparable<T>> {
      * @param Node: root to test
      * @return Node: node containing the smallest item.
      */
-    private Node FindMin(Node node){
+    private Node findMin(Node node){
         if(node == null )
             return node;
 
@@ -237,7 +230,7 @@ public class AvlTree<T extends Comparable<T>> {
      * @param node: root to test.
      * @return Node: node containing the largest item.
      */
-    private Node FindMax(Node node) {
+    private Node findMax(Node node) {
         if(node == null)
             return node;
 
@@ -251,8 +244,8 @@ public class AvlTree<T extends Comparable<T>> {
      * Remove item from the tree.
      * @param data: item to remove.
      */
-    public void Remove(T data) {
-        root = Remove(data, root);
+    public void remove(T data) {
+        root = remove(data, root);
     }
 
     /**
@@ -261,13 +254,13 @@ public class AvlTree<T extends Comparable<T>> {
      * @param node: root to start at
      * @return Node: new root node
      */
-    private Node Remove(T data, Node node) {
+    private Node remove(T data, Node node) {
         if (node == null){
             return null;
         }
 
         if (data.compareTo(node.data) < 0 ) {
-            node.left = Remove(data, node.left);
+            node.left = remove(data, node.left);
             int l = node.left != null ? node.left.height : 0;
 
             if((node.right != null) && (node.right.height - l >= 2)) {
@@ -275,35 +268,35 @@ public class AvlTree<T extends Comparable<T>> {
                 int leftHeight = node.right.left != null ? node.right.left.height : 0;
 
                 if(rightHeight >= leftHeight)
-                    node = RotateLeft(node);
+                    node = rotateLeft(node);
                 else
-                    node = RotateLeftRight(node);
+                    node = rotateLeftRight(node);
             }
         }
         else if (data.compareTo(node.data) > 0) {
-            node.right = Remove(data, node.right);
+            node.right = remove(data, node.right);
             int r = node.right != null ? node.right.height : 0;
             if((node.left != null) && (node.left.height - r >= 2)) {
                 int leftHeight = node.left.left != null ? node.left.left.height : 0;
                 int rightHeight = node.left.right != null ? node.left.right.height : 0;
                 if(leftHeight >= rightHeight)
-                    node = RotateRight(node);
+                    node = rotateRight(node);
                 else
-                    node = RotateRightLeft(node);
+                    node = rotateRightLeft(node);
             }
         }
         else if(node.left != null) {
-            node.data = FindMax(node.left).data;
-            Remove(node.element, node.left);
+            node.data = findMax(node.left).data;
+            remove(node.element, node.left);
 
             if((node.right != null) && (node.right.height - node.left.height >= 2)) {
                 int rightHeight = node.right.right != null ? node.right.right.height : 0;
                 int leftHeight = node.right.left != null ? node.right.left.height : 0;
 
                 if(rightHeight >= leftHeight)
-                    node = RotateLeft(node);
+                    node = rotateLeft(node);
                 else
-                    node = RotateLeftRight(t);
+                    node = rotateLeftRight(t);
             }
         }
 
@@ -313,7 +306,7 @@ public class AvlTree<T extends Comparable<T>> {
         if(node != null) {
             int leftHeight = noe.left != null ? node.left.height : 0;
             int rightHeight = node.right!= null ? node.right.height : 0;
-            node.height = Max(leftHeight, rightHeight) + 1;
+            node.height = max(leftHeight, rightHeight) + 1;
         }
         return node;
     }
@@ -323,8 +316,8 @@ public class AvlTree<T extends Comparable<T>> {
      * @param data: data to find
      * @return boolean: success|fail
      */
-    public boolean Contains(T data){
-        return Contains(data, root);
+    public boolean contains(T data){
+        return contains(data, root);
     }
 
     /**
@@ -333,16 +326,15 @@ public class AvlTree<T extends Comparable<T>> {
      * @param node: node to test
      * @return boolean: success|fail
      */
-    private boolean Contains(T data, Node node) {
+    private boolean contains(T data, Node node) {
         if (node == null){
             return false; // The node was not found
 
         } else if (data.compareTo(node.data) < 0){
-            return Contains(data, node.left);
+            return contains(data, node.left);
         } else if (data.compareTo(node.data) > 0){
-            return Contains(data, node.right);
+            return contains(data, node.right);
         }
-
         return true;
     }
 }
