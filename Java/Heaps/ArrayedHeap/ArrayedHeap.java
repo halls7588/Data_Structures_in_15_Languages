@@ -6,7 +6,14 @@
  ********************************************************/
 import java.util.Arrays;
 
+/**
+ * ArrayedHeap class
+ * @param <T> Generic type
+ */
 public class ArrayedHeap<T extends Comparable<T>> implements PriorityQueue<T> {
+    /**
+     * private members to be used by the heap
+     */
     private T[] array;
     private int size;
 
