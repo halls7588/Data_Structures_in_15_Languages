@@ -10,7 +10,6 @@
  * @param <T> Generic type
  */
 public class DoublyLinkedList<T extends Comparable<T>> {
-
     /**
      * Node class for singly linked list
      * @param <T> Generic type
@@ -54,7 +53,6 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @return Node added into the list
      */
     public Node add(T data){
-
         // No data to insert into list
         if (data == null)
             return null;
@@ -83,7 +81,6 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @return Node removed from the list
      */
     public Node remove(T data){
-
         // List is empty or no data to remove
         if (head == null || data == null)
             return null;
@@ -152,7 +149,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      */
     public Node indexAt(int index){
         //Index was negative or larger then the amount of Nodes in the list
-        if (index < 0 || index > Size())
+        if (index < 0 || index > size())
             return null;
 
         Node tmp = head;
