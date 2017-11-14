@@ -4,11 +4,8 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Rec Black Tree implementation in Java
  ********************************************************/
-package DataStructures.Trees;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * RedBlackTree class
@@ -25,12 +22,12 @@ public class RedBlackTree<T extends Comparable<T>> {
     /**
      * RedBlackNode Class
      */
-    public class RedBlackNode {
+    public class Node {
 
         public T key;
-        RedBlackNode<T> parent;
-        RedBlackNode<T> left;
-        RedBlackNode<T> right;
+        public Node parent;
+        public Node left;
+        public Node right;
         public int numLeft = 0;
         public int numRight = 0;
         public int color;
@@ -38,7 +35,7 @@ public class RedBlackTree<T extends Comparable<T>> {
         /**
          * RedBlackNode Constructor
          */
-        RedBlackNode(){
+        public RedBlackNode(){
             color = BLACK;
             numLeft = 0;
             numRight = 0;
@@ -51,14 +48,14 @@ public class RedBlackTree<T extends Comparable<T>> {
          * Constructor which sets key to the argument.
          * @param key: key to set
          */
-        RedBlackNode(T key){
+        public RedBlackNode(T key){
             this();
             this.key = key;
         }
     }
     // Root initialized to nil.
-    private RedBlackNode<T> nil = new RedBlackNode<T>();
-    private RedBlackNode<T> root = nil;
+    private Node nil = new Node();
+    private Node root = nil;
 
     /**
      * RedBalckTree Constructor
@@ -73,15 +70,14 @@ public class RedBlackTree<T extends Comparable<T>> {
      * Rotates a node left
      * @param x: The node which the lefRotate is to be performed on.
      */
-    private void leftRotate(RedBlackNode<T> x){
-
+    private void rotateLeft(Node x){
         // Call leftRotateFixup() which updates the numLeft
         // and numRight values.
-        leftRotateFixup(x);
+        rotateLeftFixup(x);
 
         // Perform the left rotate as described in the algorithm
         // in the course text.
-        RedBlackNode<T> y;
+        Node y;
         y = x.right;
         x.right = y.left;
 
@@ -93,11 +89,9 @@ public class RedBlackTree<T extends Comparable<T>> {
         // x's parent is nul
         if (isNil(x.parent))
             root = y;
-
             // x is the left child of it's parent
         else if (x.parent.left == x)
             x.parent.left = y;
-
             // x is the right child of it's parent.
         else
             x.parent.right = y;
@@ -111,52 +105,41 @@ public class RedBlackTree<T extends Comparable<T>> {
      * Updates the numLeft & numRight values affected by leftRotate.
      * @param x: The node which the leftRotate is to be performed on.
      */
-    private void leftRotateFixup(RedBlackNode x){
-
+    private void rotateLeftFixup(Node x){
         // Case 1: Only x, x.right and x.right.right always are not nil.
         if (isNil(x.left) && isNil(x.right.left)){
             x.numLeft = 0;
             x.numRight = 0;
             x.right.numLeft = 1;
         }
-
         // Case 2: x.right.left also exists in addition to Case 1
         else if (isNil(x.left) && !isNil(x.right.left)){
             x.numLeft = 0;
-            x.numRight = 1 + x.right.left.numLeft +
-                    x.right.left.numRight;
-            x.right.numLeft = 2 + x.right.left.numLeft +
-                    x.right.left.numRight;
+            x.numRight = 1 + x.right.left.numLeft + x.right.left.numRight;
+            x.right.numLeft = 2 + x.right.left.numLeft + x.right.left.numRight;
         }
-
         // Case 3: x.left also exists in addition to Case 1
         else if (!isNil(x.left) && isNil(x.right.left)){
             x.numRight = 0;
             x.right.numLeft = 2 + x.left.numLeft + x.left.numRight;
-
         }
         // Case 4: x.left and x.right.left both exist in addtion to Case 1
         else{
-            x.numRight = 1 + x.right.left.numLeft +
-                    x.right.left.numRight;
-            x.right.numLeft = 3 + x.left.numLeft + x.left.numRight +
-                    x.right.left.numLeft + x.right.left.numRight;
+            x.numRight = 1 + x.right.left.numLeft + x.right.left.numRight;
+            x.right.numLeft = 3 + x.left.numLeft + x.left.numRight + x.right.left.numLeft + x.right.left.numRight;
         }
-
     }
-
-
+    
     /**
      * Updates the numLeft and numRight values affected by the Rotate.
      * @param y: The node which the rightRotate is to be performed
      */
-    private void rightRotate(RedBlackNode<T> y){
-
+    private void rotateRight(Node y){
         // Call rightRotateFixup to adjust numRight and numLeft values
-        rightRotateFixup(y);
+        rotateRightFixup(y);
 
         // Perform the rotate as described in the course text.
-        RedBlackNode<T> x = y.left;
+        Node x = y.left;
         y.left = x.right;
 
         // Check for existence of x.right
@@ -167,58 +150,44 @@ public class RedBlackTree<T extends Comparable<T>> {
         // y.parent is nil
         if (isNil(y.parent))
             root = x;
-
             // y is a right child of it's parent.
         else if (y.parent.right == y)
             y.parent.right = x;
-
             // y is a left child of it's parent.
         else
             y.parent.left = x;
+        
         x.right = y;
-
         y.parent = x;
-
     }
 
     /**
      * Updates the numLeft and numRight values affected by the rotate
      * @param y: the node around which the righRotate is to be performed.
      */
-    private void rightRotateFixup(RedBlackNode y){
-
+    private void rotateRightFixup(Node y){
         // Case 1: Only y, y.left and y.left.left exists.
         if (isNil(y.right) && isNil(y.left.right)){
             y.numRight = 0;
             y.numLeft = 0;
             y.left.numRight = 1;
         }
-
         // Case 2: y.left.right also exists in addition to Case 1
         else if (isNil(y.right) && !isNil(y.left.right)){
             y.numRight = 0;
-            y.numLeft = 1 + y.left.right.numRight +
-                    y.left.right.numLeft;
-            y.left.numRight = 2 + y.left.right.numRight +
-                    y.left.right.numLeft;
+            y.numLeft = 1 + y.left.right.numRight + y.left.right.numLeft;
+            y.left.numRight = 2 + y.left.right.numRight + y.left.right.numLeft;
         }
-
         // Case 3: y.right also exists in addition to Case 1
         else if (!isNil(y.right) && isNil(y.left.right)){
             y.numLeft = 0;
             y.left.numRight = 2 + y.right.numRight +y.right.numLeft;
-
         }
-
         // Case 4: y.right & y.left.right exist in addition to Case 1
         else{
-            y.numLeft = 1 + y.left.right.numRight +
-                    y.left.right.numLeft;
-            y.left.numRight = 3 + y.right.numRight +
-                    y.right.numLeft +
-                    y.left.right.numRight + y.left.right.numLeft;
+            y.numLeft = 1 + y.left.right.numRight + y.left.right.numLeft;
+            y.left.numRight = 3 + y.right.numRight + y.right.numLeft + y.left.right.numRight + y.left.right.numLeft;
         }
-
     }
 
     /**
@@ -226,18 +195,17 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @param key: key to insert
      */
     public void insert(T key) {
-        insert(new RedBlackNode<T>(key));
+        insert(new Node(key));
     }
 
     /**
      * Inserts z into the appropriate position in the RedBlackTree while updating numLeft and numRight values.
      * @param z: the node to be inserted into the Tree rooted at root
      */
-    private void insert(RedBlackNode<T> z) {
-
+    private void insert(Node z) {
         // Create a reference to root & initialize a node to nil
-        RedBlackNode<T> y = nil;
-        RedBlackNode<T> x = root;
+        Node y = nil;
+        Node x = root;
 
         // While we haven't reached a the end of the tree keep
         // tryint to figure out where z should go
@@ -246,15 +214,12 @@ public class RedBlackTree<T extends Comparable<T>> {
 
             // if z.key is < than the current key, go left
             if (z.key.compareTo(x.key) < 0){
-
                 // Update x.numLeft as z is < than x
                 x.numLeft++;
                 x = x.left;
             }
-
             // else z.key >= x.key so go right.
             else{
-
                 // Update x.numGreater as z is => x
                 x.numRight++;
                 x = x.right;
@@ -275,94 +240,84 @@ public class RedBlackTree<T extends Comparable<T>> {
         // Initialize z's children to nil and z's color to red
         z.left = nil;
         z.right = nil;
-        z.color = RedBlackNode.RED;
+        z.color = RED;
 
         // Call insertFixup(z)
         insertFixup(z);
-
     }
 
     /**
      * Fixes up the violation of the RedBlackTree properties that may have been caused during insert(z)
      * @param z: the node which was inserted and may have caused a violation of the RedBlackTree properties
      */
-    private void insertFixup(RedBlackNode<T> z){
-
-        RedBlackNode<T> y = nil;
+    private void insertFixup(Node z){
+        Node y = nil;
         // While there is a violation of the RedBlackTree properties..
-        while (z.parent.color == RedBlackNode.RED){
-
+        while (z.parent.color == RED){
             // If z's parent is the the left child of it's parent.
             if (z.parent == z.parent.parent.left){
-
                 // Initialize y to z 's cousin
                 y = z.parent.parent.right;
 
                 // Case 1: if y is red...recolor
-                if (y.color == RedBlackNode.RED){
-                    z.parent.color = RedBlackNode.BLACK;
-                    y.color = RedBlackNode.BLACK;
-                    z.parent.parent.color = RedBlackNode.RED;
+                if (y.color == .RED){
+                    z.parent.color = BLACK;
+                    y.color = BLACK;
+                    z.parent.parent.color = RED;
                     z = z.parent.parent;
                 }
                 // Case 2: if y is black & z is a right child
                 else if (z == z.parent.right){
-
                     // leftRotaet around z's parent
                     z = z.parent;
-                    leftRotate(z);
+                    rotateLeft(z);
                 }
-
                 // Case 3: else y is black & z is a left child
                 else{
                     // recolor and rotate round z's grandpa
-                    z.parent.color = RedBlackNode.BLACK;
-                    z.parent.parent.color = RedBlackNode.RED;
+                    z.parent.color = BLACK;
+                    z.parent.parent.color = RED;
                     rightRotate(z.parent.parent);
                 }
             }
 
             // If z's parent is the right child of it's parent.
             else{
-
                 // Initialize y to z's cousin
                 y = z.parent.parent.left;
 
                 // Case 1: if y is red...recolor
-                if (y.color == RedBlackNode.RED){
-                    z.parent.color = RedBlackNode.BLACK;
+                if (y.color == RED){
+                    z.parent.color = BLACK;
                     y.color = RedBlackNode.BLACK;
-                    z.parent.parent.color = RedBlackNode.RED;
+                    z.parent.parent.color = RED;
                     z = z.parent.parent;
                 }
-
                 // Case 2: if y is black and z is a left child
                 else if (z == z.parent.left){
                     // rightRotate around z's parent
                     z = z.parent;
-                    rightRotate(z);
+                    rotateRight(z);
                 }
                 // Case 3: if y  is black and z is a right child
                 else{
                     // recolor and rotate around z's grandpa
-                    z.parent.color = RedBlackNode.BLACK;
-                    z.parent.parent.color = RedBlackNode.RED;
-                    leftRotate(z.parent.parent);
+                    z.parent.color = BLACK;
+                    z.parent.parent.color = RED;
+                    rotateLeft(z.parent.parent);
                 }
             }
         }
         // Color root black at all times
-        root.color = RedBlackNode.BLACK;
-
+        root.color = BLACK;
     }
 
     /**
      * gets the smalles node in the tree
-     * @param node: RedBlackNode to test if smallest
-     * @return RedBlackNode: the node with the smallest key rooted at node
+     * @param node: Node to test if smallest
+     * @return Node: the node with the smallest key rooted at node
      */
-    public RedBlackNode<T> treeMinimum(RedBlackNode<T> node){
-
+    public Node treeMinimum(Node node){
         // while there is a smaller key, keep going left
         while (!isNil(node.left))
             node = node.left;
@@ -371,17 +326,16 @@ public class RedBlackTree<T extends Comparable<T>> {
 
     /**
      * Returns the next largest key from the given node
-     * @param x: RedBlackNode whose successor we must find
-     * @return RedBlackNode: node the with the next largest key from x.key
+     * @param x: Node whose successor we must find
+     * @return Node: node the with the next largest key from x.key
      */
-    public RedBlackNode<T> treeSuccessor(RedBlackNode<T> x){
-
+    public Node treeSuccessor(Node x){
         // if x.left is not nil, call treeMinimum(x.right) and
         // return it's value
         if (!isNil(x.left) )
             return treeMinimum(x.right);
 
-        RedBlackNode<T> y = x.parent;
+        Node y = x.parent;
 
         // while x is it's parent's right child...
         while (!isNil(y) && x == y.right){
@@ -394,22 +348,19 @@ public class RedBlackTree<T extends Comparable<T>> {
     }
 
     /**
-     * Removes a RedBlackNode from the tree
-     * @param v: RedBlackNode which is to be removed from the the tree
+     * Removes a Node from the tree
+     * @param node: Node which is to be removed from the the tree
      */
-    public void remove(RedBlackNode<T> v){
-
-        RedBlackNode<T> z = search(v.key);
-
-        // Declare variables
-        RedBlackNode<T> x = nil;
-        RedBlackNode<T> y = nil;
+    public void remove(Node node){
+        Node z = search(node.key);
+        Node x = nil;
+        Node y = nil;
 
         // if either one of z's children is nil, then we must remove z
         if (isNil(z.left) || isNil(z.right))
             y = z;
 
-            // else we must remove the successor of z
+        // else we must remove the successor of z
         else y = treeSuccessor(z);
 
         // Let x be the left or right child of y (y can only have one child)
@@ -424,12 +375,10 @@ public class RedBlackTree<T extends Comparable<T>> {
         // If y's parent is nil, then x is the root
         if (isNil(y.parent))
             root = x;
-
-            // else if y is a left child, set x to be y's left sibling
+        // else if y is a left child, set x to be y's left sibling
         else if (!isNil(y.parent.left) && y.parent.left == y)
             y.parent.left = x;
-
-            // else if y is a right child, set x to be y's right sibling
+        // else if y is a right child, set x to be y's right sibling
         else if (!isNil(y.parent.right) && y.parent.right == y)
             y.parent.right = x;
 
@@ -440,11 +389,10 @@ public class RedBlackTree<T extends Comparable<T>> {
 
         // Update the numLeft and numRight numbers which might need
         // updating due to the deletion of z.key.
-        fixNodeData(x,y);
+        fixNodeData(x, y);
 
-        // If y's color is black, it is a violation of the
-        // RedBlackTree properties so call removeFixup()
-        if (y.color == RedBlackNode.BLACK)
+        // If y's color is black, it is a violation 
+        if (y.color == BLACK)
             removeFixup(x);
     }
 
@@ -453,12 +401,10 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @param x: the RedBlackNode which was actually deleted from the tree
      * @param y: the value of the key that used to be in y
      */
-    private void fixNodeData(RedBlackNode<T> x, RedBlackNode<T> y){
-
+    private void fixNodeData(Node x, Node y){
         // Initialize two variables which will help us traverse the tree
-        RedBlackNode<T> current = nil;
-        RedBlackNode<T> track = nil;
-
+        Node current = nil;
+        Node track = nil;
 
         // if x is nil, then we will start updating at y.parent
         // Set track to y, y.parent's child
@@ -466,7 +412,6 @@ public class RedBlackTree<T extends Comparable<T>> {
             current = y.parent;
             track = y;
         }
-
         // if x is not nil, then we start updating at x.parent
         // Set track to x, x.parent's child
         else{
@@ -490,7 +435,6 @@ public class RedBlackTree<T extends Comparable<T>> {
                 if (y.key.compareTo(current.key) < 0)
                     current.numLeft--;
             }
-
             // if the node we deleted has the same key as the
             // current node we are checking
             else{
@@ -500,10 +444,9 @@ public class RedBlackTree<T extends Comparable<T>> {
                     current.numLeft--;
                 else if (isNil(current.right))
                     current.numRight--;
-
-                    // the cases where current has two children and
-                    // we must determine whether track is it's left
-                    // or right child and update appropriately
+                // the cases where current has two children and
+                // we must determine whether track is it's left
+                // or right child and update appropriately
                 else if (track == current.right)
                     current.numRight--;
                 else if (track == current.left)
@@ -513,103 +456,90 @@ public class RedBlackTree<T extends Comparable<T>> {
             // update track and current
             track = current;
             current = current.parent;
-
         }
-
-    }//end fixNodeData()
+    }
 
     /**
      * Restores the Red Black properties that may have been violated during removal
      * @param x: the child of the deleted node from remove(RedBlackNode v)
      */
-    private void removeFixup(RedBlackNode<T> x){
-
-        RedBlackNode<T> w;
+    private void removeFixup(Node x){
+        Node w;
 
         // While we haven't fixed the tree completely...
-        while (x != root && x.color == RedBlackNode.BLACK){
-
+        while (x != root && x.color == BLACK){
             // if x is it's parent's left child
             if (x == x.parent.left){
-
                 // set w = x's sibling
                 w = x.parent.right;
 
                 // Case 1, w's color is red.
-                if (w.color == RedBlackNode.RED){
-                    w.color = RedBlackNode.BLACK;
-                    x.parent.color = RedBlackNode.RED;
-                    leftRotate(x.parent);
+                if (w.color == RED){
+                    w.color = BLACK;
+                    x.parent.color = RED;
+                    rotateLeft(x.parent);
                     w = x.parent.right;
                 }
-
                 // Case 2, both of w's children are black
-                if (w.left.color == RedBlackNode.BLACK &&
-                        w.right.color == RedBlackNode.BLACK){
-                    w.color = RedBlackNode.RED;
+                if (w.left.color == BLACK &&
+                        w.right.color == BLACK){
+                    w.color = RED;
                     x = x.parent;
                 }
                 // Case 3 / Case 4
                 else{
                     // Case 3, w's right child is black
-                    if (w.right.color == RedBlackNode.BLACK){
-                        w.left.color = RedBlackNode.BLACK;
-                        w.color = RedBlackNode.RED;
-                        rightRotate(w);
+                    if (w.right.color == BLACK){
+                        w.left.color = BLACK;
+                        w.color = RED;
+                        rotateRight(w);
                         w = x.parent.right;
                     }
                     // Case 4, w = black, w.right = red
                     w.color = x.parent.color;
-                    x.parent.color = RedBlackNode.BLACK;
-                    w.right.color = RedBlackNode.BLACK;
-                    leftRotate(x.parent);
+                    x.parent.color = BLACK;
+                    w.right.color = BLACK;
+                    rotateRight(x.parent);
                     x = root;
                 }
             }
             // if x is it's parent's right child
             else{
-
                 // set w to x's sibling
                 w = x.parent.left;
 
                 // Case 1, w's color is red
-                if (w.color == RedBlackNode.RED){
-                    w.color = RedBlackNode.BLACK;
-                    x.parent.color = RedBlackNode.RED;
-                    rightRotate(x.parent);
+                if (w.color == RED){
+                    w.color = BLACK;
+                    x.parent.color = RED;
+                    rotateRight(x.parent);
                     w = x.parent.left;
                 }
-
                 // Case 2, both of w's children are black
-                if (w.right.color == RedBlackNode.BLACK &&
-                        w.left.color == RedBlackNode.BLACK){
-                    w.color = RedBlackNode.RED;
+                if (w.right.color == RedBlackNode.BLACK && w.left.color == RedBlackNode.BLACK){
+                    w.color = RED;
                     x = x.parent;
                 }
-
                 // Case 3 / Case 4
                 else{
                     // Case 3, w's left child is black
-                    if (w.left.color == RedBlackNode.BLACK){
-                        w.right.color = RedBlackNode.BLACK;
-                        w.color = RedBlackNode.RED;
-                        leftRotate(w);
+                    if (w.left.color == BLACK){
+                        w.right.color = BLACK;
+                        w.color = RED;
+                        rotateRight(w);
                         w = x.parent.left;
                     }
-
                     // Case 4, w = black, and w.left = red
                     w.color = x.parent.color;
-                    x.parent.color = RedBlackNode.BLACK;
-                    w.left.color = RedBlackNode.BLACK;
-                    rightRotate(x.parent);
+                    x.parent.color = BLACK;
+                    w.left.color = LACK;
+                    rotateRight(x.parent);
                     x = root;
                 }
             }
-        }// end while
-
-        // set x to black to ensure there is no violation of
-        // RedBlack tree Properties
-        x.color = RedBlackNode.BLACK;
+        }
+        // set x to black to ensure there is no violation
+        x.color = BLACK;
     }
 
 
@@ -618,29 +548,23 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @param key:  the key whose node we want to search for
      * @return RedBlackNode: node with the key if found or null
      */
-    public RedBlackNode<T> search(T key){
-
+    public Node search(T key){
         // Initialize a pointer to the root to traverse the tree
-        RedBlackNode<T> current = root;
+        Node current = root;
 
         // While we haven't reached the end of the tree
         while (!isNil(current)){
-
             // If we have found a node with a key equal to key
             if (current.key.equals(key))
-
                 // return that node and exit search(int)
                 return current;
-
-                // go left or right based on value of current and key
+            // go left or right based on value of current and key
             else if (current.key.compareTo(key) < 0)
                 current = current.right;
-
-                // go left or right based on value of current and key
+            // go left or right based on value of current and key
             else
                 current = current.left;
         }
-
         // we have not found a node whose key is "key"
         return null;
     }
@@ -651,11 +575,7 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @return int: the number of elements greater than key
      */
     public int numGreater(T key){
-
-        // Call findNumGreater(root, key) which will return the number
-        // of nodes whose key is greater than key
-        return findNumGreater(root,key);
-
+        return findNumGreater(root, key);
     }
 
     /**
@@ -664,10 +584,7 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @return int: the number of elements smaller than key
      */
     public int numSmaller(T key){
-
-        // Call findNumSmaller(root,key) which will return
-        // the number of nodes whose key is greater than key
-        return findNumSmaller(root,key);
+        return findNumSmaller(root, key);
 
     }
 
@@ -677,21 +594,16 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @param key: key to compaire to
      * @return int: nomber of nodes greater then the key
      */
-    public int findNumGreater(RedBlackNode<T> node, T key){
-
+    public int findNumGreater(Node node, T key){
         // Base Case: if node is nil, return 0
         if (isNil(node))
             return 0;
-            // If key is less than node.key, all elements right of node are
-            // greater than key, add this to our total and look to the left
+            // If key is less than node.key
         else if (key.compareTo(node.key) < 0)
-            return 1+ node.numRight + findNumGreater(node.left,key);
-
-            // If key is greater than node.key, then look to the right as
-            // all elements to the left of node are smaller than key
+            return 1 + node.numRight + findNumGreater(node.left, key);
+            // If key is greater than node.key
         else
             return findNumGreater(node.right,key);
-
     }
 
     /**
@@ -713,8 +625,7 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @param key: Key to test
      * @param list: List of nodes greater then the key
      */
-    private void getGreaterThan(RedBlackNode<T> node, T key,
-                                List<T> list) {
+    private void getGreaterThan(RedBlackNode<T> node, T key, List<T> list) {
         if (isNil(node)) {
             return;
         } else if (node.key.compareTo(key) > 0) {
@@ -726,7 +637,6 @@ public class RedBlackTree<T extends Comparable<T>> {
         }
     }
 
-
     /**
      * Takes root or subtree root node and finds number of elements smaller then the given key
      * @param node: Root of the tree to start comparision
@@ -734,20 +644,15 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @return int: number of nodes smaller than key.
      */
     public int findNumSmaller(RedBlackNode<T> node, T key){
-
         // Base Case: if node is nil, return 0
-        if (isNil(node)) return 0;
-
-            // If key is less than node.key, look to the left as all
-            // elements on the right of node are greater than key
+        if (isNil(node)) 
+            return 0;
+        // If key is less than node.key, look to the left as all
         else if (key.compareTo(node.key) <= 0)
-            return findNumSmaller(node.left,key);
-
-            // If key is larger than node.key, all elements to the left of
-            // node are smaller than key, add this to our total and look
-            // to the right.
+            return findNumSmaller(node.left, key);
+        // If key is larger than node.key, all elements to the left of
         else
-            return 1+ node.numLeft + findNumSmaller(node.right,key);
+            return node.numLeft + findNumSmaller(node.right, key) + 1;
 
     }
 
@@ -756,11 +661,8 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @param node: node to test
      * @return boolean: true|flase
      */
-    private boolean isNil(RedBlackNode node){
-
-        // return appropriate value
+    private boolean isNil(Node node){
         return node == nil;
-
     }
 
     /**
@@ -768,10 +670,6 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @return int: size of the tree
      */
     public int size(){
-
-        // Return the number of nodes to the root's left + the number of
-        // nodes on the root's right + the root itself.
         return root.numLeft + root.numRight + 1;
     }
-
 }
