@@ -29,8 +29,6 @@
 # Heaps
   * Arrayed Heap
   * Linked Heap
-  * Sorted Heap
-      * Heap Sort
   
 # Trees 
   * Binary Tree
@@ -40,6 +38,7 @@
      * Depth Frist Search
      * Breadth First Search
   * Self Balancing Binary Tree
+  * B-Tree
   * AVL Tree
   * Splay Tree
   * Red Balck Tree
