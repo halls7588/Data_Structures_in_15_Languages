@@ -4,16 +4,19 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Priority Queue implementation in Java
  ********************************************************/
-
+/**
+* Priority Queue class
+* @param <T> generic type
+*/
 public class PriorityQueue<T extends Comparable<T>> {
-    T[] arr;
-    int count;
+    private T[] arr;
+    private int count;
 
     /**
      * PriorityQueue class Constructor
      */
    public PriorityQueue(){
-        arr = (T[]) new Comparable[2];
+        arr = (T[]) new Comparable[4];
         count = 0;
     }
 
@@ -22,12 +25,12 @@ public class PriorityQueue<T extends Comparable<T>> {
      * @param data: Data to add to the queue
      * @return T: Data added into the Queue
      */
-    public T Enqueue(T data){
+    public T enqueue(T data){
         if (count == arr.length - 1)
-            Resize();
+            resize();
         arr[count] = data;
         count++;
-        Swim(count);
+        swim(count);
         return data;
     }
 
@@ -35,13 +38,13 @@ public class PriorityQueue<T extends Comparable<T>> {
      * Removes an item from the queue
      * @return T: data removed from the queue
      */
-    public T Dequeue(){
-        if (IsEmpty())
+    public T dequeue(){
+        if (isEmpty())
             return null;
         T data = arr[1];
-        Swap(1, count--);
+        swap(1, count--);
         arr[count + 1] = null;
-        Sink(1);
+        sink(1);
         return t;
     }
 
@@ -49,7 +52,7 @@ public class PriorityQueue<T extends Comparable<T>> {
      * Determines if the Queue is empty or not
      * @return boolean: true|false
      */
-    public boolean IsEmpty(){
+    public boolean isEmpty(){
         return count == 0;
     }
 
@@ -57,14 +60,14 @@ public class PriorityQueue<T extends Comparable<T>> {
      * Gets the size of the queue
      * @return int: size of the queue
      */
-    public int Size(){
+    public int size(){
         return count;
     }
 
     /**
      * Doubles the capacity of the queue
      */
-    private void Resize(){
+    private void resize(){
         T[] copy = (T[]) new Comparable[(count * 2 + 1)];
         for(int i = 1; i <= count; i ++ )
             copy[i] = arr[i];
@@ -75,9 +78,9 @@ public class PriorityQueue<T extends Comparable<T>> {
      * Swims higher priority items up
      * @param k: index to start at
      */
-    private void Swim(int k){
-        while(k > 1 && LessThan((k/2), k)){
-            Swap((k/2),k);
+    private void swim(int k){
+        while(k > 1 && lessThan((k/2), k)){
+            swap((k/2),k);
             k = k/2;
         }
     }
@@ -86,14 +89,14 @@ public class PriorityQueue<T extends Comparable<T>> {
      * Sinks lower priority items down
      * @param index: index to start at
      */
-    private void Sink(int index){
+    private void sink(int index){
         while (index * 2 < count){
             int j = 2 * index;
-            if(j < count && LessThan(j, j + 1))
+            if(j < count && lessThan(j, j + 1))
                 j = j + 1;
-            if(LessThan(j, index))
+            if(lessThan(j, index))
                 break;
-            Swap(k, j);
+            swap(k, j);
             k = j;
         }
     }
@@ -104,7 +107,7 @@ public class PriorityQueue<T extends Comparable<T>> {
      * @param b: generic type to test
      * @return boolean: ture|false
      */
-    private boolean LessThan(T a, T b) {
+    private boolean lessThan(T a, T b) {
         return a.compareTo(b) < 0;
     }
 
@@ -114,7 +117,7 @@ public class PriorityQueue<T extends Comparable<T>> {
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean EqualTo(T a, T b) {
+    private boolean equalTo(T a, T b) {
         return a.compareTo(b) == 0;
     }
 
@@ -124,7 +127,7 @@ public class PriorityQueue<T extends Comparable<T>> {
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean GreaterThan(T a, T b) {
+    private boolean greaterThan(T a, T b) {
         return a.compareTo(b) > 0;
     }
 
@@ -133,7 +136,7 @@ public class PriorityQueue<T extends Comparable<T>> {
      * @param i: fist index
      * @param j: second index
      */
-    private void Swap(int i, int j){
+    private void swap(int i, int j){
         T temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
