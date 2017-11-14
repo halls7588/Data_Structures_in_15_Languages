@@ -72,6 +72,10 @@ What’s been implemented so far:
   
   [Binary Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/Binary_Tree/BinaryTree.java)
   
+  [Self Balancing Binary Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/SelfBalancingBinaryTree/SelfBalancingBinaryTree.java)
+  
+  [Splay Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/SplayTree/SplayTree.java)
+  
   [Red Black Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/RedBlackTree/RedBlackTree.java)
   
   [AVL Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/AVL_Tree/AVLTree.java)
@@ -90,7 +94,11 @@ What’s been implemented so far:
   
   [Deque in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/Deque/Deque.java)
   
-  [Linked Queue in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/Linked_Queue/LinkedQueue.java)  
+  [Linked Queue in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Queues/Linked_Queue/LinkedQueue.java) 
+  
+  [Linked Heap in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Heaps/LinkedHeap/LinkedHeap.java) 
+  
+  [Arrayed Heap in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Heaps/ArrayedHeap/ArrayedHeap.java) 
 </details>
 
 <details>
