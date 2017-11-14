@@ -22,9 +22,7 @@ public class ArrayList<T> {
      * CircularArray default constructor
      */
     public ArrayList(){
-        count = 0;
-        size = 4;
-        array = (T[]) new Object[size];
+        this(4);
     }
 
     /**
@@ -45,11 +43,11 @@ public class ArrayList<T> {
      */
     private void Resize(){
         size *= 2;
-        T[] tmp = (T[]) new Object[this.size];
-        for(int i = 0; i < this.count; i++){
-            tmp[i] = this.array[i];
+        T[] tmp = (T[]) new Object[size];
+        for(int i = 0; i < count; i++){
+            tmp[i] = array[i];
         }
-        this.array = tmp;
+        array = tmp;
     }
 
     /**
@@ -57,15 +55,15 @@ public class ArrayList<T> {
      * @param data Data to add into the array
      * @return Data added into the array
      */
-    public T Add(T data){
+    public T add(T data){
         if(data == null)
             return null;
 
-        if(this.count == size)
-            this.Resize();
+        if(count == size)
+            resize();
 
-        this.array[this.count] = data;
-        this.count++;
+        array[count] = data;
+        count++;
 
         return data;
     }
@@ -75,11 +73,11 @@ public class ArrayList<T> {
      * @param data: array to append
      * @return boolean: success|fail
      */
-    public boolean Append(T[] data){
+    public boolean append(T[] data){
         if(data != null){
             for (int i = 0; i < data.length; i++) {
                 if(data[i] != null )
-                    this.Add(data[i]);
+                    add(data[i]);
             }
             return true;
         }
@@ -92,9 +90,9 @@ public class ArrayList<T> {
      * @param data: data to set index to
      * @return boolean: success|fail
      */
-    public boolean Set(int index, T data){
-        if(index >= 0 && index < this.size) {
-            this.array[index] = data;
+    public boolean set(int index, T data){
+        if(index >= 0 && index < size) {
+            array[index] = data;
             return true;
         }
         return false;
@@ -105,10 +103,8 @@ public class ArrayList<T> {
      * @param index Index to get data at
      * @return Data at the given index or default value of T if index does not exist
      */
-    public T Get(int index){
-        if(index >= 0 && index < this.size)
-            return this.array[index];
-        return null;
+    public T get(int index){
+        return (index >= 0 && index < size) ? array[index] : null;
     }
 
     /**
@@ -116,8 +112,7 @@ public class ArrayList<T> {
      * @param index Index to remove
      * @return Data removed from the array or default T value if index does not exist
      */
-    public T Remove(int index)
-    {
+    public T remove(int index){
         if (index < 0 || index > count)
             return null;
 
@@ -130,20 +125,20 @@ public class ArrayList<T> {
     /**
      * Resets the internal array to default size with no data
      */
-    public void Reset(){
-        this.count = 0;
-        this.size = 4;
-        this.array = (T[]) new Object[this.size];
+    public void reset(){
+        count = 0;
+        size = 4;
+        array = (T[]) new Object[size];
     }
 
     /**
      * Clears all data in the array leaving size intact
      */
-    public void Clear(){
-        for(int i = 0; i < this.count; i++){
-            this.array[i] = null;
+    public void clear(){
+        for(int i = 0; i < count; i++){
+            array[i] = null;
         }
-        this.count = 0;
+        count = 0;
     }
 
 
@@ -151,7 +146,7 @@ public class ArrayList<T> {
      * Gets the current count of the array
      * @return Number of items in the array
      */
-    public int Count(){
+    public int count(){
         return count;
     }
 }
