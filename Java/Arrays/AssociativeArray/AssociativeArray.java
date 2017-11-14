@@ -7,22 +7,19 @@
 
 /**
  * Associative Array Class
- * @param <K> Generic Type
- * @param <V> Generic Type
+ * @param <Key> Generic Key
+ * @param <Value> Generic Value
  */
-public class AssociativeArray<K extends Comparable<K>, V extends Comparable<V>> {
+public class AssociativeArray<Key extends Comparable<Key>, Value extends Comparable<Value>> {
     /**
      * Node class for associative array
-     * @param <K>
-     * @param <V>
      */
     public class Node {
-
         /**
          * public member of Node class
          */
-        public K key;
-        public V value;
+        public Key key;
+        public Value value;
         public Node next;
         public int hash;
 
@@ -32,7 +29,7 @@ public class AssociativeArray<K extends Comparable<K>, V extends Comparable<V>> 
          * @param value
          * @param hash
          */
-        public Node(K key, V value, int hash) {
+        public Node(Key key, Value value, int hash) {
             this.key = key;
             this.value = value;
             this.hash = hash;
@@ -67,12 +64,12 @@ public class AssociativeArray<K extends Comparable<K>, V extends Comparable<V>> 
      * @param value: value to store
      * @return Node: Node added or updated
      */
-    public Node Set(K key, V value) {
-		/* Find the hash of the key and bucket it belongs to */
+    public Node set(Key key, Value value) {
+	// Find the hash of the key and bucket it belongs to 
         int hash = key.hashCode();
-        int bucket = GetBucket(hash);
+        int bucket = getBucket(hash);
         Node entry;
-        if(IsEmpty()){
+        if(isEmpty()){
             entry = new Node(key, value, hash);
             table[bucket] = entry;
             size++;
@@ -80,20 +77,18 @@ public class AssociativeArray<K extends Comparable<K>, V extends Comparable<V>> 
         else {
             entry = table[bucket];
             while (entry.next != null) {
-                if (entry.getHash() == hash && EqualTo(entry.key, key)) {
+                if (entry.getHash() == hash && equalTo(entry.key, key)) {
                     entry.value = value;
                     return entry;
                 }
                 entry = entry.next;
             }
 
-
             Node node = new Node(key, value, hash);
             entry.next = node;
             size++;
             entry = node;
         }
-
         return entry;
     }
 
@@ -102,14 +97,14 @@ public class AssociativeArray<K extends Comparable<K>, V extends Comparable<V>> 
      * @param key: Key to get value of
      * @return V: generic value type
      */
-    public V Get(K key) {
+    public Value get(Key key) {
         int hash = key.hashCode();
-        int bucket = GetBucket(hash);
+        int bucket = getBucket(hash);
 
         Node entry = table[bucket];
         while (entry != null) {
-			/* If hash and key matches, return the value */
-            if (EqualTo(entry.hash, hash) && EqualTo(entry.key, key)) {
+	    /* If hash and key matches, return the value */
+            if (equalTo(entry.hash, hash) && equalTo(entry.key, key)) {
                 return entry.value;
             }
             entry = entry.next;
@@ -121,7 +116,7 @@ public class AssociativeArray<K extends Comparable<K>, V extends Comparable<V>> 
      * Gets the size of the array
      * @return int: number of elements in the array
      */
-    public int Size() {
+    public int size() {
         return size;
     }
 
@@ -129,7 +124,7 @@ public class AssociativeArray<K extends Comparable<K>, V extends Comparable<V>> 
      * Checks if the array is empty of not
      * @return boolean: true|false
      */
-    public boolean IsEmpty() {
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -138,7 +133,7 @@ public class AssociativeArray<K extends Comparable<K>, V extends Comparable<V>> 
      * @param hash: hash to find bucket of
      * @return int: bucket index of the array
      */
-    private int GetBucket(int hash) {
+    private int getBucket(int hash) {
         return (hash % table.length);
     }
 
