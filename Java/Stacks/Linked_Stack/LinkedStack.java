@@ -4,25 +4,22 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked Stack implementation in Java
  ********************************************************/
-package DataStructures.Stacks;
 
 /**
  * Linked Stack Class
  * @param <T> Generic Type
  */
 public class LinkedStack<T> {
-
     /**
      * Node Class for Linked Stack
      * @param <T> Generic Type
      */
-    public class Node<T>{
-
+    public class Node{
         /**
          * Public Member
          */
         public T data;
-        public Node<T> next;
+        public Node next;
 
         /**
          * Node Class Constructor
@@ -38,7 +35,7 @@ public class LinkedStack<T> {
      * Private Members
      */
     private int count;
-    private Node<T> head;
+    private Node head;
 
     /**
      * Linked Stack Constructor
@@ -53,20 +50,20 @@ public class LinkedStack<T> {
      * @param data Data to be added to the stack
      * @return Node added to the stack
      */
-    public Node<T> Push(T data){
-        Node<T> node = new Node(data);
+    public Node push(T data){
+        Node node = new Node(data);
         node.next = head;
         head = node;
         count++;
-        return Top();
+        return top();
     }
 
     /**
      * Pops item off the stack
      * @return Node popped off of the stack
      */
-    public Node<T> Pop(){
-        Node<T> node = head;
+    public Node pop(){
+        Node node = head;
         head = head.next;
         node.next = null;
         count--;
@@ -77,7 +74,7 @@ public class LinkedStack<T> {
      * Gets the Node onto of the stack
      * @return Node on top of the stack
      */
-    public Node<T> Top(){
+    public Node top(){
         return head;
     }
 
@@ -85,7 +82,7 @@ public class LinkedStack<T> {
      * Returns a value indicating if the stack is empty
      * @return true if empty, false if not
      */
-    public boolean IsEmpty(){
+    public boolean isEmpty(){
         return (count == 0);
     }
 
@@ -93,7 +90,7 @@ public class LinkedStack<T> {
      * Returns a value indicating if the stack is full
      * @return False, Linked stack is never full
      */
-    public boolean IsFull(){
+    public boolean isFull(){
         return false;
     }
 }
