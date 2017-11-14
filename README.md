@@ -72,6 +72,8 @@ What’s been implemented so far:
   
   [Binary Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/Binary_Tree/BinaryTree.java)
   
+  [B-Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/BTree/BTree.java)
+  
   [Self Balancing Binary Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/SelfBalancingBinaryTree/SelfBalancingBinaryTree.java)
   
   [Splay Tree in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Trees/SplayTree/SplayTree.java)
