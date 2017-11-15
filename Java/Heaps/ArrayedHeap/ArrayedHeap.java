@@ -4,13 +4,15 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Arrayed Heap implementation in Java
  ********************************************************/
+package DataStructures.Java.Heaps.ArrayedHeap;
+
 import java.util.Arrays;
 
 /**
  * ArrayedHeap class
  * @param <T> Generic type
  */
-public class ArrayedHeap<T extends Comparable<T>> implements PriorityQueue<T> {
+public class ArrayedHeap<T extends Comparable<T>> {
     /**
      * private members to be used by the heap
      */
@@ -20,7 +22,8 @@ public class ArrayedHeap<T extends Comparable<T>> implements PriorityQueue<T> {
     /**
      * ArrayedHeap Constructor.
      */
-    public ArrayedHeap () {
+    @SuppressWarnings("unchecked")
+	public ArrayedHeap () {
         array = (T[])new Comparable[10];
         size = 0;
     }
@@ -103,7 +106,7 @@ public class ArrayedHeap<T extends Comparable<T>> implements PriorityQueue<T> {
     }
 
     /**
-     * Preforms bubble up to place new element in correct position
+     * Performs bubble up to place new element in correct position
      */
     private void bubbleUp() {
         int index = size;
@@ -178,7 +181,7 @@ public class ArrayedHeap<T extends Comparable<T>> implements PriorityQueue<T> {
     }
 
     /**
-     * Doubls the size of the internal array
+     * Doubles the size of the internal array
      * @return T[]: new resized array with copy of the data
      */
     private T[] resize() {

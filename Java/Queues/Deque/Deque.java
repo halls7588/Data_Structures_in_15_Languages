@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Deque implementation in Java
  ********************************************************/
+package DataStructures.Java.Queues.Deque;
 
 /**
  * Linked Queue Class
@@ -152,3 +153,4 @@ public class Deque<T> {
     public boolean isFull(){
         return false;
     }
+}

@@ -1,17 +1,18 @@
 /*******************************************************
- *  Hashtabel.java
+ *  Hashset.java
  *  Created by Stephen Hall on 11/14/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
- *  Hashtabel implementation in Java
+ *  Hashset implementation in Java
  ********************************************************/
-package DataStructures.Java.Hashtables.HashTable;
+package DataStructures.Java.Hashtables.HashSet;
+
 
 /**
- * Hashtable class
+ * HashSet class
  * @param <Key>
  * @param <Value>
  */
-public class Hashtable<Key, Value> {
+public class Hashset<Key, Value> {
     /**
      * Node Class
      */
@@ -39,12 +40,12 @@ public class Hashtable<Key, Value> {
     private Node[] nodes;
 
     /**
-     * Hashtable Constructor
-     * @param size: size of the Hashtable
+     * HashSet Constructor
+     * @param size: size of the hash table
      */
     @SuppressWarnings("unchecked")
-	public Hashtable(int size){
-        nodes = new Hashtable.Node[size];
+	public Hashset(int size){
+        nodes = new Hashset.Node[size];
     }
 
     /**
@@ -64,16 +65,14 @@ public class Hashtable<Key, Value> {
      * Inserts Key-Value pair into the table or updates new value
      * @param key: key to insert
      * @param vlaue: value of the key
-     * @return Value: old value of the key, or new value if not exists
+     * @return Value: new value in the set
      */
     public Value insert(Key key, Value value){
         int hash = getIndex(key);
         // check if same key already exists and if so lets update it with the new value
         for(Node node = nodes[hash]; node != null; node = node.next){
             if((hash == node.hash) && key.equals(node.key)){
-                Value oldData = node.value;
-                node.value = value;
-                return oldData;
+               return null;
             }
         }
         Node node = new Node(key, value, nodes[hash], hash);
@@ -82,7 +81,7 @@ public class Hashtable<Key, Value> {
     }
 
     /**
-     * Removes the key from the hashtabel
+     * Removes the key from the hash tabel
      * @param key: key to remove
      * @return boolean: success|fail
      */
@@ -119,11 +118,11 @@ public class Hashtable<Key, Value> {
     }
 
     /**
-     * Resizes the Hashtable
+     * Resizes the Hash table
      * @param size: size to make the table
      */
     public void resize(int size){
-    	Hashtable<Key, Value> tbl = new Hashtable<Key, Value>(size);
+        Hashset<Key, Value> tbl = new Hashset<Key, Value>(size);
         for(Node node : nodes){
             for(; node != null; node = node.next){
                 tbl.insert(node.key, node.value);

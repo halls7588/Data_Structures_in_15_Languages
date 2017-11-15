@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  B-Tree implementation in Java
  ********************************************************/
+package DataStructures.Java.Trees.BTree;
 
 /**
  * Btree class
@@ -27,13 +28,15 @@ public class BTree<Key extends Comparable<Key>, Value>  {
         // number of children
         public int size;
         // array of children
-        public Entry[] children = new Entry[Max];
+        public Entry[] children;
 
         /**
          * Node Constructor
          * @param size: number of children of the node
          */
-        private Node(int size) {
+        @SuppressWarnings("unchecked")
+		private Node(int size) {
+        	children  = new BTree.Entry[Max];
             this.size = size;
         }
     }
@@ -67,7 +70,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     }
 
     /**
-     * Determins if the tree is empty
+     * Determines if the tree is empty
      * @return boolean: true|false
      */
     public boolean isEmpty() {
@@ -136,7 +139,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
      */
     public void put(Key key, Value val) {
         if (key == null)
-            return null;
+            return;
 
         Node node = insert(root, key, val, height);
         pairs++;
@@ -153,7 +156,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     }
 
     /**
-     * Inserts a node into the tree ans updates the tree
+     * Inserts a node into the tree and updates the tree
      * @param node: root to start at
      * @param key: key of the new node
      * @param val: value of the key
@@ -200,7 +203,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     }
 
     /**
-     * Splts the given node in half
+     * Splits the given node in half
      * @param node: node to split
      * @return Node: split node
      */

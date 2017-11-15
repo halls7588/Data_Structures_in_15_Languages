@@ -1,38 +1,39 @@
 /*******************************************************
- *  ArrayedQueue.java
- *  Created by Stephen Hall on 11/01/17.
+ *  CircularQueue.java
+ *  Created by Stephen Hall on 11/09/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
- *  A Arrayed Queue implementation in Java
+ *  Circular Queue implementation in Java
  ********************************************************/
-package DataStructures.Java.Queues.Arrayed_Queue;
+package DataStructures.Java.Queues.CircularQueue;
 
 /**
- * Arrayed Queue Class
+ * Circular Queue Class
  * @param <T> Generic type
  */
-public class ArrayedQueue<T> {
+public class CircularQueue<T> {
     /**
      * Private Members
      */
     private T[] array;
     private int count;
     private int size;
+    private int zeroIndex;
 
     /**
      * Default Constructor
      */
-    public ArrayedQueue(){
-       this(10);
+    public CircularQueue(){
+        this(10);
     }
 
     /**
-     * Arrayed Queue Constructor
+     * Circular Queue Constructor
      * @param size Size to initialize the queue to
      */
     @SuppressWarnings("unchecked")
-	public ArrayedQueue(int size){
+	public CircularQueue(int size){
         array = (T[]) new Object[(this.size = size)];
-        count = 0;
+        count = zeroIndex = 0;
     }
 
     /**
@@ -42,7 +43,7 @@ public class ArrayedQueue<T> {
      */
     public T enqueue(T data){
         if(!isFull()) {
-            array[count] = data;
+            array[(zeroIndex + count) % size] = data;
             count++;
             return top();
         }
@@ -53,18 +54,15 @@ public class ArrayedQueue<T> {
      * Removes item from the queue
      * @return item removed from the queue
      */
-    @SuppressWarnings("unchecked")
-	public T dequeue(){
+    public T dequeue(){
         if(isEmpty())
             return null;
-        T data = array[0];
-        T[] tmp = (T[]) new Object[size];
-        for(int i = 1; i < size-1; i++){
-            tmp[i-1] = array[i];
-        }
-        array = tmp;
+
+        T tmp = array[(zeroIndex)];
+        array[zeroIndex] = null;
         count--;
-        return data;
+        zeroIndex = (zeroIndex + 1) % size;
+        return tmp;
     }
 
     /**
@@ -72,7 +70,7 @@ public class ArrayedQueue<T> {
      * @return item on top of the queue
      */
     public T top(){
-        return (isEmpty()) ? null : array[0];
+        return (isEmpty()) ? null : array[zeroIndex];
     }
 
     /**

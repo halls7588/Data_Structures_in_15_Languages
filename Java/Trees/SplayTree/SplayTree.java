@@ -4,13 +4,14 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Splay Tree implementation in Java
  ********************************************************/
+package DataStructures.Java.Trees.SplayTree;
 
 /**
  * Splay Tree Class
  * @param <Key> generic type
  * @param <Value> generic type
  */
-public class SplayBST<Key extends Comparable<Key>, Value> {
+public class SplayTree<Key extends Comparable<Key>, Value> {
 
     private Node root;   // root of the BST
 
@@ -38,7 +39,7 @@ public class SplayBST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * Tests to see if a key exisit in the tree
+     * Tests to see if a key exist in the tree
      * @param key: key to test
      * @return boolean: yes|no
      */
@@ -47,11 +48,11 @@ public class SplayBST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * Gets the value of the ksy if it exists
+     * Gets the value of the key if it exists
      * @param key: key to test
      * @return Value: value of the key of null
      */
-    public value get(Key key) {
+    public Value get(Key key) {
         root = splay(root, key);
         return (key.compareTo(root.key) == 0) ? root.value : null;
     }
@@ -132,7 +133,7 @@ public class SplayBST<Key extends Comparable<Key>, Value> {
     }
 
     /**
-     * Rotetes the node to the left
+     * Rotates the node to the left
      * @param node: node to rotate
      * @return Node: new root of the rotate
      */
@@ -162,7 +163,7 @@ public class SplayBST<Key extends Comparable<Key>, Value> {
             }
             int tmp2 = key.compareTo(node.left.key);
             if (tmp2 < 0) {
-                noed.left.left = splay(node.left.left, key);
+                node.left.left = splay(node.left.left, key);
                 node = rotateRight(node);
             } else if (tmp2 > 0) {
                 node.left.right = splay(node.left.right, key);
@@ -217,7 +218,7 @@ public class SplayBST<Key extends Comparable<Key>, Value> {
      * @return int: height of the node
      */
     private int height(Node node) {
-        return (node == null) ? -1 : Math.max(height(nodeleft), height(node.right)) + 1;
+        return (node == null) ? -1 : Math.max(height(node.left), height(node.right)) + 1;
     }
 
     /**
@@ -234,6 +235,6 @@ public class SplayBST<Key extends Comparable<Key>, Value> {
      * @return int: size of the node
      */
     private int size(Node node) {
-        return (node == null) ? 0 : size(x.left) + size(x.right) + 1;
+        return (node == null) ? 0 : size(node.left) + size(node.right) + 1;
     }
 }

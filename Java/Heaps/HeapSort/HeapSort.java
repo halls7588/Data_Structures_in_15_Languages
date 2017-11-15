@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  HeapSort implementation in Java
  ********************************************************/
+package DataStructures.Java.Heaps.HeapSort;
 
 /**
  * HeapSort Class

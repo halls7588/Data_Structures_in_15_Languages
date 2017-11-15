@@ -1,48 +1,49 @@
 /*******************************************************
- *  ArrayedStack.java
- *  Created by Stephen Hall on 9/23/17.
+ *  CircularStack.java
+ *  Created by Stephen Hall on 11/09/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
- *  A Arrayed Stack implementation in Java
+ *  A Circular Stack implementation in Java
  ********************************************************/
-package DataStructures.Java.Stacks.Arrayed_Stack;
+package DataStructures.Java.Stacks.CircularStack;
 
 /**
- * Arrayed Stack Class
+ * Circular Stack Class
  * @param <T> Generic type
  */
-public class ArrayedStack<T> {
+public class CircularStack<T> {
     /**
      * Private Members
      */
     private T[] array;
     private int count;
     private int size;
+    private int zeroIndex;
 
     /**
      * Default Constructor
      */
-    public ArrayedStack(){
-       this(10);
+    public CircularStack(){
+        this(10);
     }
 
     /**
-     * Arrayed Stack Constructor
+     * Circular Stack Constructor
      * @param size Size to initialize the stack to
      */
     @SuppressWarnings("unchecked")
-	public ArrayedStack(int size){
+	public CircularStack(int size){
         array = (T[]) new Object[(this.size = size)];
-        count = 0;
+        count = zeroIndex = 0;
     }
 
     /**
      * Pushes given data onto the stack if space is available
      * @param data Data to be added to the stack
-     * @return Node added to the stack
+     * @return item added to the stack
      */
     public T push(T data){
         if(!isFull()) {
-            array[count] = data;
+            array[(zeroIndex + count) % size] = data;
             count++;
             return top();
         }
@@ -51,20 +52,25 @@ public class ArrayedStack<T> {
 
     /**
      * Pops item off the stack
-     * @return Node popped off of the stack
+     * @return item popped off of the stack
      */
     public T pop(){
-        T data = array[count-1];
+        if(isEmpty())
+            return null;
+        T data = array[(count + zeroIndex % size) -1];
+        array[(count + zeroIndex % size) -1] = array[zeroIndex];
+        array[zeroIndex] = null;
         count--;
+        zeroIndex = (zeroIndex + 1) % size;
         return data;
     }
 
     /**
-     * Gets the Node onto of the stack
-     * @return Node on top of the stack
+     * Gets the item onto of the stack
+     * @return item on top of the stack
      */
     public T top(){
-        return array[count-1];
+        return array[((zeroIndex + count) % size) - 1];
     }
 
     /**

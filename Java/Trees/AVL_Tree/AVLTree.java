@@ -2,11 +2,11 @@
  *  AvlTree.java
  *  Created by Stephen Hall on 11/13/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
- *  Avl Tree implementation in Java
+ *  AVL Tree implementation in Java
  ********************************************************/
+package DataStructures.Java.Trees.AVL_Tree;
 
-
-public class AvlTree<T extends Comparable<T>> {
+public class AVLTree<T extends Comparable<T>> {
     /**
      * Node class for AVL Tree
      */
@@ -41,9 +41,9 @@ public class AvlTree<T extends Comparable<T>> {
     private int count;
 
     /**
-     * Avl Tree Constructor.
+     * AVLTree Constructor.
      */
-    public AvlTree (){
+    public AVLTree (){
         root = null;
         count = 0;
     }
@@ -120,7 +120,7 @@ public class AvlTree<T extends Comparable<T>> {
         else {
             throw new Exception("Attempting to insert duplicate value");
         }
-        node.height = max(Height(node.left), height(node.right)) + 1;
+        node.height = max(height(node.left), height(node.right)) + 1;
         return node;
     }
 
@@ -207,7 +207,7 @@ public class AvlTree<T extends Comparable<T>> {
      * @return T: the largest item or null if empty.
      */
     public T findMax(){
-        reutrn (IsEmpty( )) ? null : findMax(root).data;
+        return (isEmpty()) ? null : findMax(root).data;
     }
 
     /**
@@ -287,7 +287,7 @@ public class AvlTree<T extends Comparable<T>> {
         }
         else if(node.left != null) {
             node.data = findMax(node.left).data;
-            remove(node.element, node.left);
+            remove(node.data, node.left);
 
             if((node.right != null) && (node.right.height - node.left.height >= 2)) {
                 int rightHeight = node.right.right != null ? node.right.right.height : 0;
@@ -296,7 +296,7 @@ public class AvlTree<T extends Comparable<T>> {
                 if(rightHeight >= leftHeight)
                     node = rotateLeft(node);
                 else
-                    node = rotateLeftRight(t);
+                    node = rotateLeftRight(node);
             }
         }
 
@@ -304,7 +304,7 @@ public class AvlTree<T extends Comparable<T>> {
             node = (node.left != null) ? node.left : node.right;
 
         if(node != null) {
-            int leftHeight = noe.left != null ? node.left.height : 0;
+            int leftHeight = node.left != null ? node.left.height : 0;
             int rightHeight = node.right!= null ? node.right.height : 0;
             node.height = max(leftHeight, rightHeight) + 1;
         }
@@ -312,7 +312,7 @@ public class AvlTree<T extends Comparable<T>> {
     }
 
     /**
-     * Detrimines is the data exists in the tree
+     * Determines is the data exists in the tree
      * @param data: data to find
      * @return boolean: success|fail
      */

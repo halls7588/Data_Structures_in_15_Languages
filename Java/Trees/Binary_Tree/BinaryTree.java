@@ -4,6 +4,8 @@
  *  Copyright (c) 2016 Stephen Hall. All rights reserved.
  *  A Binary Tree implementation in Java
  ********************************************************/
+package DataStructures.Java.Trees.Binary_Tree;
+
 import java.util.PriorityQueue;
 import java.util.Stack;
 
@@ -54,7 +56,7 @@ public class BinaryTree<T extends Comparable<T>> {
      * @return 1 if greater then, 0 if equal to, -1 if less then
      */
     private int compare(T data, Node node){
-       return ((Comparable)node).compareTo(data);
+       return node.data.compareTo(data);
     }
 
     /**
@@ -70,7 +72,7 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     /**
-     * Recursive helper function to inset a new node into the tree
+     * Recursive helper function to insert a new node into the tree
      * @param data Data to insert into the tree
      * @param node Current node in the tree
      * @return Node inserted into the tree
@@ -227,8 +229,8 @@ public class BinaryTree<T extends Comparable<T>> {
     }
 
     /**
-     * Prints out the tree using Pre Order Traversal
-     * @param node Node to start the Pre Order Traversal at
+     * Prints out the tree using Pre-Order Traversal
+     * @param node Node to start the Pre-Order Traversal at
      */
     public void preOrederTraversal(Node node){
         if(node != null){
@@ -270,7 +272,7 @@ public class BinaryTree<T extends Comparable<T>> {
         if(node == null)
             return;
 
-        Stack<Node> stack = new Stack();
+        Stack<Node> stack = new Stack<Node>();
         stack.push(node);
 
         while (!stack.empty()) {
@@ -290,7 +292,7 @@ public class BinaryTree<T extends Comparable<T>> {
         if(node == null)
             return;
 
-        PriorityQueue<Node> queue = new PriorityQueue();
+        PriorityQueue<Node> queue = new PriorityQueue<Node>();
         queue.add(node);
 
         while (queue.size() > 0) {

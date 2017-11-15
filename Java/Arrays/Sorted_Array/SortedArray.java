@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  SortedArray implementation in Java
  ********************************************************/
-
+package DataStructures.Java.Arrays.Sorted_Array;
 
 /**
  * SortedArray Class
@@ -29,7 +29,8 @@ public class SortedArray<T extends Comparable<T>>{
      * SortedArray constructor initialized to a specific size
      * @param size Size to initialize the array to
      */
-    public SortedArray(int size){
+    @SuppressWarnings("unchecked")
+	public SortedArray(int size){
         count = 0;
         if(size > 0)
             this.size = size;
@@ -41,7 +42,8 @@ public class SortedArray<T extends Comparable<T>>{
     /**
      * Doubles the size of the internal array
      */
-    private void resize(){
+    @SuppressWarnings("unchecked")
+	private void resize(){
         size *= 2;
         T[] tmp = (T[]) new Comparable[size];
         for(int i = 0; i < count; i++){
@@ -127,7 +129,8 @@ public class SortedArray<T extends Comparable<T>>{
     /**
      * Resets the internal array to default size with no data
      */
-    public void reset(){
+    @SuppressWarnings("unchecked")
+	public void reset(){
         count = 0;
         size = 4;
         array = (T[]) new Comparable[this.size];
@@ -159,7 +162,8 @@ public class SortedArray<T extends Comparable<T>>{
      * @param m: merge point
      * @param r: index of second sub array
      */
-    private void merge(T arr[], int l, int m, int r) {
+    @SuppressWarnings("unchecked")
+	private void merge(T arr[], int l, int m, int r) {
         int i, j, k;
         int n1 = m - l + 1;
         int n2 =  r - m;
@@ -229,7 +233,8 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Merge Sort on internal array
      * @return T[]: sorted copy of the internal array
      */
-    public T[] mergeSort(){
+    @SuppressWarnings("unchecked")
+	public T[] mergeSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];
@@ -242,7 +247,8 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Bubble sort on internal array
      * @return T[]: sorted copy of the internal array
      */
-    public T[] bubbleSort(){
+    @SuppressWarnings("unchecked")
+	public T[] bubbleSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];
@@ -311,7 +317,8 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Quick Sort on the internal array
      * @return T[]: sorted copy of the internal array
      */
-    public T[] quickSort(){
+    @SuppressWarnings("unchecked")
+	public T[] quickSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];
@@ -325,7 +332,8 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Insertion sort on the internal array
      * @return T[]: sorted copy of the internal array
      */
-    public T[] insertionSort(){
+    @SuppressWarnings("unchecked")
+	public T[] insertionSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];
@@ -349,7 +357,8 @@ public class SortedArray<T extends Comparable<T>>{
      * Performs Selection Sort on internal array
      * @return T[]: Sorted copy of the internal data
      */
-    public T[] selectionSort(){
+    @SuppressWarnings("unchecked")
+	public T[] selectionSort(){
         T[] tmp = (T[]) new Comparable[count];
         for(int i = 0; i < count; i++){
             tmp[i] = array[i];

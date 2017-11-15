@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked List implementation in Java
  ********************************************************/
+package DataStructures.Java.Lists.Doubly_Linked_List;
 
 /**
  * Doubly linked list class
@@ -171,7 +172,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     }
     
     /**
-     * Determins if a is equal to b
+     * Determines if a is equal to b
      * @param a: generic type to test
      * @param b: generic type to test
      * @return boolean: true|false

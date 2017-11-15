@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked Queue implementation in Java
  ********************************************************/
+package DataStructures.Java.Queues.Linked_Queue;
 
 /**
  * Linked Queue Class

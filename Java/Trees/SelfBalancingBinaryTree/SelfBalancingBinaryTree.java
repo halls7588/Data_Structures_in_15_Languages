@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  SelfBalancingBinaryTree implementation in Java
  ********************************************************/
+package DataStructures.Java.Trees.SelfBalancingBinaryTree;
 
 /**
  * Self Balancing Binary Tree Class
@@ -45,7 +46,6 @@ public class SelfBalancingBinaryTree<T extends Comparable<T>>{
     /**
      * SelfBalancingBinaryTree Constructor
      */
-    /
     public SelfBalancingBinaryTree(){
         root = null;
         count = 0;
@@ -153,7 +153,7 @@ public class SelfBalancingBinaryTree<T extends Comparable<T>>{
      * @return int: height of the node
      */
     private int height(Node node) {
-        return node == null ? -1 : t.height;
+        return node == null ? -1 : node.height;
     }
 
     /**
@@ -188,16 +188,6 @@ public class SelfBalancingBinaryTree<T extends Comparable<T>>{
      */
     private boolean lessThan(T a, T b) {
         return a.compareTo(b) < 0;
-    }
-
-    /**
-     * Determines if a is equal to b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean equalTo(T a, T b) {
-        return a.compareTo(b) == 0;
     }
 
     /**

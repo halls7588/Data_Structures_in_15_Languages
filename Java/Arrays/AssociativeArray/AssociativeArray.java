@@ -4,13 +4,14 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Associative Array implementation in Java
  ********************************************************/
+package DataStructures.Java.Arrays.AssociativeArray;
 
 /**
  * Associative Array Class
  * @param <Key> Generic Key
  * @param <Value> Generic Value
  */
-public class AssociativeArray<Key extends Comparable<Key>, Value extends Comparable<Value>> {
+public class AssociativeArray<Key extends Comparable<Key>, Value> {
     /**
      * Node class for associative array
      */
@@ -34,6 +35,7 @@ public class AssociativeArray<Key extends Comparable<Key>, Value extends Compara
             this.value = value;
             this.hash = hash;
         }
+
     }
 
     /**
@@ -51,10 +53,11 @@ public class AssociativeArray<Key extends Comparable<Key>, Value extends Compara
 
     /**
      * AssociativeArray class Constructor
-     * @param size: size to initialize insternal array to
+     * @param size: size to initialize internal array to
      */
-    public AssociativeArray(int size) {
-        this.table = new Node[size];
+    @SuppressWarnings("unchecked")
+	public AssociativeArray(int size) {
+        this.table = new AssociativeArray.Node[size];
         this.size = 0;
     }
 
@@ -77,7 +80,7 @@ public class AssociativeArray<Key extends Comparable<Key>, Value extends Compara
         else {
             entry = table[bucket];
             while (entry.next != null) {
-                if (entry.getHash() == hash && equalTo(entry.key, key)) {
+                if (entry.hashCode() == hash && equalTo(entry.key, key)) {
                     entry.value = value;
                     return entry;
                 }
@@ -104,7 +107,7 @@ public class AssociativeArray<Key extends Comparable<Key>, Value extends Compara
         Node entry = table[bucket];
         while (entry != null) {
 	    /* If hash and key matches, return the value */
-            if (equalTo(entry.hash, hash) && equalTo(entry.key, key)) {
+            if ((entry.hash == hash) && equalTo(entry.key, key)) {
                 return entry.value;
             }
             entry = entry.next;
@@ -138,32 +141,12 @@ public class AssociativeArray<Key extends Comparable<Key>, Value extends Compara
     }
 
     /**
-     * Determins if a is less than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: ture|false
-     */
-    private boolean LessThan(T a, T b) {
-        return a.compareTo(b) < 0;
-    }
-
-    /**
-     * Determins if a is equal to b
+     * Determines if a is equal to b
      * @param a: generic type to test
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean EqualTo(T a, T b) {
+    private boolean equalTo(Key a, Key b) {
         return a.compareTo(b) == 0;
-    }
-
-    /**
-     * Determins if a is greater than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean GreaterThan(T a, T b) {
-        return a.compareTo(b) > 0;
     }
 }

@@ -4,6 +4,10 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Skip List implementation in Java
  ********************************************************/
+package DataStructures.Java.Lists.Skip_List;
+
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Skip list class
@@ -138,28 +142,29 @@ public class SkipList<T extends Comparable<T>> {
     }
 
     /**
-     * Determins if the object is in the list or not
+     * Determines if the object is in the list or not
      * @param o: object to test
      * @return boolean: true|false
      */
-    public boolean contains(Object o) {
+    @SuppressWarnings("unchecked")
+	public boolean contains(Object o) {
         T data = (T)o;
         Node node = find(data);
         return (node != null && node.data != null && equalTo((T)node.data, data));
     }
 
     /**
-     * Determins if a is less than b
+     * Determines if a is less than b
      * @param a: generic type to test
      * @param b: generic type to test
-     * @return boolean: ture|false
+     * @return boolean: true|false
      */
     private boolean lessThan(T a, T b) {
         return a.compareTo(b) < 0;
     }
 
     /**
-     * Determins if a is equal to b
+     * Determines if a is equal to b
      * @param a: generic type to test
      * @param b: generic type to test
      * @return boolean: true|false
@@ -167,15 +172,4 @@ public class SkipList<T extends Comparable<T>> {
     private boolean equalTo(T a, T b) {
         return a.compareTo(b) == 0;
     }
-
-    /**
-     * Determins if a is greater than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean greaterThan(T a, T b) {
-        return a.compareTo(b) > 0;
-    }
-
 }

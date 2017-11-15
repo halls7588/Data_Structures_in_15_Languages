@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Arrayed Heap implementation in Java
  ********************************************************/
+package DataStructures.Java.Heaps.LinkedHeap;
 
 /**
  * Linked Heap class
@@ -36,7 +37,7 @@ public class LinkedHeap<T extends Comparable<T>> {
         Node(T data, Node leftt, Node right ) {
             this.data = data;
             this.left = leftt;
-            this.right = rightt;
+            this.right = right;
             npl = 0;
         }
 
@@ -63,7 +64,7 @@ public class LinkedHeap<T extends Comparable<T>> {
      * Merges two heaps together
      * @param heap: heap to merge with
      */
-    public void merge(LinkedHeap heap) {
+    public void merge(LinkedHeap<T> heap) {
         if(this == heap)
             return;
 
@@ -82,21 +83,21 @@ public class LinkedHeap<T extends Comparable<T>> {
             return n2;
         if( n2 == null )
             return n1;
-        if(n1.element.compareTo( n2.element ) < 0)
+        if(n1.data.compareTo( n2.data ) < 0)
             return merge1(n1, n2);
         else
             return merge1(n2, n1);
     }
 
     /**
-     * Helper methof to merge()
+     * Helper method to merge()
      * @param n1: first root
      * @param n2: second root
      * @return Node: merged roots
      */
     private Node merge1(Node n1, Node n2) {
         if( n1.left == null )
-            n1.left = h2;
+            n1.left = n2;
         else {
             n1.right = merge(n1.right, n2 );
             if(n1.left.npl < n1.right.npl )
@@ -111,7 +112,7 @@ public class LinkedHeap<T extends Comparable<T>> {
      * @param node: node with two children to swap
      */
     private void swapChildren(Node node) {
-        LeftHeapNode tmp = node.left;
+        Node tmp = node.left;
         node.left = node.right;
         node.right = tmp;
     }
@@ -129,18 +130,18 @@ public class LinkedHeap<T extends Comparable<T>> {
      * @return T: smallest item or null.
      */
     public T findMin() {
-        return (isEmpty()) ? null : root.element;
+        return (isEmpty()) ? null : root.data;
     }
 
     /**
-     * Remove the smallest item from theheap
+     * Remove the smallest item from the heap
      * @return T: item removed or null
      */
     public T deleteMin() {
         if(isEmpty())
             return null;
 
-        T minItem = root.element;
+        T minItem = root.data;
         root = merge(root.left, root.right);
 
         return minItem;

@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Linked Set implementation in Java
  ********************************************************/
+package DataStructures.Java.Lists.LinkedSet;
 
 /**
  * Linked set class
@@ -159,7 +160,7 @@ public class LinkedSet<T extends Comparable<T>> {
     }
 
     /**
-     * Determins if a is equal to b
+     * Determines if a is equal to b
      * @param a: generic type to test
      * @param b: generic type to test
      * @return boolean: true|false

@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Circular Array implementation in Java
  ********************************************************/
+package DataStructures.Java.Arrays.CircularArray;
 
 /**
  * Circular Array Class
@@ -30,7 +31,8 @@ public class CircularArray<T> {
      * CircularArray constructor initialized to a specific size
      * @param size Size to initialize the array to
      */
-    public CircularArray(int size){
+    @SuppressWarnings("unchecked")
+	public CircularArray(int size){
         count = zeroIndex = 0;
         this.size = size;
         array = (T[]) new Object[this.size];
@@ -92,8 +94,8 @@ public class CircularArray<T> {
     /**
      * Private method to resize the array if capacity has been reached
      */
-    private void resize() {
-
+    @SuppressWarnings("unchecked")
+	private void resize() {
         T[] arr = (T[])new Object[size * 2];
         for(int i = 0; i < count; i++) {
             arr[i] = array[(zeroIndex + i) % size];

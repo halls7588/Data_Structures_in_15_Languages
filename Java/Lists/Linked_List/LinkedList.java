@@ -4,9 +4,10 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked List implementation in Java
  ********************************************************/
+package DataStructures.Java.Lists.Linked_List;
 
 /**
- * Singlely linked list class
+ * Singly linked list class
  * @param <T> Generic type
  */
 public class LinkedList<T extends Comparable<T>> {
@@ -153,12 +154,12 @@ public class LinkedList<T extends Comparable<T>> {
     }
     
     /**
-     * Determins if a is equal to b
+     * Determines if a is equal to b
      * @param a: generic type to test
      * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean EqualTo(T a, T b) {
+    private boolean equalTo(T a, T b) {
         return a.compareTo(b) == 0;
     }
 }

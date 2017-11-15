@@ -4,6 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked Stack implementation in Java
  ********************************************************/
+package DataStructures.Java.Stacks.Linked_Stack;
 
 /**
  * Linked Stack Class

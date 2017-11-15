@@ -4,6 +4,8 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Priority Queue implementation in Java
  ********************************************************/
+package DataStructures.Java.Queues.PriorityQueue;
+
 /**
 * Priority Queue class
 * @param <T> generic type
@@ -15,6 +17,7 @@ public class PriorityQueue<T extends Comparable<T>> {
     /**
      * PriorityQueue class Constructor
      */
+   @SuppressWarnings("unchecked")
    public PriorityQueue(){
         arr = (T[]) new Comparable[4];
         count = 0;
@@ -45,7 +48,7 @@ public class PriorityQueue<T extends Comparable<T>> {
         swap(1, count--);
         arr[count + 1] = null;
         sink(1);
-        return t;
+        return data;
     }
 
     /**
@@ -67,7 +70,8 @@ public class PriorityQueue<T extends Comparable<T>> {
     /**
      * Doubles the capacity of the queue
      */
-    private void resize(){
+    @SuppressWarnings("unchecked")
+	private void resize(){
         T[] copy = (T[]) new Comparable[(count * 2 + 1)];
         for(int i = 1; i <= count; i ++ )
             copy[i] = arr[i];
@@ -79,7 +83,7 @@ public class PriorityQueue<T extends Comparable<T>> {
      * @param k: index to start at
      */
     private void swim(int k){
-        while(k > 1 && lessThan((k/2), k)){
+        while(k > 1 && (k/2) < k){
             swap((k/2),k);
             k = k/2;
         }
@@ -92,12 +96,12 @@ public class PriorityQueue<T extends Comparable<T>> {
     private void sink(int index){
         while (index * 2 < count){
             int j = 2 * index;
-            if(j < count && lessThan(j, j + 1))
+            if(j < count && j < j + 1)
                 j = j + 1;
             if(lessThan(j, index))
                 break;
-            swap(k, j);
-            k = j;
+            swap(index, j);
+            index = j;
         }
     }
 
@@ -105,30 +109,10 @@ public class PriorityQueue<T extends Comparable<T>> {
      * Determines if a is less than b
      * @param a: generic type to test
      * @param b: generic type to test
-     * @return boolean: ture|false
-     */
-    private boolean lessThan(T a, T b) {
-        return a.compareTo(b) < 0;
-    }
-
-    /**
-     * Determines if a is equal to b
-     * @param a: generic type to test
-     * @param b: generic type to test
      * @return boolean: true|false
      */
-    private boolean equalTo(T a, T b) {
-        return a.compareTo(b) == 0;
-    }
-
-    /**
-     * Determines if a is greater than b
-     * @param a: generic type to test
-     * @param b: generic type to test
-     * @return boolean: true|false
-     */
-    private boolean greaterThan(T a, T b) {
-        return a.compareTo(b) > 0;
+    private boolean lessThan(int i, int j){
+        return (arr[i].compareTo(arr[j]) < 0) ? true : false;
     }
 
     /**

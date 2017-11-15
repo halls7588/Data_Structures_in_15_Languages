@@ -4,6 +4,8 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Rec Black Tree implementation in Java
  ********************************************************/
+package DataStructures.Java.Trees.RedBlackTree;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +35,9 @@ public class RedBlackTree<T extends Comparable<T>> {
         public int color;
 
         /**
-         * RedBlackNode Constructor
+         * Node Constructor
          */
-        public RedBlackNode(){
+        public Node(){
             color = BLACK;
             numLeft = 0;
             numRight = 0;
@@ -48,7 +50,7 @@ public class RedBlackTree<T extends Comparable<T>> {
          * Constructor which sets key to the argument.
          * @param key: key to set
          */
-        public RedBlackNode(T key){
+        public Node(T key){
             this();
             this.key = key;
         }
@@ -86,7 +88,7 @@ public class RedBlackTree<T extends Comparable<T>> {
             y.left.parent = x;
         y.parent = x.parent;
 
-        // x's parent is nul
+        // x's parent is null
         if (isNil(x.parent))
             root = y;
             // x is the left child of it's parent
@@ -259,8 +261,8 @@ public class RedBlackTree<T extends Comparable<T>> {
                 // Initialize y to z 's cousin
                 y = z.parent.parent.right;
 
-                // Case 1: if y is red...recolor
-                if (y.color == .RED){
+                // Case 1: if y is red...recolors
+                if (y.color == RED){
                     z.parent.color = BLACK;
                     y.color = BLACK;
                     z.parent.parent.color = RED;
@@ -274,10 +276,10 @@ public class RedBlackTree<T extends Comparable<T>> {
                 }
                 // Case 3: else y is black & z is a left child
                 else{
-                    // recolor and rotate round z's grandpa
+                    // Recolors and rotate round z's grandpa
                     z.parent.color = BLACK;
                     z.parent.parent.color = RED;
-                    rightRotate(z.parent.parent);
+                    rotateRight(z.parent.parent);
                 }
             }
 
@@ -286,10 +288,10 @@ public class RedBlackTree<T extends Comparable<T>> {
                 // Initialize y to z's cousin
                 y = z.parent.parent.left;
 
-                // Case 1: if y is red...recolor
+                // Case 1: if y is red...recolors
                 if (y.color == RED){
                     z.parent.color = BLACK;
-                    y.color = RedBlackNode.BLACK;
+                    y.color = BLACK;
                     z.parent.parent.color = RED;
                     z = z.parent.parent;
                 }
@@ -301,7 +303,7 @@ public class RedBlackTree<T extends Comparable<T>> {
                 }
                 // Case 3: if y  is black and z is a right child
                 else{
-                    // recolor and rotate around z's grandpa
+                    // Recolors and rotate around z's grandpa
                     z.parent.color = BLACK;
                     z.parent.parent.color = RED;
                     rotateLeft(z.parent.parent);
@@ -313,7 +315,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     }
 
     /**
-     * gets the smalles node in the tree
+     * gets the smallest node in the tree
      * @param node: Node to test if smallest
      * @return Node: the node with the smallest key rooted at node
      */
@@ -382,7 +384,7 @@ public class RedBlackTree<T extends Comparable<T>> {
         else if (!isNil(y.parent.right) && y.parent.right == y)
             y.parent.right = x;
 
-        // if y != z, trasfer y's satellite data into z.
+        // if y != z, transfer y's satellite data into z.
         if (y != z){
             z.key = y.key;
         }
@@ -431,7 +433,7 @@ public class RedBlackTree<T extends Comparable<T>> {
                     current.numRight--;
 
                 // if the node we deleted is less than
-                // current.key thendecrement current.numLeft
+                // current.key then decrement current.numLeft
                 if (y.key.compareTo(current.key) < 0)
                     current.numLeft--;
             }
@@ -516,7 +518,7 @@ public class RedBlackTree<T extends Comparable<T>> {
                     w = x.parent.left;
                 }
                 // Case 2, both of w's children are black
-                if (w.right.color == RedBlackNode.BLACK && w.left.color == RedBlackNode.BLACK){
+                if (w.right.color == BLACK && w.left.color == BLACK){
                     w.color = RED;
                     x = x.parent;
                 }
@@ -532,7 +534,7 @@ public class RedBlackTree<T extends Comparable<T>> {
                     // Case 4, w = black, and w.left = red
                     w.color = x.parent.color;
                     x.parent.color = BLACK;
-                    w.left.color = LACK;
+                    w.left.color = BLACK;
                     rotateRight(x.parent);
                     x = root;
                 }
@@ -570,7 +572,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     }
 
     /**
-     * Retuens the number of nodes in the tree that are greater then the given key
+     * Returns the number of nodes in the tree that are greater then the given key
      * @param key: any Comparable object to test
      * @return int: the number of elements greater than key
      */
@@ -579,7 +581,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     }
 
     /**
-     * Retuens the number of nodes in the tree that are smaller then the given key
+     * Returns the number of nodes in the tree that are smaller then the given key
      * @param key: any Comparable object to test
      * @return int: the number of elements smaller than key
      */
@@ -591,8 +593,8 @@ public class RedBlackTree<T extends Comparable<T>> {
     /**
      * Gets the number of nodes greater then the key of the given tree
      * @param node: Root or subtree root node to test on
-     * @param key: key to compaire to
-     * @return int: nomber of nodes greater then the key
+     * @param key: key to compare to
+     * @return int: number of nodes greater then the key
      */
     public int findNumGreater(Node node, T key){
         // Base Case: if node is nil, return 0
@@ -625,7 +627,7 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @param key: Key to test
      * @param list: List of nodes greater then the key
      */
-    private void getGreaterThan(RedBlackNode<T> node, T key, List<T> list) {
+    private void getGreaterThan(Node node, T key, List<T> list) {
         if (isNil(node)) {
             return;
         } else if (node.key.compareTo(key) > 0) {
@@ -639,11 +641,11 @@ public class RedBlackTree<T extends Comparable<T>> {
 
     /**
      * Takes root or subtree root node and finds number of elements smaller then the given key
-     * @param node: Root of the tree to start comparision
+     * @param node: Root of the tree to start comparison
      * @param key: key to compare
      * @return int: number of nodes smaller than key.
      */
-    public int findNumSmaller(RedBlackNode<T> node, T key){
+    public int findNumSmaller(Node node, T key){
         // Base Case: if node is nil, return 0
         if (isNil(node)) 
             return 0;
@@ -659,7 +661,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     /**
      * tests if a node is the nil node
      * @param node: node to test
-     * @return boolean: true|flase
+     * @return boolean: true|false
      */
     private boolean isNil(Node node){
         return node == nil;
