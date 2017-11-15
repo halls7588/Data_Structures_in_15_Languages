@@ -163,9 +163,9 @@ What’s been implemented so far:
   
   ##### Graphs
   
-  [Undirected Graph in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Graphs/Undirected-Graph/UndirectedGraph.java)
+  [Undirected Graph in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Graphs/UndirectedGraph/UndirectedGraph.java)
   
-  [Directed Graph in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Graphs/Directed-Graph/DirectedGraph.java) 
+  [Directed Graph in Java](https://github.com/halls7588/Data_Structures/blob/master/Java/Graphs/DirectedGraph/DirectedGraph.java) 
 </details>
 
 #### C#
