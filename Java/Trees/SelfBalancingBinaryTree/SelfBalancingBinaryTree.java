@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  SelfBalancingBinaryTree implementation in Java
  ********************************************************/
-package DataStructures.Java.Trees.SelfBalancingBinaryTree;
+package Trees.SelfBalancingBinaryTree;
 
 /**
  * Self Balancing Binary Tree Class
@@ -15,9 +15,9 @@ public class SelfBalancingBinaryTree<T extends Comparable<T>>{
      * Node class for SelfBalancingBinaryTree
      */
     public class Node{
-        public Node left, right;
-        public T data;
-        public int height;
+        private Node left, right;
+        private T data;
+        private int height;
 
         /**
          * Node Constructor
@@ -68,7 +68,6 @@ public class SelfBalancingBinaryTree<T extends Comparable<T>>{
     private Node insert(T data, Node node) {
         if (node == null)
             node = new Node(data);
-
         else if (lessThan(data,node.data)) {
             node.left = insert(data, node.left );
             if (height(node.left) - height(node.right ) == 2)
@@ -85,7 +84,6 @@ public class SelfBalancingBinaryTree<T extends Comparable<T>>{
                 else
                     node = doubleRight(node);
         }
-
         node.height = max(height(node.left), height(node.right)) + 1;
         count++;
         return node;

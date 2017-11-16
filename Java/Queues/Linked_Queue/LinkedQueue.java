@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked Queue implementation in Java
  ********************************************************/
-package DataStructures.Java.Queues.Linked_Queue;
+package Queues.Linked_Queue;
 
 /**
  * Linked Queue Class
@@ -16,10 +16,10 @@ public class LinkedQueue<T> {
      */
     public class Node{
         /**
-         * Public Member
+         * private Member
          */
-        public T data;
-        public Node next;
+        private T data;
+        private Node next;
 
         /**
          * Node Class Constructor
@@ -58,7 +58,6 @@ public class LinkedQueue<T> {
             count++;
             return node;
         }
-
         Node node = new Node(data);
         node.next = tail;
         tail = node;

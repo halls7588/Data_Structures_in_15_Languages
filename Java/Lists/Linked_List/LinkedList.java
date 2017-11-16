@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked List implementation in Java
  ********************************************************/
-package DataStructures.Java.Lists.Linked_List;
+package Lists.Linked_List;
 
 /**
  * Singly linked list class
@@ -13,14 +13,13 @@ package DataStructures.Java.Lists.Linked_List;
 public class LinkedList<T extends Comparable<T>> {
     /**
      * Node class for singly linked list
-     * @param <T> Generic type
      */
     public class Node{
         /**
-         * Public Members
+         * private Members
          */
-        public T data;
-        public Node next;
+        private T data;
+        private Node next;
 
         /**
          * Node Class Constructor
@@ -54,22 +53,22 @@ public class LinkedList<T extends Comparable<T>> {
      */
     public Node add(T data){
         // No data to insert into list
-        if (data == null)
-            return null;
-
-        Node node = new Node(data);
-        // The Linked list is empty
-        if (head == null) {
-            head = node;
-            tail = head;
+        if (data != null) {
+            Node node = new Node(data);
+            // The Linked list is empty
+            if (head == null) {
+                head = node;
+                tail = head;
+                count++;
+                return node;
+            }
+            // Add to the end of the list
+            tail.next = node;
+            tail = node;
             count++;
             return node;
         }
-        // Add to the end of the list
-        tail.next = node;
-        tail = node;
-        count++;
-        return node;
+        return null;
     }
 
     /**
@@ -79,26 +78,25 @@ public class LinkedList<T extends Comparable<T>> {
      */
     public Node remove(T data){
         // List is empty or no data to remove
-        if (head == null || data == null)
-            return null;
-
-        Node tmp = head;
-        // The data to remove what found in the first Node in the list
-        if(equalTo(tmp.data, data)){
-            head = head.next;
-            count--;
-            return tmp;
-        }
-        // Try to find the node in the list
-        while (tmp.next != null) {
-            // Node was found, Remove it from the list
-            if (equalTo(tmp.next.data, data)) {
-                Node node = tmp.next;
-                tmp.next = tmp.next.next;
+        if (head != null && data != null) {
+            Node tmp = head;
+            // The data to remove what found in the first Node in the list
+            if (equalTo(tmp.data, data)) {
+                head = head.next;
                 count--;
-                return node;
+                return tmp;
             }
-            tmp = tmp.next;
+            // Try to find the node in the list
+            while (tmp.next != null) {
+                // Node was found, Remove it from the list
+                if (equalTo(tmp.next.data, data)) {
+                    Node node = tmp.next;
+                    tmp.next = tmp.next.next;
+                    count--;
+                    return node;
+                }
+                tmp = tmp.next;
+            }
         }
         // The data was not found in the list
         return null;
@@ -111,16 +109,15 @@ public class LinkedList<T extends Comparable<T>> {
      */
     public Node find(T data) {
         // No list or data to find
-        if (head == null || data == null)
-            return null;
-
-        Node tmp = head;
-        // Try to find the data in the list
-        while(tmp != null){
-            // Data was found
-            if (equalTo(tmp.data, data))
-                return tmp;
-            tmp = tmp.next;
+        if (head != null || data != null) {
+            Node tmp = head;
+            // Try to find the data in the list
+            while (tmp != null) {
+                // Data was found
+                if (equalTo(tmp.data, data))
+                    return tmp;
+                tmp = tmp.next;
+            }
         }
         // Data was not found in the list
         return null;

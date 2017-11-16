@@ -4,7 +4,7 @@
  *  Copyright (c) 2016 Stephen Hall. All rights reserved.
  *  A Binary Tree implementation in Java
  ********************************************************/
-package DataStructures.Java.Trees.Binary_Tree;
+package Trees.Binary_Tree;
 
 import java.util.PriorityQueue;
 import java.util.Stack;
@@ -16,20 +16,19 @@ import java.util.Stack;
 public class BinaryTree<T extends Comparable<T>> {
     /**
      * Node class for the binary tree
-     * @param <T> Generic Type
      */
     public class Node{
         /**
-         * public members
+         * private members
          */
-        public Node left;
-        public Node right;
-        public Node parent;
-        public T data;
+        private Node left;
+        private Node right;
+        private Node parent;
+        private T data;
 
         /**
          * Node class constructor
-         * @param data
+         * @param data: data of the node
          */
         public Node(T data){
             left = right = null;
@@ -65,10 +64,7 @@ public class BinaryTree<T extends Comparable<T>> {
      * @return Node inserted into the tree
      */
     public Node insert(T data){
-        if(root == null){
-            return (root = new Node(data));
-        }
-        return insertHelper(data, root);
+        return (root == null) ? (root = new Node(data)) : insertHelper(data, root);
     }
 
     /**
@@ -89,7 +85,6 @@ public class BinaryTree<T extends Comparable<T>> {
                         return newNode;
                     } else
                         return insertHelper(data, node.right);
-
                 default:
                     if (node.left == null) {
                         Node newNode = new Node(data);
@@ -110,9 +105,7 @@ public class BinaryTree<T extends Comparable<T>> {
      * @return Node removed from the tree
      */
     public Node remove(T data){
-        if(root != null)
-            return null;
-        return removeHelper(data, root);
+        return (root == null) ? null : removeHelper(data, root);
     }
 
     /**
@@ -192,7 +185,7 @@ public class BinaryTree<T extends Comparable<T>> {
                     return tempNode;
                 }
             }
-        }catch(Exception e){}
+        }catch(Exception e){ return null;}
             return null;
     }
 

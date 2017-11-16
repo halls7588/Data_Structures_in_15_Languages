@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Deque implementation in Java
  ********************************************************/
-package DataStructures.Java.Queues.Deque;
+package Queues.Deque;
 
 /**
  * Linked Queue Class
@@ -13,15 +13,14 @@ package DataStructures.Java.Queues.Deque;
 public class Deque<T> {
     /**
      * Node Class for Linked Queue
-     * @param <T> Generic Type
      */
     public class Node{
         /**
-         * Public Member
+         * private Member
          */
-        public T data;
-        public Node next;
-        public Node previous;
+        private T data;
+        private Node next;
+        private Node previous;
 
         /**
          * Node Class Constructor
@@ -61,7 +60,6 @@ public class Deque<T> {
             count++;
             return node;
         }
-
         Node node = new Node(data);
         node.next = head;
         head.previous = node;
@@ -82,7 +80,6 @@ public class Deque<T> {
             count++;
             return node;
         }
-
         Node node = new Node(data);
         node.next = tail;
         tail.previous = node;

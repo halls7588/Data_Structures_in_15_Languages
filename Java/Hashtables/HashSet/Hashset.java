@@ -4,23 +4,23 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Hashset implementation in Java
  ********************************************************/
-package DataStructures.Java.Hashtables.HashSet;
+package Hashtables.HashSet;
 
 
 /**
  * HashSet class
- * @param <Key>
- * @param <Value>
+ * @param <Key>: Generic type
+ * @param <Value>: Generic type
  */
 public class Hashset<Key, Value> {
     /**
      * Node Class
      */
     public class Node {
-        public Key key;
-        public Value value;
-        public Node next;
-        public int hash;
+        private Key key;
+        private Value value;
+        private Node next;
+        private int hash;
 
         /**
          * Node Constructor
@@ -64,24 +64,23 @@ public class Hashset<Key, Value> {
     /**
      * Inserts Key-Value pair into the table or updates new value
      * @param key: key to insert
-     * @param vlaue: value of the key
+     * @param value: value of the key
      * @return Value: new value in the set
      */
     public Value insert(Key key, Value value){
         int hash = getIndex(key);
         // check if same key already exists and if so lets update it with the new value
-        for(Node node = nodes[hash]; node != null; node = node.next){
-            if((hash == node.hash) && key.equals(node.key)){
-               return null;
-            }
-        }
+        for(Node node = nodes[hash]; node != null; node = node.next)
+            if ((hash == node.hash) && key.equals(node.key))
+                return null;
+
         Node node = new Node(key, value, nodes[hash], hash);
         nodes[hash] = node;
         return value;
     }
 
     /**
-     * Removes the key from the hash tabel
+     * Removes the key from the hash table
      * @param key: key to remove
      * @return boolean: success|fail
      */
@@ -90,11 +89,10 @@ public class Hashset<Key, Value> {
         Node previous = null;
         for(Node node = nodes[hash]; node != null; node = node.next){
             if((hash == node.hash) && key.equals(node.key)){
-                if(previous != null){
+                if(previous != null)
                     previous.next = node.next;
-                }else{
+                else
                     nodes[hash] = node.next;
-                }
                 return true;
             }
             previous = node;
@@ -109,24 +107,27 @@ public class Hashset<Key, Value> {
      */
     public Value get(Key key){
         int hash = getIndex(key);
+        Node node = nodes[hash];
 
-        for(Node node = nodes[hash]; node != null; node = node.next){
+        while (node != null) {
             if(key.equals(node.key))
                 return node.value;
+            node = node.next;
         }
         return null;
     }
 
     /**
-     * Resizes the Hash table
+     * Resize the Hash table
      * @param size: size to make the table
      */
     public void resize(int size){
         Hashset<Key, Value> tbl = new Hashset<Key, Value>(size);
         for(Node node : nodes){
-            for(; node != null; node = node.next){
+            while (node != null) {
                 tbl.insert(node.key, node.value);
                 remove(node.key);
+                node = node.next;
             }
         }
         nodes = tbl.nodes;

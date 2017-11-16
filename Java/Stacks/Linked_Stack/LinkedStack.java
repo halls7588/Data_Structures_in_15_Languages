@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked Stack implementation in Java
  ********************************************************/
-package DataStructures.Java.Stacks.Linked_Stack;
+package Stacks.Linked_Stack;
 
 /**
  * Linked Stack Class
@@ -13,14 +13,13 @@ package DataStructures.Java.Stacks.Linked_Stack;
 public class LinkedStack<T> {
     /**
      * Node Class for Linked Stack
-     * @param <T> Generic Type
      */
     public class Node{
         /**
-         * Public Member
+         * private Member
          */
-        public T data;
-        public Node next;
+        private T data;
+        private Node next;
 
         /**
          * Node Class Constructor

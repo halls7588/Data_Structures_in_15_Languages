@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Priority Queue implementation in Java
  ********************************************************/
-package DataStructures.Java.Queues.PriorityQueue;
+package Queues.PriorityQueue;
 
 /**
 * Priority Queue class
@@ -73,8 +73,7 @@ public class PriorityQueue<T extends Comparable<T>> {
     @SuppressWarnings("unchecked")
 	private void resize(){
         T[] copy = (T[]) new Comparable[(count * 2 + 1)];
-        for(int i = 1; i <= count; i ++ )
-            copy[i] = arr[i];
+        System.arraycopy(arr, 1, copy, 1, count);
         arr = copy;
     }
 
@@ -106,13 +105,13 @@ public class PriorityQueue<T extends Comparable<T>> {
     }
 
     /**
-     * Determines if a is less than b
-     * @param a: generic type to test
-     * @param b: generic type to test
+     * Determines if arr[i] is less than arr[j]
+     * @param i: first index to test
+     * @param j: second index to test
      * @return boolean: true|false
      */
     private boolean lessThan(int i, int j){
-        return (arr[i].compareTo(arr[j]) < 0) ? true : false;
+        return arr[i].compareTo(arr[j]) < 0;
     }
 
     /**

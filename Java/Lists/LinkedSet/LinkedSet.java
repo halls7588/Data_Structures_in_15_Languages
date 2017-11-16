@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Linked Set implementation in Java
  ********************************************************/
-package DataStructures.Java.Lists.LinkedSet;
+package Lists.LinkedSet;
 
 /**
  * Linked set class
@@ -13,14 +13,13 @@ package DataStructures.Java.Lists.LinkedSet;
 public class LinkedSet<T extends Comparable<T>> {
     /**
      * Node class for singly linked set
-     * @param <T> Generic type
      */
     public class Node{
         /**
          * Public Members
          */
-        public T data;
-        public Node next;
+        private T data;
+        private Node next;
 
         /**
          * Node Class Constructor
@@ -53,12 +52,8 @@ public class LinkedSet<T extends Comparable<T>> {
      * @return Node added into the list
      */
     public Node add(T data){
-
         // No data to insert into list
-        if (data == null)
-            return null;
-
-        if(find(data) != null)
+        if (data == null || (find(data) != null))
             return null;
 
         Node node = new Node(data);
@@ -67,13 +62,12 @@ public class LinkedSet<T extends Comparable<T>> {
             head = node;
             tail = head;
             count++;
-            return node;
+        } else {
+            // Add to the end of the list
+            tail.next = node;
+            tail = node;
+            count++;
         }
-
-        // Add to the end of the list
-        tail.next = node;
-        tail = node;
-        count++;
         return node;
     }
 
@@ -125,7 +119,6 @@ public class LinkedSet<T extends Comparable<T>> {
             // Data was found
             if (equalTo(tmp.data, data))
                 return tmp;
-
             tmp = tmp.next;
         }
         // Data was not found in the list
@@ -144,9 +137,8 @@ public class LinkedSet<T extends Comparable<T>> {
 
         Node tmp = head;
         // Move to index
-        for (int i = 0; i < index; i++){
+        for (int i = 0; i < index; i++)
             tmp = tmp.next;
-        }
         // return the node at the index position
         return tmp;
     }

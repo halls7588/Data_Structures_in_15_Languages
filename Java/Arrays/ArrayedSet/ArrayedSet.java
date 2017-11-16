@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Arrayed Set implementation in Java
  ********************************************************/
-package DataStructures.Java.Arrays.ArrayedSet;
+package Arrays.ArrayedSet;
 
 /**
  * ArrayedSet Class
@@ -47,9 +47,7 @@ public class ArrayedSet<T> {
 	private void resize(){
         size *= 2;
         T[] tmp = (T[]) new Object[size];
-        for(int i = 0; i < count; i++){
-            tmp[i] = array[i];
-        }
+        System.arraycopy(array, 0, tmp, 0, count);
         array = tmp;
     }
 
@@ -80,9 +78,9 @@ public class ArrayedSet<T> {
      */
     public boolean append(T[] data){
         if(data != null){
-            for (int i = 0; i < data.length; i++) {
-                if(data[i] != null )
-                    add(data[i]);
+            for (T aData : data) {
+                if (aData != null)
+                    add(aData);
             }
             return true;
         }
@@ -155,7 +153,7 @@ public class ArrayedSet<T> {
     * Tests to see if the data exist in the list
     * @param data: data to find
     */
-    public boolean contains(T data){
+    private boolean contains(T data){
         for(int i = 0; i < size; i++){
             if(array[i] == data)
                 return true;

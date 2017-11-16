@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked List implementation in Java
  ********************************************************/
-package DataStructures.Java.Lists.Doubly_Linked_List;
+package Lists.Doubly_Linked_List;
 
 /**
  * Doubly linked list class
@@ -13,15 +13,14 @@ package DataStructures.Java.Lists.Doubly_Linked_List;
 public class DoublyLinkedList<T extends Comparable<T>> {
     /**
      * Node class for singly linked list
-     * @param <T> Generic type
      */
     public class Node{
         /**
-         * Public Members
+         * private Members
          */
-        public T data;
-        public Node next;
-        public Node previous;
+        private T data;
+        private Node next;
+        private Node previous;
 
         /**
          * Node Class Constructor
@@ -55,25 +54,23 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      */
     public Node add(T data){
         // No data to insert into list
-        if (data == null)
-            return null;
-
-        Node node = new Node(data);
-
-        // The Linked list is empty
-        if (head == null) {
-            head = node;
-            tail = head;
+        if (data != null) {
+            Node node = new Node(data);
+            // The Linked list is empty
+            if (head == null) {
+                head = node;
+                tail = head;
+                count++;
+                return node;
+            }
+            // Add to the end of the list
+            tail.next = node;
+            node.previous = tail;
+            tail = node;
             count++;
             return node;
         }
-
-        // Add to the end of the list
-        tail.next = node;
-        node.previous = tail;
-        tail = node;
-        count++;
-        return node;
+        return null;
     }
 
     /**
@@ -125,8 +122,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
      * @param data Data to find in the list
      * @return Node First node with matching data or null if no node was found
      */
-    public Node find(T data)
-    {
+    public Node find(T data){
         // No list or data to find
         if (head == null || data == null)
             return null;
@@ -154,11 +150,9 @@ public class DoublyLinkedList<T extends Comparable<T>> {
             return null;
 
         Node tmp = head;
-
         // Move to index
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < index; i++)
             tmp = tmp.next;
-        }
         // return the node at the index position
         return tmp;
     }

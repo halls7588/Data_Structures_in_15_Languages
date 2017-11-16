@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  SortedArray implementation in Java
  ********************************************************/
-package DataStructures.Java.Arrays.Sorted_Array;
+package Arrays.Sorted_Array;
 
 /**
  * SortedArray Class
@@ -46,9 +46,7 @@ public class SortedArray<T extends Comparable<T>>{
 	private void resize(){
         size *= 2;
         T[] tmp = (T[]) new Comparable[size];
-        for(int i = 0; i < count; i++){
-            tmp[i] = array[i];
-        }
+        System.arraycopy(array, 0, tmp, 0, count);
         array = tmp;
     }
 
@@ -77,9 +75,9 @@ public class SortedArray<T extends Comparable<T>>{
      */
     public boolean append(T[] data){
         if(data != null){
-            for (int i = 0; i < data.length; i++) {
-                if(data[i] != null )
-                    add(data[i]);
+            for (T aData : data) {
+                if (aData != null)
+                    add(aData);
             }
             return true;
         }
@@ -236,9 +234,7 @@ public class SortedArray<T extends Comparable<T>>{
     @SuppressWarnings("unchecked")
 	public T[] mergeSort(){
         T[] tmp = (T[]) new Comparable[count];
-        for(int i = 0; i < count; i++){
-            tmp[i] = array[i];
-        }
+        System.arraycopy(array, 0, tmp, 0, count);
         mergeSortHelper(tmp, 0, (count - 1));
         return tmp;
     }
@@ -250,9 +246,7 @@ public class SortedArray<T extends Comparable<T>>{
     @SuppressWarnings("unchecked")
 	public T[] bubbleSort(){
         T[] tmp = (T[]) new Comparable[count];
-        for(int i = 0; i < count; i++){
-            tmp[i] = array[i];
-        }
+        System.arraycopy(array, 0, tmp, 0, count);
 
         for (int i = 0; i < count - 1; i++)
             for (int j = 0; j < count-i-1; j++) {
@@ -320,9 +314,7 @@ public class SortedArray<T extends Comparable<T>>{
     @SuppressWarnings("unchecked")
 	public T[] quickSort(){
         T[] tmp = (T[]) new Comparable[count];
-        for(int i = 0; i < count; i++){
-            tmp[i] = array[i];
-        }
+        System.arraycopy(array, 0, tmp, 0, count);
         quickSortHelper(tmp, 0, (count - 1));
 
         return tmp;
@@ -335,9 +327,7 @@ public class SortedArray<T extends Comparable<T>>{
     @SuppressWarnings("unchecked")
 	public T[] insertionSort(){
         T[] tmp = (T[]) new Comparable[count];
-        for(int i = 0; i < count; i++){
-            tmp[i] = array[i];
-        }
+        System.arraycopy(array, 0, tmp, 0, count);
 
         for (int i=1; i < count; ++i) {
             T key = tmp[i];
@@ -360,9 +350,7 @@ public class SortedArray<T extends Comparable<T>>{
     @SuppressWarnings("unchecked")
 	public T[] selectionSort(){
         T[] tmp = (T[]) new Comparable[count];
-        for(int i = 0; i < count; i++){
-            tmp[i] = array[i];
-        }
+        System.arraycopy(array, 0, tmp, 0, count);
         // One by one move boundary of unsorted sub-array
         for (int i = 0; i < count-1; i++) {
             // Find the minimum element in unsorted array

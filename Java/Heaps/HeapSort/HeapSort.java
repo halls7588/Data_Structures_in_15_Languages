@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  HeapSort implementation in Java
  ********************************************************/
-package DataStructures.Java.Heaps.HeapSort;
+package Heaps.HeapSort;
 
 /**
  * HeapSort Class
@@ -17,9 +17,8 @@ public class HeapSort<T extends Comparable<T>>{
      * @param heap; array to sort
      */
     public void sort(T heap[]){
-        for (int i =  heap.length / 2 - 1; i >= 0; i--){
+        for (int i =  heap.length / 2 - 1; i >= 0; i--)
             heapify(heap, heap.length, i);
-        }
         for (int i = heap.length - 1; i >= 0; i--){
             T temp = heap[0];
             heap[0] = heap[i];
@@ -29,7 +28,7 @@ public class HeapSort<T extends Comparable<T>>{
     }
 
     /**
-     * Builds a heap maating conditions out of the array
+     * Builds a heap out of the array
      * @param arr: array to heapify
      * @param length: length allowed
      * @param index: starting index 

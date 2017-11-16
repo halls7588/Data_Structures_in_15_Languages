@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Circular Queue implementation in Java
  ********************************************************/
-package DataStructures.Java.Queues.CircularQueue;
+package Queues.CircularQueue;
 
 /**
  * Circular Queue Class

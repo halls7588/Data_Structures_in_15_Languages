@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Arrayed Heap implementation in Java
  ********************************************************/
-package DataStructures.Java.Heaps.ArrayedHeap;
+package Heaps.ArrayedHeap;
 
 import java.util.Arrays;
 
@@ -52,7 +52,7 @@ public class ArrayedHeap<T extends Comparable<T>> {
 
     /**
      * returns the first item on the heap
-     * @return
+     * @return T: first element of the heap
      */
     public T peek() {
         if (this.isEmpty()) {
@@ -71,9 +71,7 @@ public class ArrayedHeap<T extends Comparable<T>> {
         array[1] = array[size];
         array[size] = null;
         size--;
-
         bubbleDown();
-
         return result;
     }
 
@@ -93,14 +91,12 @@ public class ArrayedHeap<T extends Comparable<T>> {
 
         while (hasLeftChild(index)) {
             int smallerChild = leftIndex(index);
-            if (hasRightChild(index) && array[leftIndex(index)].compareTo(array[rightIndex(index)]) > 0) {
+            if (hasRightChild(index) && array[leftIndex(index)].compareTo(array[rightIndex(index)]) > 0)
                 smallerChild = rightIndex(index);
-            }
-            if (array[index].compareTo(array[smallerChild]) > 0) {
+            if (array[index].compareTo(array[smallerChild]) > 0)
                 swap(index, smallerChild);
-            } else {
+            else
                 break;
-            }
             index = smallerChild;
         }
     }

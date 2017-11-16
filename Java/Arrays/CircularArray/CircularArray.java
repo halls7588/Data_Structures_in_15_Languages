@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Circular Array implementation in Java
  ********************************************************/
-package DataStructures.Java.Arrays.CircularArray;
+package Arrays.CircularArray;
 
 /**
  * Circular Array Class

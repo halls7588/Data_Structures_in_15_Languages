@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Arrayed Heap implementation in Java
  ********************************************************/
-package DataStructures.Java.Heaps.LinkedHeap;
+package Heaps.LinkedHeap;
 
 /**
  * Linked Heap class
@@ -15,10 +15,10 @@ public class LinkedHeap<T extends Comparable<T>> {
      * Node Class
      */
     public class Node {
-        public T data;
-        public Node left;
-        public Node right;
-        public int npl;
+        private T data;
+        private Node left;
+        private Node right;
+        private int npl;
 
         /**
          * Node Constructor
@@ -31,12 +31,12 @@ public class LinkedHeap<T extends Comparable<T>> {
         /**
          * Node Constructor
          * @param data: data for node to hold
-         * @param leftt: left child
+         * @param left: left child
          * @param right: right child
          */
-        Node(T data, Node leftt, Node right ) {
+        Node(T data, Node left, Node right ) {
             this.data = data;
-            this.left = leftt;
+            this.left = left;
             this.right = right;
             npl = 0;
         }
@@ -65,11 +65,10 @@ public class LinkedHeap<T extends Comparable<T>> {
      * @param heap: heap to merge with
      */
     public void merge(LinkedHeap<T> heap) {
-        if(this == heap)
-            return;
-
-        root = merge(root, heap.root());
-        heap.root = null;
+        if (!this.equals(heap)) {
+            root = merge(root, heap.root());
+            heap.root = null;
+        }
     }
 
     /**
@@ -83,10 +82,7 @@ public class LinkedHeap<T extends Comparable<T>> {
             return n2;
         if( n2 == null )
             return n1;
-        if(n1.data.compareTo( n2.data ) < 0)
-            return merge1(n1, n2);
-        else
-            return merge1(n2, n1);
+        return (n1.data.compareTo( n2.data ) < 0) ? merge1(n1, n2) : merge1(n2, n1);
     }
 
     /**
@@ -138,13 +134,12 @@ public class LinkedHeap<T extends Comparable<T>> {
      * @return T: item removed or null
      */
     public T deleteMin() {
-        if(isEmpty())
-            return null;
-
-        T minItem = root.data;
-        root = merge(root.left, root.right);
-
-        return minItem;
+        if(!isEmpty()) {
+            T minItem = root.data;
+            root = merge(root.left, root.right);
+            return minItem;
+        }
+        return null;
     }
 
     /**

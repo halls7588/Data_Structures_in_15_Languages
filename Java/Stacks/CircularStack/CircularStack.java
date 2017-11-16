@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Circular Stack implementation in Java
  ********************************************************/
-package DataStructures.Java.Stacks.CircularStack;
+package Stacks.CircularStack;
 
 /**
  * Circular Stack Class

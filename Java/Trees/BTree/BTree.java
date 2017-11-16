@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  B-Tree implementation in Java
  ********************************************************/
-package DataStructures.Java.Trees.BTree;
+package Trees.BTree;
 
 /**
  * Btree class
@@ -26,9 +26,9 @@ public class BTree<Key extends Comparable<Key>, Value>  {
      */
     public class Node {
         // number of children
-        public int size;
+        private int size;
         // array of children
-        public Entry[] children;
+        private Entry[] children;
 
         /**
          * Node Constructor
@@ -45,9 +45,9 @@ public class BTree<Key extends Comparable<Key>, Value>  {
      * Helper class for BTree Node class
      */
     public class Entry {
-        public Key key;
-        public Value val;
-        public Node next;
+        private Key key;
+        private Value val;
+        private Node next;
 
         /**
          * Helper class Constructor
@@ -113,12 +113,11 @@ public class BTree<Key extends Comparable<Key>, Value>  {
      */
     private Value search(Node node, Key key, int ht) {
         Entry[] children = node.children;
-
         // external node
         if (ht == 0) {
             for (int j = 0; j < node.size; j++) {
                 if (equalTo(key, children[j].key))
-                    return (Value) children[j].val;
+                    return children[j].val;
             }
         }
         // internal node
@@ -140,13 +139,10 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     public void put(Key key, Value val) {
         if (key == null)
             return;
-
         Node node = insert(root, key, val, height);
         pairs++;
-        
         if (node == null)
             return;
-
         // need to split root
         Node tmp = new Node(2);
         tmp.children[0] = new Entry(root.children[0].key, null, root);
@@ -166,7 +162,6 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     private Node insert(Node node, Key key, Value val, int ht) {
         int j;
         Entry entry = new Entry(key, val, null);
-
         // external node
         if (ht == 0) {
             for (j = 0; j < node.size; j++) {
@@ -190,8 +185,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
             }
         }
 
-        for (int i = node.size; i > j; i--)
-            node.children[i] = node.children[i - 1];
+        System.arraycopy(node.children, j, node.children, j + 1, node.size - j);
 
         node.children[j] = entry;
         node.size++;
@@ -210,9 +204,7 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     private Node split(Node node) {
         Node tmp = new Node((Max / 2));
         node.size = (Max / 2);
-
-        for (int j = 0; j < (Max / 2); j++)
-            tmp.children[j] = node.children[(Max / 2 + j)];
+        System.arraycopy(node.children, 2, tmp.children, 0, Max / 2);
         return tmp;
     }
 

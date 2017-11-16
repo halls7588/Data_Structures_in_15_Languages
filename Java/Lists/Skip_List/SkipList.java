@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Skip List implementation in Java
  ********************************************************/
-package DataStructures.Java.Lists.Skip_List;
+package Lists.Skip_List;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -23,8 +23,8 @@ public class SkipList<T extends Comparable<T>> {
      * Node for Skip List class
      */
     public class Node {
-        public T data;
-        public List<Node> nodeList;
+        private T data;
+        private List<Node> nodeList;
 
         /**
          * Node Constructor
@@ -50,10 +50,8 @@ public class SkipList<T extends Comparable<T>> {
     public SkipList() {
         size = 0;
         max = 0;
-        // a Node with value null marks the beginning
-        head = new Node(null);
-        // null marks the end
-        head.nodeList.add(null);
+        head = new Node(null); // a Node with value null marks the beginning
+        head.nodeList.add(null); // null marks the end
     }
 
     /**
@@ -67,11 +65,9 @@ public class SkipList<T extends Comparable<T>> {
         
         size++;        
         int level = 0;
-        
         // random number from 0 to max + 1 (inclusive)
         while (Math.random() < PROBABILITY)
             level++;
-
         while(level > max) {
             // should only happen once
             head.nodeList.add(null);
@@ -120,15 +116,14 @@ public class SkipList<T extends Comparable<T>> {
      * @return Node: highest node
      */
     private Node findNext(T data, Node current, int level) {
-        Node next = (Node)current.nodeList.get(level);
+        Node next = current.nodeList.get(level);
 
         while(next != null) {
-            T value = (T) next.data;
+            T value = next.data;
             if(lessThan(data, value))
                 break;
-            
             current = next;
-            next = (Node)current.nodeList.get(level);
+            next = current.nodeList.get(level);
         }
         return current;
     }
@@ -143,14 +138,13 @@ public class SkipList<T extends Comparable<T>> {
 
     /**
      * Determines if the object is in the list or not
-     * @param o: object to test
+     * @param data: object to test
      * @return boolean: true|false
      */
     @SuppressWarnings("unchecked")
-	public boolean contains(Object o) {
-        T data = (T)o;
+	public boolean contains(T data) {
         Node node = find(data);
-        return (node != null && node.data != null && equalTo((T)node.data, data));
+        return ((node != null) && (node.data != null) && equalTo(node.data, data));
     }
 
     /**

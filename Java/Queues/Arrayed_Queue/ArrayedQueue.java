@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Arrayed Queue implementation in Java
  ********************************************************/
-package DataStructures.Java.Queues.Arrayed_Queue;
+package Queues.Arrayed_Queue;
 
 /**
  * Arrayed Queue Class
@@ -59,9 +59,7 @@ public class ArrayedQueue<T> {
             return null;
         T data = array[0];
         T[] tmp = (T[]) new Object[size];
-        for(int i = 1; i < size-1; i++){
-            tmp[i-1] = array[i];
-        }
+        System.arraycopy(array, 1, tmp, 0, size - 1 - 1);
         array = tmp;
         count--;
         return data;

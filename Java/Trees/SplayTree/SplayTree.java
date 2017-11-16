@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Splay Tree implementation in Java
  ********************************************************/
-package DataStructures.Java.Trees.SplayTree;
+package Trees.SplayTree;
 
 /**
  * Splay Tree Class
@@ -22,15 +22,15 @@ public class SplayTree<Key extends Comparable<Key>, Value> {
         /**
          * Data members of the node
          */
-        public Key key;
-        public Value value;
-        public Node left;
-        public Node right;
+        private Key key;
+        private Value value;
+        private Node left;
+        private Node right;
 
         /**
          * Node Constructor
-         * @param key
-         * @param value
+         * @param key: key to the node
+         * @param value: value of the node
          */
         public Node(Key key, Value value) {
             this.key = key;
@@ -68,11 +68,8 @@ public class SplayTree<Key extends Comparable<Key>, Value> {
             root = new Node(key, value);
             return;
         }
-
         root = splay(root, key);
-
         int tmp = key.compareTo(root.key);
-
         // Insert new node at root
         if (tmp < 0) {
             Node node = new Node(key, value);
@@ -181,9 +178,7 @@ public class SplayTree<Key extends Comparable<Key>, Value> {
             if (node.right == null) {
                 return node;
             }
-
             int tmp2 = key.compareTo(node.right.key);
-
             if (tmp2 < 0) {
                 node.right.left = splay(node.right.left, key);
 
@@ -194,7 +189,6 @@ public class SplayTree<Key extends Comparable<Key>, Value> {
                 node.right.right = splay(node.right.right, key);
                 node = rotateLeft(node);
             }
-
             if (node.right == null)
                 return node;
             else

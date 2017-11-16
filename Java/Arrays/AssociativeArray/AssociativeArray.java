@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Associative Array implementation in Java
  ********************************************************/
-package DataStructures.Java.Arrays.AssociativeArray;
+package Arrays.AssociativeArray;
 
 /**
  * Associative Array Class
@@ -19,16 +19,16 @@ public class AssociativeArray<Key extends Comparable<Key>, Value> {
         /**
          * public member of Node class
          */
-        public Key key;
-        public Value value;
-        public Node next;
-        public int hash;
+        private Key key;
+        private Value value;
+        private Node next;
+        private int hash;
 
         /**
          * Node class Constructor
-         * @param key
-         * @param value
-         * @param hash
+         * @param key: key of the node
+         * @param value: value for node to hold
+         * @param hash: hash index
          */
         public Node(Key key, Value value, int hash) {
             this.key = key;

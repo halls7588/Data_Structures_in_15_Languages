@@ -4,21 +4,21 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  AVL Tree implementation in Java
  ********************************************************/
-package DataStructures.Java.Trees.AVL_Tree;
+package Trees.AVL_Tree;
 
 public class AVLTree<T extends Comparable<T>> {
     /**
      * Node class for AVL Tree
      */
     public class Node {
-        public T data;
-        public Node left;
-        public Node right;
-        public int height;
+        private T data;
+        private Node left;
+        private Node right;
+        private int height;
 
         /**
          * Empty Node constructor
-         * @param theElement
+         * @param data: data for the node
          */
         public Node(T data){
             this(data, null, null);
@@ -64,9 +64,7 @@ public class AVLTree<T extends Comparable<T>> {
      * @return Maximum value
      */
     public int max(int a, int b){
-        if (a > b)
-            return a;
-        return b;
+        return (a > b) ? a : b;
     }
 
     /**
@@ -131,13 +129,10 @@ public class AVLTree<T extends Comparable<T>> {
      */
      private Node rotateLeft (Node node){
         Node tmp = node.left;
-
         node.left = tmp.right;
         tmp.right = node;
-
         node.height = max(height(node.left), height(node.right)) + 1;
         tmp.height = max(height(tmp.left), node.height) + 1;
-
         return tmp;
     }
 
@@ -159,13 +154,10 @@ public class AVLTree<T extends Comparable<T>> {
      */
     private Node rotateRight(Node node){
         Node tmp = node.right;
-
         node.right = tmp.left;
         tmp.left = node;
-
         node.height = max(height(node.left), height(node.right)) + 1;
         tmp.height = max(height(tmp.right), node.height) + 1;
-
         return (tmp);
     }
 
@@ -212,12 +204,12 @@ public class AVLTree<T extends Comparable<T>> {
 
     /**
      * Find min helper
-     * @param Node: root to test
+     * @param node: root to test
      * @return Node: node containing the smallest item.
      */
     private Node findMin(Node node){
         if(node == null )
-            return node;
+            return null;
 
         while(node.left != null )
             node = node.left;
@@ -232,7 +224,7 @@ public class AVLTree<T extends Comparable<T>> {
      */
     private Node findMax(Node node) {
         if(node == null)
-            return node;
+            return null;
 
         while(node.right != null)
             node = node.right;
@@ -299,9 +291,8 @@ public class AVLTree<T extends Comparable<T>> {
                     node = rotateLeftRight(node);
             }
         }
-
         else
-            node = (node.left != null) ? node.left : node.right;
+            node = node.right;
 
         if(node != null) {
             int leftHeight = node.left != null ? node.left.height : 0;
@@ -327,14 +318,13 @@ public class AVLTree<T extends Comparable<T>> {
      * @return boolean: success|fail
      */
     private boolean contains(T data, Node node) {
-        if (node == null){
+        if (node == null)
             return false; // The node was not found
-
-        } else if (data.compareTo(node.data) < 0){
+        else if (data.compareTo(node.data) < 0)
             return contains(data, node.left);
-        } else if (data.compareTo(node.data) > 0){
+        else if (data.compareTo(node.data) > 0)
             return contains(data, node.right);
-        }
+
         return true;
     }
 }

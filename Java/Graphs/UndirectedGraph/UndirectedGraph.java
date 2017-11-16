@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Undirected Graph implementation in Java
  ********************************************************/
-package DataStructures.Java.Graphs.UndirectedGraph;
+package Graphs.UndirectedGraph;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -81,14 +81,11 @@ public class UndirectedGraph {
         }
 
         Map<Integer, Double> neighbors = map.get(nodeId);
-
         if (neighbors.isEmpty()) {
             return false;
         }
 
-        for (Integer neighborId : neighbors.keySet()) {
-            map.get(neighborId).remove(nodeId);
-        }
+        neighbors.keySet().forEach(neighborId -> map.get(neighborId).remove(nodeId));
 
         edges -= neighbors.size();
         neighbors.clear();
@@ -101,13 +98,12 @@ public class UndirectedGraph {
      * @return boolean: success|fail
      */
     public boolean removeNode(int nodeId) {
-        if (!hasNode(nodeId)) {
-            return false;
+        if (hasNode(nodeId)) {
+            clearNode(nodeId);
+            map.remove(nodeId);
+            return true;
         }
-
-        clearNode(nodeId);
-        map.remove(nodeId);
-        return true;
+        return false;
     }
 
     /**
@@ -118,25 +114,25 @@ public class UndirectedGraph {
      * @return boolean: success|fail
      */
     public boolean addEdge(int tailNodeId, int headNodeId, double weight) {
-        if (tailNodeId == headNodeId) {
-            // Undirected graph are not allowed to contain self-loops.
-            return false;
-        }
+        if (tailNodeId != headNodeId) {
 
-        addNode(tailNodeId);
-        addNode(headNodeId);
+            addNode(tailNodeId);
+            addNode(headNodeId);
 
-        if (!map.get(tailNodeId).containsKey(headNodeId)) {
-            map.get(tailNodeId).put(headNodeId, weight);
-            map.get(headNodeId).put(tailNodeId, weight);
-            ++edges;
-            return true;
-        } else {
-            double oldWeight = map.get(tailNodeId).get(headNodeId);
-            map.get(tailNodeId).put(headNodeId, weight);
-            map.get(headNodeId).put(tailNodeId, weight);
-            return oldWeight != weight;
+            if (!map.get(tailNodeId).containsKey(headNodeId)) {
+                map.get(tailNodeId).put(headNodeId, weight);
+                map.get(headNodeId).put(tailNodeId, weight);
+                ++edges;
+                return true;
+            } else {
+                double oldWeight = map.get(tailNodeId).get(headNodeId);
+                map.get(tailNodeId).put(headNodeId, weight);
+                map.get(headNodeId).put(tailNodeId, weight);
+                return oldWeight != weight;
+            }
         }
+        // Undirected graph are not allowed to contain self-loops.
+        return false;
     }
 
     /**
@@ -146,11 +142,7 @@ public class UndirectedGraph {
      * @return boolean: true|false
      */
     public boolean hasEdge(int tailNodeId, int headNodeId) {
-        if (!map.containsKey(tailNodeId)) {
-            return false;
-        }
-
-        return map.get(tailNodeId).containsKey(headNodeId);
+        return map.containsKey(tailNodeId) && map.get(tailNodeId).containsKey(headNodeId);
     }
 
     /**
@@ -160,11 +152,8 @@ public class UndirectedGraph {
      * @return double: weight of the edge
      */
     public double getEdgeWeight(int tailNodeId, int headNodeId) {
-        if (!hasEdge(tailNodeId, headNodeId)) {
-            return Double.NaN;
-        }
+        return !hasEdge(tailNodeId, headNodeId) ? Double.NaN : map.get(tailNodeId).get(headNodeId);
 
-        return map.get(tailNodeId).get(headNodeId);
     }
 
     /**
@@ -174,13 +163,8 @@ public class UndirectedGraph {
      * @return boolean: success|fail
      */
     public boolean removeEdge(int tailNodeId, int headNodeId) {
-        if (!map.containsKey(tailNodeId)) {
+        if (!(map.containsKey(tailNodeId) || (!map.get(tailNodeId).containsKey(headNodeId))))
             return false;
-        }
-
-        if (!map.get(tailNodeId).containsKey(headNodeId)) {
-            return false;
-        }
 
         map.get(tailNodeId).remove(headNodeId);
         map.get(headNodeId).remove(tailNodeId);
@@ -194,11 +178,8 @@ public class UndirectedGraph {
      * @return Set: set of child nodes
      */
     public Set<Integer> getChildrenOf(int nodeId) {
-        if (!map.containsKey(nodeId)) {
-            return Collections.<Integer>emptySet();
-        }
+        return map.containsKey(nodeId) ? Collections.<Integer>unmodifiableSet(map.get(nodeId).keySet()) : Collections.<Integer>emptySet();
 
-        return Collections.<Integer>unmodifiableSet(map.get(nodeId).keySet());
     }
 
     /**
@@ -207,11 +188,8 @@ public class UndirectedGraph {
      * @return Set: set of parents
      */
     public Set<Integer> getParentsOf(int nodeId) {
-        if (!map.containsKey(nodeId)) {
-            return Collections.<Integer>emptySet();
-        }
+        return map.containsKey(nodeId) ? Collections.<Integer>unmodifiableSet(map.get(nodeId).keySet()) : Collections.<Integer>emptySet();
 
-        return Collections.<Integer>unmodifiableSet(map.get(nodeId).keySet());
     }
 
     /**

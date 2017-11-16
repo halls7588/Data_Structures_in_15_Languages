@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Directed Graph implementation in Java
  ********************************************************/
-package DataStructures.Java.Graphs.DirectedGraph;
+package Graphs.DirectedGraph;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -79,13 +79,8 @@ public class DirectedGraph {
             return false;
         }
 
-        for (Integer childId : children.keySet()) {
-            parentMap.get(childId).remove(nodeId);
-        }
-
-        for (Integer parentId : parents.keySet()) {
-            childMap.get(parentId).remove(nodeId);
-        }
+        children.keySet().forEach(childId -> parentMap.get(childId).remove(nodeId));
+        parents.keySet().forEach(parentId -> childMap.get(parentId).remove(nodeId));
 
         edges -= parents.size();
         edges -= children.size();
@@ -117,7 +112,7 @@ public class DirectedGraph {
      * @param weight: weight of the edge
      * @return boolean: success|fail
      */
-    public boolean addEdge(int tailNodeId, int headNodeId, double weight) {
+    private boolean addEdge(int tailNodeId, int headNodeId, double weight) {
         addNode(tailNodeId);
         addNode(headNodeId);
 
@@ -145,16 +140,13 @@ public class DirectedGraph {
     }
 
     /**
-     * tests to see if an edge exisit
+     * tests to see if an edge exist
      * @param tailNodeId: tail node
      * @param headNodeId: head node
      * @return boolean: true|false
      */
     public boolean hasEdge(int tailNodeId, int headNodeId) {
-        if (!childMap.containsKey(tailNodeId)) {
-            return false;
-        }
-        return childMap.get(tailNodeId).containsKey(headNodeId);
+        return childMap.containsKey(tailNodeId) && childMap.get(tailNodeId).containsKey(headNodeId);
     }
 
     /**
@@ -164,10 +156,7 @@ public class DirectedGraph {
      * @return double: weight of the edge
      */
     public double getEdgeWeight(int tailNodeId, int headNodeId) {
-        if (!hasEdge(tailNodeId, headNodeId)) {
-            return Double.NaN;
-        }
-        return childMap.get(tailNodeId).get(headNodeId);
+        return (!hasEdge(tailNodeId, headNodeId)) ? Double.NaN : childMap.get(tailNodeId).get(headNodeId);
     }
 
     /**
@@ -177,18 +166,15 @@ public class DirectedGraph {
      * @return boolean: success|fail
      */
     public boolean removeEdge(int tailNodeId, int headNodeId) {
-        if (!childMap.containsKey(tailNodeId)) {
-            return false;
+        if (childMap.containsKey(tailNodeId)) {
+            if (childMap.get(tailNodeId).containsKey(headNodeId)) {
+                childMap.get(tailNodeId).remove(headNodeId);
+                parentMap.get(headNodeId).remove(tailNodeId);
+                --edges;
+                return true;
+            }
         }
-
-        if (!childMap.get(tailNodeId).containsKey(headNodeId)) {
-            return false;
-        }
-
-        childMap.get(tailNodeId).remove(headNodeId);
-        parentMap.get(headNodeId).remove(tailNodeId);
-        --edges;
-        return true;
+        return false;
     }
 
     /**
@@ -197,10 +183,7 @@ public class DirectedGraph {
      * @return Set: set of child nodes
      */
     public Set<Integer> getChildrenOf(int nodeId) {
-        if (!childMap.containsKey(nodeId)) {
-            return Collections.<Integer>emptySet();
-        }
-        return Collections.<Integer>unmodifiableSet(childMap.get(nodeId).keySet());
+        return (!childMap.containsKey(nodeId)) ? Collections.<Integer>emptySet() : Collections.<Integer>unmodifiableSet(childMap.get(nodeId).keySet());
     }
 
     /**
@@ -209,10 +192,7 @@ public class DirectedGraph {
      * @return Set: set of parents
      */
     public Set<Integer> getParentsOf(int nodeId) {
-        if (!parentMap.containsKey(nodeId)) {
-            return Collections.<Integer>emptySet();
-        }
-        return Collections.<Integer>unmodifiableSet(parentMap.get(nodeId).keySet());
+        return (!parentMap.containsKey(nodeId)) ? Collections.<Integer>emptySet() : Collections.<Integer>unmodifiableSet(parentMap.get(nodeId).keySet());
     }
 
     /**

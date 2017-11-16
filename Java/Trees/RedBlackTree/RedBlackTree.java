@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Rec Black Tree implementation in Java
  ********************************************************/
-package DataStructures.Java.Trees.RedBlackTree;
+package Trees.RedBlackTree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +18,20 @@ public class RedBlackTree<T extends Comparable<T>> {
     /**
      *  Node Colors
      */
-    public static final int BLACK = 0;
-    public static final int RED = 1;
+    private static final int BLACK = 0;
+    private static final int RED = 1;
 
     /**
      * RedBlackNode Class
      */
     public class Node {
-
-        public T key;
-        public Node parent;
-        public Node left;
-        public Node right;
-        public int numLeft = 0;
-        public int numRight = 0;
-        public int color;
+        private T key;
+        private Node parent;
+        private Node left;
+        private Node right;
+        private int numLeft = 0;
+        private int numRight = 0;
+        private int color;
 
         /**
          * Node Constructor
@@ -73,21 +72,17 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @param x: The node which the lefRotate is to be performed on.
      */
     private void rotateLeft(Node x){
-        // Call leftRotateFixup() which updates the numLeft
+        // Call rotateLeftFixup() which updates the numLeft
         // and numRight values.
         rotateLeftFixup(x);
-
         // Perform the left rotate as described in the algorithm
         // in the course text.
-        Node y;
-        y = x.right;
+        Node y = x.right;
         x.right = y.left;
-
         // Check for existence of y.left and make pointer changes
         if (!isNil(y.left))
             y.left.parent = x;
         y.parent = x.parent;
-
         // x's parent is null
         if (isNil(x.parent))
             root = y;
@@ -97,7 +92,6 @@ public class RedBlackTree<T extends Comparable<T>> {
             // x is the right child of it's parent.
         else
             x.parent.right = y;
-
         // Finish of the leftRotate
         y.left = x;
         x.parent = y;
@@ -139,16 +133,13 @@ public class RedBlackTree<T extends Comparable<T>> {
     private void rotateRight(Node y){
         // Call rightRotateFixup to adjust numRight and numLeft values
         rotateRightFixup(y);
-
         // Perform the rotate as described in the course text.
         Node x = y.left;
         y.left = x.right;
-
         // Check for existence of x.right
         if (!isNil(x.right))
             x.right.parent = y;
         x.parent = y.parent;
-
         // y.parent is nil
         if (isNil(y.parent))
             root = x;
@@ -208,12 +199,10 @@ public class RedBlackTree<T extends Comparable<T>> {
         // Create a reference to root & initialize a node to nil
         Node y = nil;
         Node x = root;
-
         // While we haven't reached a the end of the tree keep
-        // tryint to figure out where z should go
+        // trying to figure out where z should go
         while (!isNil(x)){
             y = x;
-
             // if z.key is < than the current key, go left
             if (z.key.compareTo(x.key) < 0){
                 // Update x.numLeft as z is < than x
@@ -229,7 +218,6 @@ public class RedBlackTree<T extends Comparable<T>> {
         }
         // y will hold z's parent
         z.parent = y;
-
         // Depending on the value of y.key, put z as the left or
         // right child of y
         if (isNil(y))
@@ -238,12 +226,10 @@ public class RedBlackTree<T extends Comparable<T>> {
             y.left = z;
         else
             y.right = z;
-
         // Initialize z's children to nil and z's color to red
         z.left = nil;
         z.right = nil;
         z.color = RED;
-
         // Call insertFixup(z)
         insertFixup(z);
     }
@@ -260,7 +246,6 @@ public class RedBlackTree<T extends Comparable<T>> {
             if (z.parent == z.parent.parent.left){
                 // Initialize y to z 's cousin
                 y = z.parent.parent.right;
-
                 // Case 1: if y is red...recolors
                 if (y.color == RED){
                     z.parent.color = BLACK;
@@ -282,12 +267,10 @@ public class RedBlackTree<T extends Comparable<T>> {
                     rotateRight(z.parent.parent);
                 }
             }
-
             // If z's parent is the right child of it's parent.
             else{
                 // Initialize y to z's cousin
                 y = z.parent.parent.left;
-
                 // Case 1: if y is red...recolors
                 if (y.color == RED){
                     z.parent.color = BLACK;
@@ -336,9 +319,7 @@ public class RedBlackTree<T extends Comparable<T>> {
         // return it's value
         if (!isNil(x.left) )
             return treeMinimum(x.right);
-
         Node y = x.parent;
-
         // while x is it's parent's right child...
         while (!isNil(y) && x == y.right){
             // Keep moving up in the tree
@@ -357,23 +338,18 @@ public class RedBlackTree<T extends Comparable<T>> {
         Node z = search(node.key);
         Node x = nil;
         Node y = nil;
-
         // if either one of z's children is nil, then we must remove z
         if (isNil(z.left) || isNil(z.right))
             y = z;
-
         // else we must remove the successor of z
         else y = treeSuccessor(z);
-
         // Let x be the left or right child of y (y can only have one child)
         if (!isNil(y.left))
             x = y.left;
         else
             x = y.right;
-
         // link x's parent to y's parent
         x.parent = y.parent;
-
         // If y's parent is nil, then x is the root
         if (isNil(y.parent))
             root = x;
@@ -383,16 +359,13 @@ public class RedBlackTree<T extends Comparable<T>> {
         // else if y is a right child, set x to be y's right sibling
         else if (!isNil(y.parent.right) && y.parent.right == y)
             y.parent.right = x;
-
         // if y != z, transfer y's satellite data into z.
         if (y != z){
             z.key = y.key;
         }
-
         // Update the numLeft and numRight numbers which might need
         // updating due to the deletion of z.key.
         fixNodeData(x, y);
-
         // If y's color is black, it is a violation 
         if (y.color == BLACK)
             removeFixup(x);
@@ -407,7 +380,6 @@ public class RedBlackTree<T extends Comparable<T>> {
         // Initialize two variables which will help us traverse the tree
         Node current = nil;
         Node track = nil;
-
         // if x is nil, then we will start updating at y.parent
         // Set track to y, y.parent's child
         if (isNil(x)){
@@ -420,18 +392,15 @@ public class RedBlackTree<T extends Comparable<T>> {
             current = x.parent;
             track = x;
         }
-
         // while we haven't reached the root
         while (!isNil(current)){
             // if the node we deleted has a different key than
             // the current node
             if (y.key != current.key) {
-
                 // if the node we deleted is greater than
                 // current.key then decrement current.numRight
                 if (y.key.compareTo(current.key) > 0)
                     current.numRight--;
-
                 // if the node we deleted is less than
                 // current.key then decrement current.numLeft
                 if (y.key.compareTo(current.key) < 0)
@@ -454,7 +423,6 @@ public class RedBlackTree<T extends Comparable<T>> {
                 else if (track == current.left)
                     current.numLeft--;
             }
-
             // update track and current
             track = current;
             current = current.parent;
@@ -474,7 +442,6 @@ public class RedBlackTree<T extends Comparable<T>> {
             if (x == x.parent.left){
                 // set w = x's sibling
                 w = x.parent.right;
-
                 // Case 1, w's color is red.
                 if (w.color == RED){
                     w.color = BLACK;
@@ -509,7 +476,6 @@ public class RedBlackTree<T extends Comparable<T>> {
             else{
                 // set w to x's sibling
                 w = x.parent.left;
-
                 // Case 1, w's color is red
                 if (w.color == RED){
                     w.color = BLACK;
@@ -544,7 +510,6 @@ public class RedBlackTree<T extends Comparable<T>> {
         x.color = BLACK;
     }
 
-
     /**
      * Searches for a node with key k and returns the first such node
      * @param key:  the key whose node we want to search for
@@ -553,7 +518,6 @@ public class RedBlackTree<T extends Comparable<T>> {
     public Node search(T key){
         // Initialize a pointer to the root to traverse the tree
         Node current = root;
-
         // While we haven't reached the end of the tree
         while (!isNil(current)){
             // If we have found a node with a key equal to key
@@ -628,14 +592,13 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @param list: List of nodes greater then the key
      */
     private void getGreaterThan(Node node, T key, List<T> list) {
-        if (isNil(node)) {
-            return;
-        } else if (node.key.compareTo(key) > 0) {
-            getGreaterThan(node.left, key, list);
-            list.add(node.key);
-            getGreaterThan(node.right, key, list);
-        } else {
-            getGreaterThan(node.right, key, list);
+        if (!isNil(node)) {
+            if (node.key.compareTo(key) > 0) {
+                getGreaterThan(node.left, key, list);
+                list.add(node.key);
+                getGreaterThan(node.right, key, list);
+            } else
+                getGreaterThan(node.right, key, list);
         }
     }
 

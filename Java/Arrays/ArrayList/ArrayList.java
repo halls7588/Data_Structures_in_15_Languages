@@ -4,7 +4,7 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  ArrayList implementation in Java
  ********************************************************/
-package DataStructures.Java.Arrays.ArrayList;
+package Arrays.ArrayList;
 
 /**
  * ArrayList Class
@@ -31,7 +31,7 @@ public class ArrayList<T> {
      * @param size Size to initialize the array to
      */
     @SuppressWarnings("unchecked")
-	public ArrayList(int size){
+    public ArrayList(int size){
         count = 0;
         if(size > 0)
             this.size = size;
@@ -44,12 +44,10 @@ public class ArrayList<T> {
      * Doubles the size of the internal array
      */
     @SuppressWarnings("unchecked")
-	private void resize(){
+    private void resize(){
         size *= 2;
         T[] tmp = (T[]) new Object[size];
-        for(int i = 0; i < count; i++){
-            tmp[i] = array[i];
-        }
+        System.arraycopy(array, 0, tmp, 0, count);
         array = tmp;
     }
 
@@ -78,9 +76,9 @@ public class ArrayList<T> {
      */
     public boolean append(T[] data){
         if(data != null){
-            for (int i = 0; i < data.length; i++) {
-                if(data[i] != null )
-                    add(data[i]);
+            for (T aData : data) {
+                if (aData != null)
+                    add(aData);
             }
             return true;
         }
@@ -129,7 +127,7 @@ public class ArrayList<T> {
      * Resets the internal array to default size with no data
      */
     @SuppressWarnings("unchecked")
-	public void reset(){
+    public void reset(){
         count = 0;
         size = 4;
         array = (T[]) new Object[size];

@@ -1,10 +1,10 @@
 /*******************************************************
- *  Hashtabel.java
+ *  Hashtable.java
  *  Created by Stephen Hall on 11/14/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
- *  Hashtabel implementation in Java
+ *  Hashtable implementation in Java
  ********************************************************/
-package DataStructures.Java.Hashtables.HashTable;
+package Hashtables.HashTable;
 
 /**
  * Hashtable class
@@ -16,10 +16,10 @@ public class Hashtable<Key, Value> {
      * Node Class
      */
     public class Node {
-        public Key key;
-        public Value value;
-        public Node next;
-        public int hash;
+        private Key key;
+        private Value value;
+        private Node next;
+        private int hash;
 
         /**
          * Node Constructor
@@ -63,7 +63,7 @@ public class Hashtable<Key, Value> {
     /**
      * Inserts Key-Value pair into the table or updates new value
      * @param key: key to insert
-     * @param vlaue: value of the key
+     * @param value: value of the key
      * @return Value: old value of the key, or new value if not exists
      */
     public Value insert(Key key, Value value){
@@ -82,7 +82,7 @@ public class Hashtable<Key, Value> {
     }
 
     /**
-     * Removes the key from the hashtabel
+     * Removes the key from the hashable
      * @param key: key to remove
      * @return boolean: success|fail
      */
@@ -91,11 +91,10 @@ public class Hashtable<Key, Value> {
         Node previous = null;
         for(Node node = nodes[hash]; node != null; node = node.next){
             if((hash == node.hash) && key.equals(node.key)){
-                if(previous != null){
+                if(previous != null)
                     previous.next = node.next;
-                }else{
+                else
                     nodes[hash] = node.next;
-                }
                 return true;
             }
             previous = node;
@@ -111,23 +110,26 @@ public class Hashtable<Key, Value> {
     public Value get(Key key){
         int hash = getIndex(key);
 
-        for(Node node = nodes[hash]; node != null; node = node.next){
+        Node node = nodes[hash];
+        while (node != null) {
             if(key.equals(node.key))
                 return node.value;
+            node = node.next;
         }
         return null;
     }
 
     /**
-     * Resizes the Hashtable
+     * Resize the Hashtable
      * @param size: size to make the table
      */
     public void resize(int size){
     	Hashtable<Key, Value> tbl = new Hashtable<Key, Value>(size);
         for(Node node : nodes){
-            for(; node != null; node = node.next){
+            while (node != null) {
                 tbl.insert(node.key, node.value);
                 remove(node.key);
+                node = node.next;
             }
         }
         nodes = tbl.nodes;
