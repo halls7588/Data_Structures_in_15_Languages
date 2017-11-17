@@ -61,27 +61,19 @@ namespace DataStructures.Graphs.DirectedGraph
         public bool ClearNode(int nodeId)
         {
             if (!HasNode(nodeId))
-            {
                 return false;
-            }
 
             Dictionary<Int32, Double> parents = _parentMap[nodeId];
             Dictionary<Int32, Double> children = _childMap[nodeId];
 
             if (parents.Count == 0 && children.Count == 0)
-            {
                 return false;
-            }
 
             foreach (Int32 childId in children.Keys)
-            {
                 _parentMap[childId].Remove(nodeId);
-            }
-            
+
             foreach (Int32 parentId in parents.Keys)
-            {
                 _childMap[parentId].Remove(nodeId);
-            }
 
             _edges -= parents.Count;
             _edges -= children.Count;
@@ -119,20 +111,17 @@ namespace DataStructures.Graphs.DirectedGraph
             AddNode(tailNodeId);
             AddNode(headNodeId);
 
-            if (_childMap[tailNodeId].ContainsKey(headNodeId))
+            if (!_childMap[tailNodeId].ContainsKey(headNodeId))
             {
                 double oldWeight = _childMap[tailNodeId][headNodeId];
-                _childMap[tailNodeId][headNodeId] =  weight;
-                _parentMap[headNodeId][tailNodeId] = weight;
+                _childMap[tailNodeId].Add(headNodeId, weight);
+                _parentMap[headNodeId].Add(tailNodeId, weight);
                 return oldWeight != weight;
             }
-            else
-            {
-                _childMap[tailNodeId][headNodeId] = weight;
-                _parentMap[headNodeId][tailNodeId] = weight;
-                ++_edges;
-                return true;
-            }
+            _childMap[tailNodeId][headNodeId] = weight;
+            _parentMap[headNodeId][tailNodeId] = weight;
+            ++_edges;
+            return true;
         }
 
         /// <summary>
