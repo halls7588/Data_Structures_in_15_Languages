@@ -1,4 +1,10 @@
-﻿using System;
+/*******************************************************
+ *  UndirectedGraph.cs
+ *  Created by Stephen Hall on 11/20/17.
+ *  Copyright (c) 2017 Stephen Hall. All rights reserved.
+ *  Undirected Graph implementation in C#
+ ********************************************************/
+using System;
 using System.Collections.Generic;
 
 namespace DataStructures.Graphs.UndirecetedGraph
