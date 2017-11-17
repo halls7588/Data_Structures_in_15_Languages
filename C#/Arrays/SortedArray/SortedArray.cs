@@ -1,4 +1,4 @@
-﻿/*******************************************************
+/*******************************************************
  *  SortedArray.cs
  *  Created by Stephen Hall on 11/20/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
@@ -8,29 +8,32 @@
 
 namespace DataStructures.Arrays.SortedArray
 {
-    public class SortedArray<T> where T : IComparable{
-        /**
-         * Private Members
-         */
+    /// <summary>
+    /// Sorted Array Class
+    /// </summary>
+    /// <typeparam name="T">Generic Type</typeparam>
+    public class SortedArray<T> where T : IComparable
+    {
+        /// <summary>
+        /// Private members
+        /// </summary>
         private T[] _array;
-
         private int _count;
         private int _size;
 
-        /**
-         * SortedArray default constructor
-         */
+        /// <summary>
+        /// SortedArray default Constructor
+        /// </summary>
         public SortedArray()
         {
             _count = 0;
             _array = new T[_size = 4];
         }
 
-        /**
-         * SortedArray constructor initialized to a specific size
-         * @param size Size to initialize the array to
-         */
-
+        /// <summary>
+        /// SortedArray constructor initialized to a specific size
+        /// </summary>
+        /// <param name="size">Size to initialize the array to</param>
         public SortedArray(int size)
         {
             _count = 0;
@@ -38,10 +41,9 @@ namespace DataStructures.Arrays.SortedArray
             _array = new T[_size];
         }
 
-        /**
-         * Doubles the size of the internal array
-         */
-
+        /// <summary>
+        ///  Doubles the size of the internal array
+        /// </summary>
         private void Resize()
         {
             _size *= 2;
@@ -50,11 +52,11 @@ namespace DataStructures.Arrays.SortedArray
             _array = tmp;
         }
 
-        /**
-         * Adds new item into the array
-         * @param data Data to add into the array
-         * @return Data added into the array
-         */
+        /// <summary>
+        /// Adds new item into the array
+        /// </summary>
+        /// <param name="data">Data to add into the array</param>
+        /// <returns>Data added into the array</returns>
         public T Add(T data)
         {
             if (data == null)
@@ -69,11 +71,11 @@ namespace DataStructures.Arrays.SortedArray
             return data;
         }
 
-        /**
-         * Appends the contents of an array to the SortedArray
-         * @param data: array to append
-         * @return boolean: success|fail
-         */
+        /// <summary>
+        /// Appends the contents of an array to the SortedArray
+        /// </summary>
+        /// <param name="data"> array to append</param>
+        /// <returns>success|fail</returns>
         public bool Append(T[] data)
         {
             if (data == null)
@@ -86,12 +88,12 @@ namespace DataStructures.Arrays.SortedArray
             return true;
         }
 
-        /**
-         * Sets the data at the given index
-         * @param index: index to set
-         * @param data: data to set index to
-         * @return boolean: success|fail
-         */
+        /// <summary>
+        /// Sets the data at the given index
+        /// </summary>
+        /// <param name="index">index to set</param>
+        /// <param name="data">data to set index to</param>
+        /// <returns>success|fail</returns>
         public bool Set(int index, T data)
         {
             if (index >= 0 && index < _size)
@@ -102,21 +104,18 @@ namespace DataStructures.Arrays.SortedArray
             return false;
         }
 
-        /**
-         * Gets the data at the arrays given index
-         * @param index Index to get data at
-         * @return Data at the given index or default value of T if index does not exist
-         */
-        public T Get(int index)
-        {
-            return index >= 0 && index < _size ? _array[index] : default(T);
-        }
+        /// <summary>
+        /// Gets the data at the arrays given index
+        /// </summary>
+        /// <param name="index">Index to get data at</param>
+        /// <returns>Data at the given index or default value of T if index does not exist</returns>
+        public T Get(int index) => index >= 0 && index < _size ? _array[index] : default(T);
 
-        /**
-         * Removes the data at arrays given index
-         * @param index Index to remove
-         * @return Data removed from the array or default T value if index does not exist
-         */
+        /// <summary>
+        /// Removes the data at arrays given index
+        /// </summary>
+        /// <param name="index">Index to remove</param>
+        /// <returns>Data removed from the array or default T value if index does not exist</returns>
         public T Remove(int index)
         {
             if (index < 0 || index > _count)
@@ -127,42 +126,39 @@ namespace DataStructures.Arrays.SortedArray
             _count--;
             return tmp;
         }
-
-        /**
-         * Resets the internal array to default size with no data
-         */
-
+        
+        /// <summary>
+        /// Resets the internal array to default size with no data
+        /// </summary>
         public void Reset()
         {
             _count = 0;
             _size = 4;
             _array = new T[_size];
         }
-
-        /**
-         * Clears all data in the array leaving size intact
-         */
+        
+        /// <summary>
+        /// Clears all data in the array leaving size intact
+        /// </summary>
         public void Clear()
         {
             _array = new T[_size];   
             _count = 0;
         }
-
-
-        /**
-         * Gets the current count of the array
-         * @return Number of items in the array
-         */
+        
+        /// <summary>
+        /// Gets the current count of the array
+        /// </summary>
+        /// <returns>Number of items in the array</returns>
         public int Count() => _count;
 
-        /**
-         * Private helper method for Merger Sort. Merges two sub-arrays of arr[].
-         * @param arr: array to be sorted
-         * @param l: index of first sub array
-         * @param m: merge point
-         * @param r: index of second sub array
-         */
-
+        /// <summary>
+        /// Private helper method for Merger Sort. Merges two sub-arrays of arr[].
+        /// </summary>
+        /// <param name="arr">array to be sorted</param>
+        /// <param name="l">index of first sub array</param>
+        /// <param name="m">merge point</param>
+        /// <param name="r">index of second sub array</param>
         private void Merge(T[] arr, int l, int m, int r)
         {
             int i, j, k;
@@ -214,13 +210,13 @@ namespace DataStructures.Arrays.SortedArray
                 k++;
             }
         }
-
-        /**
-         * Recursive helper method for merge sort
-         * @param arr: sub array to be sorted
-         * @param l: left index
-         * @param r: right index
-         */
+       
+        /// <summary>
+        /// Recursive helper method for merge sort
+        /// </summary>
+        /// <param name="arr">sub array to be sorted</param>
+        /// <param name="l">left index</param>
+        /// <param name="r">right index</param>
         private void MergeSortHelper(T[] arr, int l, int r)
         {
             if (l < r)
@@ -237,11 +233,10 @@ namespace DataStructures.Arrays.SortedArray
             }
         }
 
-        /**
-         * Performs Merge Sort on internal array
-         * @return T[]: sorted copy of the internal array
-         */
-
+        /// <summary>
+        /// Performs Merge Sort on internal array
+        /// </summary>
+        /// <returns>sorted copy of the internal array</returns>
         public T[] MergeSort()
         {
             T[] tmp = new T[_count];
@@ -250,11 +245,10 @@ namespace DataStructures.Arrays.SortedArray
             return tmp;
         }
 
-        /**
-         * Performs Bubble sort on internal array
-         * @return T[]: sorted copy of the internal array
-         */
-
+        /// <summary>
+        /// Performs Bubble sort on internal array
+        /// </summary>
+        /// <returns>sorted copy of the internal array</returns>
         public T[] BubbleSort()
         {
             T[] tmp = new T[_count];
@@ -274,13 +268,13 @@ namespace DataStructures.Arrays.SortedArray
             return tmp;
         }
 
-        /**
-         * Helper method for Quick Sort. Swaps data in the partition
-         * @param arr: array to be sorted
-         * @param low: low index
-         * @param high: high index
-         * @return int: pivot index
-         */
+        /// <summary>
+        /// Helper method for Quick Sort. Swaps data in the partition
+        /// </summary>
+        /// <param name="arr">array to be sorted</param>
+        /// <param name="low">low index</param>
+        /// <param name="high">high index</param>
+        /// <returns>pivot index</returns>
         private int Partition(T[] arr, int low, int high)
         {
             T pivot = arr[high];
@@ -308,12 +302,12 @@ namespace DataStructures.Arrays.SortedArray
             return i + 1;
         }
 
-        /**
-         * Helper method for recursive Quick Sort
-         * @param arr: array to be sorted
-         * @param low: low index
-         * @param high: high index
-         */
+        /// <summary>
+        /// Helper method for recursive Quick Sort
+        /// </summary>
+        /// <param name="arr">array to be sorted</param>
+        /// <param name="low">low index</param>
+        /// <param name="high">high index</param>
         private void QuickSortHelper(T[] arr, int low, int high)
         {
             if (low < high)
@@ -327,11 +321,10 @@ namespace DataStructures.Arrays.SortedArray
             }
         }
 
-        /**
-         * Performs Quick Sort on the internal array
-         * @return T[]: sorted copy of the internal array
-         */
-
+        /// <summary>
+        /// Performs Quick Sort on the internal array
+        /// </summary>
+        /// <returns>sorted copy of the internal array</returns>
         public T[] QuickSort()
         {
             T[] tmp = new T[_count];
@@ -341,11 +334,10 @@ namespace DataStructures.Arrays.SortedArray
             return tmp;
         }
 
-        /**
-         * Performs Insertion sort on the internal array
-         * @return T[]: sorted copy of the internal array
-         */
-
+        /// <summary>
+        /// Performs Insertion sort on the internal array
+        /// </summary>
+        /// <returns>sorted copy of the internal array</returns>
         public T[] InsertionSort()
         {
             T[] tmp = new T[_count];
@@ -367,11 +359,10 @@ namespace DataStructures.Arrays.SortedArray
             return tmp;
         }
 
-        /**
-         * Performs Selection Sort on internal array
-         * @return T[]: Sorted copy of the internal data
-         */
-
+        /// <summary>
+        ///  Performs Selection Sort on internal array
+        /// </summary>
+        /// <returns>Sorted copy of the internal data</returns>
         public T[] SelectionSort()
         {
             T[] tmp = new T[_count];
@@ -394,38 +385,29 @@ namespace DataStructures.Arrays.SortedArray
             return tmp;
         }
 
-        /**
-         * Determines if a is less than b
-         * @param a: generic type to test
-         * @param b: generic type to test
-         * @return boolean: true|false
-         */
-        private bool LessThan(T a, T b)
-        {
-            return a.CompareTo(b) < 0;
-        }
+        /// <summary>
+        /// Determines if a is less than b
+        /// </summary>
+        /// <param name="a">generic type to test</param>
+        /// <param name="b">generic type to test</param>
+        /// <returns>true|false</returns>
+        private bool LessThan(T a, T b) => a.CompareTo(b) < 0;
 
-        /**
-         * Determines if a is equal to b
-         * @param a: generic type to test
-         * @param b: generic type to test
-         * @return boolean: true|false
-         */
-        private bool EqualTo(T a, T b)
-        {
-            return a.CompareTo(b) == 0;
-        }
+        /// <summary>
+        /// Determines if a is equal to b
+        /// </summary>
+        /// <param name="a">generic type to test</param>
+        /// <param name="b">generic type to test</param>
+        /// <returns>true|false</returns>
+        private bool EqualTo(T a, T b) => a.CompareTo(b) == 0;
 
-        /**
-         * Determines if a is greater than b
-         * @param a: generic type to test
-         * @param b: generic type to test
-         * @return boolean: true|false
-         */
-        private bool GreaterThan(T a, T b)
-        {
-            return a.CompareTo(b) > 0;
-        }
+        /// <summary>
+        /// Determines if a is greater than b
+        /// </summary>
+        /// <param name="a">generic type to test</param>
+        /// <param name="b">generic type to test</param>
+        /// <returns>true|false</returns>
+        private bool GreaterThan(T a, T b) => a.CompareTo(b) > 0;
     }
 
 }
