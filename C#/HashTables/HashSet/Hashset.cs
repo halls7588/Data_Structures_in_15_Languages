@@ -1,21 +1,23 @@
 ﻿/*******************************************************
- *  Hashtable.cs
+ *  Hashset.cs
  *  Created by Stephen Hall on 11/17/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
- *  Hashtable implementation in C#
+ *  Hashset implementation in C#
  ********************************************************/
+using System;
 
-namespace DataStructures.HashTables.Hashtable
+namespace DataStructures.HashTables.HashSet
 {
+
     /// <summary>
-    /// Hashtable class declaration
+    /// HashSet class
     /// </summary>
     /// <typeparam name="TKey">Generic type</typeparam>
     /// <typeparam name="TValue">Generic type</typeparam>
-    public class Hashtable<TKey, TValue>
+    public class Hashset<TKey, TValue>
     {
         /// <summary>
-        /// Node class declaration
+        /// Node class
         /// </summary>
         public class Node
         {
@@ -32,7 +34,7 @@ namespace DataStructures.HashTables.Hashtable
             /// </summary>
             /// <param name="key">key of the node</param>
             /// <param name="value">value of the key</param>
-            /// <param name="next">next node</param>
+            /// <param name="next">ext node</param>
             /// <param name="hash">nodes hash</param>
             public Node(TKey key, TValue value, Node next, int hash)
             {
@@ -43,61 +45,43 @@ namespace DataStructures.HashTables.Hashtable
             }
         }
 
-        /// <summary>
-        /// private members of the Hashtable class
-        /// </summary>
         private Node[] _nodes;
 
         /// <summary>
-        /// Hashtable Constructor
+        /// HashSet Constructor
         /// </summary>
-        /// <param name="size">size of the Hashtable</param>
-        public Hashtable(int size) => _nodes = new Node[size];
-
+        /// <param name="size">size of the hash table</param>
+        public Hashset(int size) => _nodes = new Node[size];
 
         /// <summary>
         /// Gets the hashed index of the give key
         /// </summary>
         /// <param name="key">key to find</param>
         /// <returns>hashed index of the key</returns>
-        private int GetIndex(TKey key)
-        {
-            int hash = key.GetHashCode() % _nodes.Length;
-            if (hash < 0)
-            {
-                hash += _nodes.Length;
-            }
-            return hash;
-        }
+        private int GetIndex(TKey key) => Math.Abs(key.GetHashCode() % _nodes.Length);
 
         /// <summary>
         /// Inserts Key-Value pair into the table or updates new value
         /// </summary>
         /// <param name="key">key to insert</param>
         /// <param name="value">value of the key</param>
-        /// <returns>old value of the key, or new value if not exists</returns>
+        /// <returns>new value in the set</returns>
         public TValue Insert(TKey key, TValue value)
         {
             int hash = GetIndex(key);
-            Node node;
+            //Node node;
             // check if same key already exists and if so lets update it with the new value
-            for (node = _nodes[hash]; node != null; node = node.Next)
-            {
+            for (Node node = _nodes[hash]; node != null; node = node.Next)
                 if ((hash == node.Hash) && key.Equals(node.Key))
-                {
-                    TValue oldData = node.Value;
-                    node.Value = value;
-                    return oldData;
-                }
-            }
-            node = new Node(key, value, _nodes[hash], hash);
-            _nodes[hash] = node;
+                    return default(TValue);
+
+            Node n = new Node(key, value, _nodes[hash], hash);
+            _nodes[hash] = n;
             return value;
         }
 
-
         /// <summary>
-        /// Removes the key from the hashable
+        /// Removes the key from the hash table
         /// </summary>
         /// <param name="key">key to remove</param>
         /// <returns>success|fail</returns>
@@ -128,8 +112,8 @@ namespace DataStructures.HashTables.Hashtable
         public TValue Get(TKey key)
         {
             int hash = GetIndex(key);
-
             Node node = _nodes[hash];
+
             while (node != null)
             {
                 if (key.Equals(node.Key))
@@ -140,19 +124,19 @@ namespace DataStructures.HashTables.Hashtable
         }
 
         /// <summary>
-        /// Resize the Hashtable
+        /// Resize the Hash table
         /// </summary>
         /// <param name="size">size to make the table</param>
         public void Resize(int size)
         {
-            Hashtable<TKey, TValue> tbl = new Hashtable<TKey, TValue>(size);
+            Hashset<TKey, TValue> tbl = new Hashset<TKey, TValue>(size);
             foreach (Node node in _nodes)
             {
                 Node n = node;
                 while (n != null)
                 {
                     tbl.Insert(n.Key, n.Value);
-                    Remove(n.Key);
+                    Remove(node.Key);
                     n = n.Next;
                 }
             }
