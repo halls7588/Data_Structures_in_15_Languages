@@ -1,136 +1,109 @@
-﻿/*******************************************************
+/*******************************************************
  *  LinkedQueue.cs
  *  Created by Stephen Hall on 11/01/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked Queue implementation in C#
  ********************************************************/
-namespace DataStructures
-{
+
+namespace DataStructures.Queues.LinkedQueue
+{  
     /// <summary>
     /// Linked Queue Class
     /// </summary>
     /// <typeparam name="T">Generic Type</typeparam>
-    class LinkedQueue<T>
+    public class LinkedQueue<T>
     {
         /// <summary>
-        /// Node Class For Linked Queue
+        /// Node Class
         /// </summary>
-        /// <typeparam name="T">Generic Type</typeparam>
-        public class Node<T>
+        public class Node
         {
+           
             /// <summary>
-            /// Private members of the Node Class
+            /// Public accessors for the node class
             /// </summary>
-            private T data;
-            private Node<T> next;
+            public T Data { set; get; }
+            public Node Next { set; get; }
 
             /// <summary>
-            /// Public Property for the Node data Member
-            /// </summary>
-            public T Data
-            {
-                set { data = value; }
-                get { return data; }
-            }
-
-            /// <summary>
-            /// Public property for the Node Next Member
-            /// </summary>
-            public Node<T> Next
-            {
-                set { next = value; }
-                get { return next; }
-            }
-
-            /// <summary>
-            /// ode Class Constructor
+            /// Node Class Constructor
             /// </summary>
             /// <param name="data">Data to be held in the node</param>
             public Node(T data)
             {
-                this.data = data;
-                next = null;
+                Data = data;
+                Next = null;
             }
         }
 
         /// <summary>
-        /// Private members of the Linked Queue Class
+        /// Private Members
         /// </summary>
-        private int count;
-        private Node<T> head;
-        private Node<T> tail;
+        private int _count;
+        private Node _head;
+        private Node _tail;
 
         /// <summary>
-        /// Linked Queue class constructor
+        /// Linked Queue Constructor
         /// </summary>
         public LinkedQueue()
         {
-            count = 0;
-            head = null;
+            _count = 0;
+            _head = _tail = null;
         }
 
         /// <summary>
-        /// Adds given data onto the Queue
+        /// Adds given data onto the queue
         /// </summary>
         /// <param name="data">Data to be added to the queue</param>
         /// <returns>Node added to the queue</returns>
-        public Node<T> Enqueue(T data)
+        public Node Enqueue(T data)
         {
+            Node node;
             if (IsEmpty())
             {
-                Node<T> node = new Node<T>(data);
-                head = tail = node;
-                count++;
+                node = new Node(data);
+                _head = _tail = node;
+                _count++;
                 return node;
             }
-            else
-            {
-                Node<T> node = new Node<T>(data);
-                node.Next = tail;
-                tail = node;
-                count++;
-                return node;
-            }
-        }
-
-        /// <summary>
-        /// removes item off the queue
-        /// </summary>
-        /// <returns>Node removed off of the queue</returns>
-        public Node<T> Dequeue()
-        {
-            Node<T> node = head;
-            head = head.Next;
-            node.Next = null;
-            count--;
+            node = new Node(data);
+            node.Next = _tail;
+            _tail = node;
+            _count++;
             return node;
         }
 
         /// <summary>
-        /// Gets the first Node onto of the queue without removing it
+        /// Removes item off the queue
+        /// </summary>
+        /// <returns>Node popped off of the queue</returns>
+        public Node Dequeue()
+        {
+            Node node = _head;
+            _head = _head.Next;
+            node.Next = null;
+            _count--;
+            return node;
+        }
+
+        /// <summary>
+        /// Gets the Node onto of the queue
         /// </summary>
         /// <returns>Node on top of the queue</returns>
-        public Node<T> Top()
-        {
-            return head;
-        }
+        public Node Top() => _head;
 
         /// <summary>
         /// Returns a value indicating if the queue is empty
         /// </summary>
-        /// <returns>True if empty, false if not</returns>
-        public bool IsEmpty()
-        {
-            return (count == 0);
-        }
+        /// <returns>true if empty, false if not</returns>
+        public bool IsEmpty() => _count == 0;
 
         /// <summary>
         /// Returns a value indicating if the queue is full
         /// </summary>
         /// <returns>False, Linked queue is never full</returns>
-        public bool IsFull()
-        {
-            return false;
-        }
+        public bool IisFull() => false;
     }
+
 }
