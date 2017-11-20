@@ -1,70 +1,32 @@
-﻿/*******************************************************
+/*******************************************************
  *  BinaryTree.cs
  *  Created by Stephen Hall on 9/25/17.
  *  Copyright (c) 2016 Stephen Hall. All rights reserved.
  *  A Binary Tree implementation in C#
  ********************************************************/
-
 using System;
 using System.Collections.Generic;
 
-namespace DataStructures
+namespace DataStructures.Trees.BinaryTree
 {
     /// <summary>
     /// Binary Tree Class
     /// </summary>
     /// <typeparam name="T">Generic Type</typeparam>
-    public class BinaryTree<T>
+    public class BinaryTree<T> where T : IComparable
     {
         /// <summary>
         /// Node class for the binary tree
         /// </summary>
-        /// <typeparam name="T">Generic Type</typeparam>
-        public class Node<T>
+        public class Node
         {
             /// <summary>
-            /// Private members
+            /// Public Properties for  the Node class
             /// </summary>
-            private Node<T> left;
-            private Node<T> right;
-            private Node<T> parent;
-            private T data;
-
-            /// <summary>
-            /// Public Property for the Node data Member
-            /// </summary>
-            public T Data
-            {
-                set { data = value; }
-                get { return data; }
-            }
-
-            /// <summary>
-            /// Public Property for the Node left Member
-            /// </summary>
-            public Node<T> Left
-            {
-                set { left = value; }
-                get { return left; }
-            }
-
-            /// <summary>
-            /// Public Property for the Node right Member
-            /// </summary>
-            public Node<T> Right
-            {
-                set { right = value; }
-                get { return right; }
-            }
-
-            /// <summary>
-            /// Public Property for the Node parent Member
-            /// </summary>
-            public Node<T> Parent
-            {
-                set { parent = value; }
-                get { return parent; }
-            }
+            public T Data { set; get; }
+            public Node Left { set; get; }
+            public Node Right { set; get; }
+            public Node Parent { set; get; }
 
             /// <summary>
             /// Node class constructor             
@@ -72,47 +34,37 @@ namespace DataStructures
             /// <param name="data">Data to be held in the Node</param>
             public Node(T data)
             {
-                left = right = null;
-                this.data = data;
+                Left = Right = null;
+                Data = data;
             }
         }
 
         /// <summary>
         /// Private Binary Tree members
         /// </summary>
-        private Node<T> root;
-       
+        private Node _root;
+
         /// <summary>
         /// Binary tree class constructor
         /// </summary>
-        public BinaryTree()
-        {
-            root = null;
-        }
-        
+        public BinaryTree() => _root = null;
+
         /// <summary>
         /// Compares the data in given node to the give data for equality
         /// </summary>
         /// <param name="data">data to compare</param>
         /// <param name="node">Node to compare to</param>
         /// <returns>1 if greater then, 0 if equal to, -1 if less then</returns>
-        private int compare(T data, Node<T> node)
-        {
-            return ((IComparable)node).CompareTo(data);
-        }
-        
+        private int Compare(T data, Node node) => node.Data.CompareTo(data);
+
         /// <summary>
         /// Inserts a new node into the tree
         /// </summary>
         /// <param name="data">data to insert into the tree</param>
         /// <returns>Node inserted into the tree</returns>
-        public Node<T> Insert(T data)
+        public Node Insert(T data)
         {
-            if (root == null)
-            {
-                return (root = new Node<T>(data));
-            }
-            return this.insertHelper(data, root);
+            return _root == null ? _root = new Node(data) : InsertHelper(data, _root);
         }
         
         /// <summary>
@@ -121,102 +73,93 @@ namespace DataStructures
         /// <param name="data">Data to insert into the tree</param>
         /// <param name="node">urrent node in the tree</param>
         /// <returns>Node inserted into the tree</returns>
-        private Node<T> insertHelper(T data, Node<T> node)
+        private Node InsertHelper(T data, Node node)
         {
             try
             {
-                int cmp = this.compare(data, node);
+                int cmp = Compare(data, node);
                 switch (cmp)
                 {
                     case 1:
                         if (node.Right == null)
                         {
-                            Node<T> newNode = new Node<T>(data);
+                            Node newNode = new Node(data);
                             node.Right = newNode;
                             newNode.Parent = node;
                             return newNode;
                         }
                         else
-                            return this.insertHelper(data, node.Right);
+                            return InsertHelper(data, node.Right);
 
                     default:
                         if (node.Left == null)
                         {
-                            Node<T> newNode = new Node<T>(data);
+                            Node newNode = new Node(data);
                             node.Left = newNode;
                             newNode.Parent = node;
                             return newNode;
                         }
                         else
-                            return this.insertHelper(data, node.Left);
+                            return InsertHelper(data, node.Left);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
         }
-        
+
         /// <summary>
         /// Removes a Node from the tree
         /// </summary>
         /// <param name="data">Data to remove from the tree</param>
         /// <returns>Node removed from the tree</returns>
-        public Node<T> Remove(T data)
-        {
-            if (root != null)
-                return null;
-            return this.removeHelper(data, root);
-        }
-        
+        public Node Remove(T data) => _root != null ? null : RemoveHelper(data, _root);
+
         /// <summary>
         /// Recursive helper function to remove a node from the tree
         /// </summary>
         /// <param name="data">Data to remove</param>
         /// <param name="node">urrent node</param>
         /// <returns>Node removed from the tree</returns>
-        private Node<T> removeHelper(T data, Node<T> node)
+        private Node RemoveHelper(T data, Node node)
         {
             try
             {
-                int cmp = this.compare(data, node);
+                int cmp = Compare(data, node);
                 if (cmp == 1)
-                    return this.removeHelper(data, node.Right);
+                    return RemoveHelper(data, node.Right);
                 if (cmp == -1)
-                    return this.removeHelper(data, node.Left);
+                    return RemoveHelper(data, node.Left);
                 if (cmp == 0)
                 {
                     //has no children
-                    Node<T> tempNode;
+                    Node tempNode;
 
                     if (node.Left == null && node.Right == null)
-                    {
                         node = node.Parent;
-                    }
-
+                    
                     //has one child
                     if (node.Parent != null)
-                    {
                         tempNode = node.Parent;
-                    }
                     else
                     { // this is the root node
                         if (node.Right != null)
                         {
                             tempNode = node.Right;
                             tempNode.Parent = null;
-                            this.root.Right = null;
-                            this.root = tempNode;
+                            _root.Right = null;
+                            _root = tempNode;
                             return node;
                         }
-                        else
+                        tempNode = node.Left;
+                        if (tempNode != null)
                         {
-                            tempNode = node.Left;
                             tempNode.Parent = null;
-                            this.root.Left = null;
-                            this.root = tempNode;
-                            return node;
+                            _root.Left = null;
+                            _root = tempNode;
                         }
+                        return node;
                     }
                     if (tempNode.Left == node)
                     {
@@ -226,7 +169,7 @@ namespace DataStructures
                             node.Left.Parent = tempNode;
                             return node;
                         }
-                        else if (node.Right != null)
+                        if (node.Right != null)
                         {
                             tempNode.Right = node.Right;
                             node.Right.Parent = tempNode;
@@ -241,7 +184,7 @@ namespace DataStructures
                             node.Left.Parent = tempNode;
                             return node;
                         }
-                        else if (node.Right != null)
+                        if (node.Right != null)
                         {
                             tempNode.Right = node.Right;
                             node.Right.Parent = tempNode;
@@ -262,7 +205,7 @@ namespace DataStructures
                     }
                 }
             }
-            catch (Exception e) { }
+            catch (Exception) { return null; }
             return null;
         }
         
@@ -270,12 +213,12 @@ namespace DataStructures
         /// Returns the smallest node in the tree
         /// </summary>
         /// <returns>Smallest Node int he tree</returns>
-        public Node<T> GetMin()
+        public Node GetMin()
         {
-            if (root == null)
+            if (_root == null)
                 return null;
 
-            Node<T> node = this.root;
+            Node node = _root;
 
             while (node.Left != null)
                 node = node.Left;
@@ -287,12 +230,12 @@ namespace DataStructures
         /// Return the largest node in the tree
         /// </summary>
         /// <returns>argest Node in the tree</returns>
-        public Node<T> GetMax()
+        public Node GetMax()
         {
-            if (root == null)
+            if (_root == null)
                 return null;
 
-            Node<T> node = this.root;
+            Node node = _root;
 
             while (node.Right != null)
                 node = node.Right;
@@ -304,7 +247,7 @@ namespace DataStructures
         /// Prints out the tree using Pre Order Traversal
         /// </summary>
         /// <param name="node">Node to start the Pre Order Traversal at</param>
-        public void PreOrederTraversal(Node<T> node)
+        public void PreOrederTraversal(Node node)
         {
             if (node != null)
             {
@@ -318,7 +261,7 @@ namespace DataStructures
         /// Prints out the Tree using Post Order Traversal
         /// </summary>
         /// <param name="node">Node to start the Post Order Traversal at</param>
-        public void PostPrderTraversal(Node<T> node)
+        public void PostPrderTraversal(Node node)
         {
             if (node != null)
             {
@@ -332,7 +275,7 @@ namespace DataStructures
         /// Pints out the tree using in order Traversal
         /// </summary>
         /// <param name="node">Node to start the In Order Traversal at</param>
-        public void InOrderedTraversal(Node<T> node)
+        public void InOrderedTraversal(Node node)
         {
             if (node != null)
             {
@@ -346,12 +289,12 @@ namespace DataStructures
         /// Prints out the tree using Depth First Search
         /// </summary>
         /// <param name="node">Node to start the Depth First Search at</param>
-        public void DepthFirstSearch(Node<T> node)
+        public void DepthFirstSearch(Node node)
         {
             if (node == null)
                 return;
 
-            Stack<Node<T>> stack = new Stack<Node<T>>();
+            Stack<Node> stack = new Stack<Node>();
             stack.Push(node);
 
             while (stack.Count > 0)
@@ -368,12 +311,12 @@ namespace DataStructures
         /// Prints out the tree using breadth first search
         /// </summary>
         /// <param name="node">Node to start Breadth First Search at</param>
-        public void BreadthFirstSearch(Node<T> node)
+        public void BreadthFirstSearch(Node node)
         {
             if (node == null)
                 return;
 
-            Queue<Node<T>> queue = new Queue<Node<T>>();
+            Queue<Node> queue = new Queue<Node>();
             queue.Enqueue(node);
 
             while (queue.Count > 0)
