@@ -1,8 +1,8 @@
 ﻿'******************************************************
-' *  ArrayList.cs
+' *  ArrayList.vb
 ' *  Created by Stephen Hall on 11/20/17.
 ' *  Copyright (c) 2017 Stephen Hall. All rights reserved.
-' *  ArrayList implementation in C#
+' *  ArrayList implementation in Visual Basic
 ' *******************************************************
 
 Namespace Arrays.ArrayList
