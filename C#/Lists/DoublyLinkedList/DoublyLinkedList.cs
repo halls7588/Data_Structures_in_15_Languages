@@ -4,147 +4,103 @@
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Linked List implementation in C#
  ********************************************************/
+using System;
 
-namespace DataStructures
+namespace DataStructures.Lists.DoublyLinkedList
 {
+  
     /// <summary>
-    /// Doubly linked List Class
+    /// Doubly linked list class
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class DoublyLinkedList<T>
+    /// <typeparam name="T">Generic type</typeparam>
+    public class DoublyLinkedList<T> where T : IComparable
     {
         /// <summary>
-        /// Node class for Doubly linked list
+        /// Node class for doubly linked list
         /// </summary>
-        /// <typeparam name="T"Ggeneric type</typeparam>
-        public class Node<T>
+        public class Node
         {
-           /// <summary>
-           /// Private Member of the Node class
-           /// </summary>
-            private T data;
-            private Node<T> next;
-            private Node<T> previous;
-
             /// <summary>
-            /// Public Property for private data member
+            /// Public accessors for node class
             /// </summary>
-            public T Data
-            {
-                set
-                {
-                    data = value;
-                }
-                get
-                {
-                    return data;
-                }
-            }
+            public T Data { get; set; }
+            public Node Next { get; set; }
+            public Node Previous { get; set; }
+            
             /// <summary>
-            /// Public property for private next member
+            /// Node Class Constructor
             /// </summary>
-            public Node<T> Next
-            {
-                set
-                {
-                    next = value;
-                }
-                get
-                {
-                    return next;
-                }
-            }
-            /// <summary>
-            /// Public Property for private previous member
-            /// </summary>
-            public Node<T> Previous
-            {
-                set
-                {
-                    previous = value;
-                }
-                get
-                {
-                    return previous;
-                }
-            }
-
-            /// <summary>
-            /// Node class constructor
-            /// </summary>
-            /// <param name="data">Generic type</param>
+            /// <param name="data">Data to be held in the Node</param>
             public Node(T data)
             {
-                this.data = data;
-                next = previous = null;
+                Data = data;
+                Data = data;
+                Next = Previous = null;
             }
-
         }
 
         /// <summary>
-        /// Private data members of the Doubly Linked List class
+        /// Private Members
         /// </summary>
-        private Node<T> head;
-        private Node<T> tail;
-        int count;
+        private Node _head;
+        private Node _tail;
+        private int _count;
 
         /// <summary>
-        /// Doubly Linked List class constructor
+        /// Doubly Linked List Constructor
         /// </summary>
         public DoublyLinkedList()
         {
-            head = tail = null;
-            count = 0;
+            _head = _tail = null;
+            _count = 0;
         }
-        
+
         /// <summary>
         /// Adds a new node into the list with the given data
         /// </summary>
         /// <param name="data">Data to add into the list</param>
-        /// <returns>ode added into the list</returns>
-        public Node<T> Add(T data)
+        /// <returns>Node added into the list</returns>
+        public Node Add(T data)
         {
             // No data to insert into list
-            if (data == null)
-                return null;
-
-            Node<T> node = new Node<T>(data);
-
-            // The Linked list is empty
-            if (head == null)
+            if (data != null)
             {
-                head = node;
-                tail = head;
-                count++;
+                Node node = new Node(data);
+                // The Linked list is empty
+                if (_head == null)
+                {
+                    _head = node;
+                    _tail = _head;
+                    _count++;
+                    return node;
+                }
+                // Add to the end of the list
+                _tail.Next = node;
+                node.Previous = _tail;
+                _tail = node;
+                _count++;
                 return node;
             }
-
-            // Add to the end of the list
-            tail.Next = node;
-            node.Previous = tail;
-            tail = node;
-            count++;
-            return node;
+            return null;
         }
-        
+
         /// <summary>
         /// Removes the first node in the list matching the data
         /// </summary>
-        /// <param name="data">Data to remove from the list</param>
-        /// <returns> Node removed from the list</returns>
-        public Node<T> Remove(T data)
+        /// <param name="data">data Data to remove from the list</param>
+        /// <returns>Node removed from the list</returns>
+        public Node Remove(T data)
         {
-
             // List is empty or no data to remove
-            if (head == null || data == null)
+            if (_head == null || data == null)
                 return null;
 
-            Node<T> tmp = head;
+            Node tmp = _head;
             // The data to remove what found in the first Node in the list
             if (tmp.Data.Equals(data))
             {
-                head = head.Next;
-                count--;
+                _head = _head.Next;
+                _count--;
                 return tmp;
             }
 
@@ -154,83 +110,74 @@ namespace DataStructures
                 // Node was found, Remove it from the list
                 if (tmp.Next.Data.Equals(data))
                 {
-                    if (tmp.Next == tail)
+                    if (tmp.Next.Equals(_tail))
                     {
-                        tail = tmp;
+                        _tail = tmp;
                         tmp = tmp.Next;
-                        tail.Next = null;
-                        count--;
+                        _tail.Next = null;
+                        _count--;
                         return tmp;
                     }
-                    else
-                    {
-                        Node<T> node = tmp.Next;
-                        tmp.Next = tmp.Next.Next;
-                        tmp.Next.Next.Previous = tmp;
-                        node.Next = node.Previous = null;
-                        count--;
-                        return node;
-                    }
+                    Node node = tmp.Next;
+                    tmp.Next = tmp.Next.Next;
+                    tmp.Next.Next.Previous = tmp;
+                    node.Next = node.Previous = null;
+                    _count--;
+                    return node;
                 }
+                tmp = tmp.Next;
             }
             // The data was not found in the list
             return null;
         }
-        
+
         /// <summary>
         /// Gets the first node that has the given data
         /// </summary>
         /// <param name="data">Data to find in the list</param>
         /// <returns>First node with matching data or null if no node was found</returns>
-        public Node<T> Find(T data)
+        public Node Find(T data)
         {
             // No list or data to find
-            if (head == null || data == null)
+            if (_head == null || data == null)
                 return null;
 
-            Node<T> tmp = head;
+            Node tmp = _head;
             // Try to find the data in the list
             while (tmp != null)
             {
                 // Data was found
                 if (tmp.Data.Equals(data))
                     return tmp;
-
                 tmp = tmp.Next;
             }
             // Data was not found in the list
             return null;
         }
-        
+
         /// <summary>
         /// Gets the node at the given index
         /// </summary>
         /// <param name="index">Index of the Node to get</param>
-        /// <returns>Node at passed in index</returns>
-        public Node<T> IndexAt(int index)
+        /// <returns>Node at given in index</returns>
+        public Node IndexAt(int index)
         {
             //Index was negative or larger then the amount of Nodes in the list
             if (index < 0 || index > Size())
                 return null;
 
-            Node<T> tmp = head;
-
+            Node tmp = _head;
             // Move to index
             for (int i = 0; i < index; i++)
-            {
                 tmp = tmp.Next;
-            }
             // return the node at the index position
             return tmp;
         }
-       
+
         /// <summary>
         /// Gets the current count of the array
         /// </summary>
         /// <returns>Number of items in the array</returns>
-        public int Size()
-        {
-            return count;
-        }
+        public int Size() => _count;
     }
 }
