@@ -1,104 +1,92 @@
-﻿/*******************************************************
+/*******************************************************
  *  ArrayedQueue.cs
  *  Created by Stephen Hall on 11/01/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  A Arrayed Queue implementation in C#
  ********************************************************/
+using System;
 
-namespace DataStructures
-{
-    class ArrayedQueue<T>
+namespace DataStructures.Queues.ArrayedQueue
+{   
+    /// <summary>
+    /// Arrayed Queue Class
+    /// </summary>
+    /// <typeparam name="T">Generic type</typeparam>
+    public class ArrayedQueue<T> where T : IComparable
     {
-        /// <summary>
-        /// Private members
-        /// </summary>
-        private T[] array;
-        private int count;
-        private int size;
+        /**
+         * Private Members
+         */
+        private T[] _array;
+        private int _count;
+        private int _size;
 
         /// <summary>
         /// Default Constructor
         /// </summary>
         public ArrayedQueue()
         {
-            array = new T[(size = 10)];
-            count = 0;
+            _array = new T[_size = 10];
+            _count = 0;
         }
 
         /// <summary>
-        /// Arrayed queue Constructor
+        /// Arrayed Queue Constructor
         /// </summary>
         /// <param name="size">Size to initialize the queue to</param>
         public ArrayedQueue(int size)
         {
-            array = new T[(this.size = size)];
-            count = 0;
+            _array = new T[_size = size];
+            _count = 0;
         }
-
-        /// <summary>
-        /// Add given data onto the queue if space is available
-        /// </summary>
-        /// <param name="data">Data to be added to the queue</param>
-        /// <returns>item added to the queue</returns>
+        /**
+         * Pushes given data onto the queue if space is available
+         * @param data Data to be added to the queue
+         * @return Node added to the queue
+         */
         public T Enqueue(T data)
         {
             if (!IsFull())
             {
-                array[count] = data;
-                count++;
+                _array[_count] = data;
+                _count++;
                 return Top();
             }
             return default(T);
         }
 
         /// <summary>
-        /// Removed the first item off the queue
+        /// Removes item from the queue
         /// </summary>
-        /// <returns>item removed off of the queue</returns>
+        /// <returns>item removed from the queue</returns>
         public T Dequeue()
         {
             if (IsEmpty())
                 return default(T);
-
-            T data = array[0];
-            T[] tmp = new T[(this.size)];
-            for (int i = 1; i < size - 1; i++)
-            {
-                tmp[i - 1] = array[i];
-            }
-            array = tmp;
-            count--;
+            T data = _array[0];
+            T[] tmp = new T[_size];
+            Array.Copy(_array, 1, tmp, 0, _size - 1 - 1);
+            _array = tmp;
+            _count--;
             return data;
         }
 
         /// <summary>
-        /// Gets the item onto of the queue without removing it
+        /// Gets the top item of the queue
         /// </summary>
-        /// <returns>Node on top of the queue</returns>
-        public T Top()
-        {
-            if (IsEmpty())
-                return default(T);
-            return array[0];
-        }
+        /// <returns>item on top of the queue</returns>
+        public T Top() => (IsEmpty()) ? default(T) : _array[0];
 
         /// <summary>
         /// Returns a value indicating if the queue is empty
         /// </summary>
-        /// <returns>True if empty, false if not</returns>
-        public bool IsEmpty()
-        {
-            return (count == 0);
-        }
+        /// <returns>true if empty, false if not</returns>
+        public bool IsEmpty() => (_count == 0);
 
         /// <summary>
         /// Returns a value indicating if the queue is full
         /// </summary>
         /// <returns>True if full, false if not</returns>
-        public bool IsFull()
-        {
-            return (count == size);
-        }
+        public bool IsFull() => _count == _size;
     }
-}
 }
