@@ -175,7 +175,15 @@ What’s been implemented so far:
   
   ##### Arrays
   
-  [Circular Array in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Arrays/CirculayArray.cs)
+   [Circular Array in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Arrays/CircularArray/CirculayArray.cs)
+  
+  [ArrayList in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Arrays/ArrayList/ArrayList.cs)
+  
+  [Arrayed Set in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Arrays/ArrayedSet/ArrayedSet.cs)
+  
+  [Associative Array in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Arrays/AssociativeArray/AssociativeArray.cs)
+  
+  [Sorted Array in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Arrays/SortedArray/SortedArray.cs)
   
   ##### Lists
   
@@ -183,13 +191,29 @@ What’s been implemented so far:
   
   [Linked List in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Lists/Linked_List/LinkedList.cs)
   
+  [Skip List in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Lists/SkipList/SkipList.cs)
+  
+  [Linked Set in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Lists/LinkedSet/LinkedSet.cs)
+  
   ##### Trees
   
   [Binary Tree in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Trees/Binary_Tree/BinaryTree.cs)
   
+  [B-Tree in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Trees/BTree/BTree.cs)
+  
+  [Self Balancing Binary Tree in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Trees/SelfBalancingBinaryTree/SelfBalancingBinaryTree.cs)
+  
+  [Splay Tree in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Trees/SplayTree/SplayTree.cs)
+  
+  [Red Black Tree in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Trees/RedBlackTree/RedBlackTree.cs)
+  
+  [AVL Tree in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Trees/AVLTree/AVLTree.cs)
+  
   ##### Stacks
   
   [Arrayed Stack in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Stacks/Arrayed_Stack/ArrayedStack.cs)
+  
+  [Circular Stack in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Stacks/CircularStack/CircularStack.cs)
   
   [Linked Stack in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Stacks/Linked_Stack/LinkedStack.cs)
   
@@ -197,13 +221,33 @@ What’s been implemented so far:
   
   [Arrayed Queue in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Queues/Arrayed_Queue/ArrayedQueue.cs)
   
+  [Priority Queue in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Queues/PriorityQueue/PriorityQueue.cs)
+  
+  [Circular Queue in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Queues/CircularQueue/CircularQueue.cs)
+  
+  [Deque in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Queues/Deque/Deque.cs)
+  
   [Linked Queue in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Queues/Linked_Queue/LinkedQueue.cs) 
   
   ##### Heaps
   
+  [Linked Heap in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Heaps/LinkedHeap/LinkedHeap.cs) 
+  
+  [Arrayed Heap in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Heaps/ArrayedHeap/ArrayedHeap.cs)
+  
+  [Heap Sort in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Heaps/HeapSort/HeapSort.cs) 
+  
   ##### Hashtabels
   
+  [Hashset in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/HashTables/HashSet/Hashset.cs) 
+  
+  [Hashtable in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/HashTables/Hashtable/Hashtable.cs) 
+  
   ##### Graphs
+  
+  [Undirected Graph in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Graphs/UndirecetedGraph/UndirectedGraph.cs)
+  
+  [Directed Graph in C#](https://github.com/halls7588/Data_Structures/blob/master/C%23/Graphs/DirectedGraph/DirectedGraph.cs)
 </details>
 
 #### Visual Basic
@@ -213,35 +257,79 @@ What’s been implemented so far:
   
   ##### Arrays
   
-  [Circular Array in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Arrays/CircularArray.vb)
+   [Circular Array in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Arrays/CircularArray/CircularArray.vb)
+  
+  [ArrayList in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Arrays/ArrayList/ArrayList.vb)
+  
+  [Arrayed Set in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Arrays/ArrayedSet/ArrayedSet.vb)
+  
+  [Associative Array in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Arrays/AssociativeArray/AssociativeArray.vb)
+  
+  [Sorted Array in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Arrays/SortedArray/SortedArray.vb)
   
   ##### Lists
   
   [Doubly Linked List in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Lists/DoublyLinkedList/DoublyLinkedList.vb)
   
-  [Linked List in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Lists/Linked_List/Linked_List.vb)
+  [Linked List in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Lists/Linked_List/LinkedList.vb)
+  
+  [Skip List in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Lists/SkipList/SkipList.vb)
+  
+  [Linked Set in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Lists/LinkedSet/LinkedSet.vb)
   
   ##### Trees
   
   [Binary Tree in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Trees/BinaryTree/BinaryTree.vb)
   
+  [B-Tree in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Trees/BTree/BTree.vb)
+  
+  [Self Balancing Binary Tree in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Trees/SelfBalancingBinaryTree/SelfBalancingBinaryTree.vb)
+  
+  [Splay Tree in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Trees/SplayTree/SplayTree.vb)
+  
+  [Red Black Tree in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Trees/RedBlackTree/RedBlackTree.vb)
+  
+  [AVL Tree in C#](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Trees/AVLTree/ABLTree.vb)
+  
   ##### Stacks
   
   [Arrayed Stack in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Stacks/Arrayed_Stack/ArrayedStack.vb)
   
+  [Circular Stack in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Stacks/CricularStack/CircularStack.vb)
+  
   [Linked Stack in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Stacks/Linked_Stack/LinkedStack.vb)
   
-  ##### Queues 
+  ##### Queues
   
   [Arrayed Queue in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Queues/Arrayed_Queue/ArrayedQueue.vb)
   
-  [Linked Queue in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Queues/Linked_Queue/LinkedQueue.vb)
+  [Priority Queue in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Queues/PriorityQueue/PriorityQueue.vb)
+  
+  [Circular Queue in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Queues/CircularQueue/CircularQueue.vb)
+  
+  [Deque in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Queues/Deque/Deque.vb)
+  
+  [Linked Queue in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Queues/Linked_Queue/LinkedQueue.vb) 
   
   ##### Heaps
   
+  [Linked Heap in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Heaps/LinkedHeap/LinkedHeap.vb) 
+  
+  [Arrayed Heap in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Heaps/ArrayedHeap/ArrayedHeap.vb)
+  
+  [Heap Sort in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Heaps/HeapSort/HeapSort.vb) 
+  
   ##### Hashtabels
   
+  [Hashset in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/HashTables/HashSet/HashSet.vb) 
+  
+  [Hashtable in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/HashTables/Hashtable/Hashtable.vb) 
+  
   ##### Graphs
+  
+  [Undirected Graph in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Graphs/UndirectedGraph/UndirectedGraph.vb)
+  
+  [Directed Graph in Visual Basic](https://github.com/halls7588/Data_Structures/blob/master/Visual_Basic/Graphs/DirectedGraph/DirectedGraph.vb)
 </details>
 
 ## Getting Started
