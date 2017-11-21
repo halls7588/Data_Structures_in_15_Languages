@@ -2,9 +2,10 @@
 A general list of Data Structures implemented in 15 different programming languages. Java, JavaScript, Kotlin, C#, C++, Objective-C, Swift, PHP, Python, Ruby, Type Script, Visual Basic, C, Scala and Go. I will be implementing 30 different Data Structures and many Algorithms with them as well as providing detailed explanations about each data structure. This is a work in progress and is a very massive project so please be patient as i have a life and a full time job and I am the only one working on this at the moment.
 This project is intended to help newer developers, code school graduates, and self-taught developers learn and grasp the basic concepts of Data Structures to help build a foundation of basic engineering concepts and algorithm design in whatever language they feel most comfortable with. The Goal on this project is to demonstrate beginning and advanced computer science and engineering principals in a simple and easy to use way. The code is written in a very simple for so that newer developer can follow along and grasp advanced topics easily.
 
-What’s been implemented so far: Java, C# and Visual Basic have been implimented fully but not tested. With 450 data structures to write in 15 different languages, I want to get the majority of the code out of the way first and fix bugs latter. Thankfully these are all pretty simple to test once i do and shouldnt take that much time. 
+What’s been implemented so far: Java, C# and Visual Basic have been implemented fully but not tested. With 450 data structures to write in 15 different languages, I want to get the majority of the code out of the way first and fix bugs latter. Thankfully these are all pretty simple to test once i do and shouldn’t take that much time.
 
-Below is a list of links to each of the complted data structures in respective languages. Just find the one that you want and click on the link. 
+Below is a list of links to each of the completed data structures in respective languages. Just find the one that you want and click on the link.
+
 
 #### PHP
 
