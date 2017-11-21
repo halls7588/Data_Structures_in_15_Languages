@@ -1,8 +1,8 @@
 ﻿'******************************************************
-' *  Linkedset.cs
-' *  Created by Stephen Hall on 11/20/17.
+' *  Linkedset.vb
+' *  Created by Stephen Hall on 11/21/17.
 ' *  Copyright (c) 2017 Stephen Hall. All rights reserved.
-' *  Linked Set implementation in C#
+' *  Linked Set implementation in Visual Basic
 ' *******************************************************
 
 Namespace Lists.LinkedSet
