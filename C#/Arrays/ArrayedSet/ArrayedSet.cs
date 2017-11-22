@@ -1,9 +1,8 @@
 /*******************************************************
- *  @file ArrayList.cs
- *  @author Stephen Hall
- *  @date 11/17/17.
- *  @copyright 2017 Stephen Hall. All rights reserved.
- *  @details ArrayList implementation in C#
+ *  ArraySet.cs		   
+ *  Created by Stephen Hall on 11/17/17.		
+ *  Copyright (c) 2017 Stephen Hall. All rights reserved.		 
+ *  Array Set implementation in C#		  
  ********************************************************/
 using System;
 using System.Linq;
