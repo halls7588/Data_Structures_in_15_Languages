@@ -1,10 +1,9 @@
 /*******************************************************
- *  @file ArrayList.ccs
- *  @author Stephen Hall
- *  @date 11/17/17.
- *  @copyright 2017 Stephen Hall. All rights reserved.
- *  @details ArrayList implementation in C#
- ********************************************************/
+ *  AssociativeArray.cs		   
+ *  Created by Stephen Hall on 11/20/17.		
+ *  Copyright (c) 2017 Stephen Hall. All rights reserved.		 
+ *  Associative Array implementation in C#		  
+ ********************************************************/		
 
 namespace DataStructures.Arrays.AssociativeArray
 {
