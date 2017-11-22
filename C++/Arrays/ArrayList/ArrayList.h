@@ -51,4 +51,4 @@ namespace Arrays::ArrayList
         void resize();
     };
 }
-#endif ARRAYLIST_H
+#endif
