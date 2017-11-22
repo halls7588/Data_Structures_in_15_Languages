@@ -12,6 +12,7 @@
 #endif
 
 #include "ArrayList.h"
+using namespace Arrays::ArrayList;
 
 /**
  * ArrayList default constructor
@@ -44,7 +45,7 @@ ArrayList::ArrayList(unsigned int size)
  * Adds data into the ArrayList
  * @tparam T: Generic Type
  * @param data: data to add into the ArrayList
- * @return T: Data sdded into the ArrayList
+ * @return T: Data added into the ArrayList
  */
 template <typename T>
 T ArrayList::add(T data)

@@ -8,41 +8,47 @@
 #ifndef ARRAYLIST_H
 #define ARRAYLIST_H
 
-/**
- * ArrayList class declaration
- * @tparam T: Generic Type
- */
-template <typename T>
-class ArrayList {
-private:
+namespace Arrays::ArrayList
+{
     /**
-     * Private members of the ArrayList class
+     * ArrayList class declaration
+     * @tparam T: Generic Type
      */
-    T* array;
-    int count;
-    int size;
+    template<typename T>
+    class ArrayList {
+    private:
+        /* Private members of the ArrayList class */
+        T *array;
+        int count;
+        int size;
 
-public:
-    /**
-     * Public Methods of the ArrayList class
-     */
-    ArrayList();
-    explicit ArrayList(unsigned int size);
-    ~ArrayList();
-    T add(T data);
-    bool append(T* dataArray, int size);
-    T& operator[](int index);
-    T remove(T data);
-    void reset();
-    void clear();
-    int length();
+    public:
+        /* Public Methods of the ArrayList class */
+        ArrayList();
 
-private:
-    /**
-     * Private methods of the ArrayList class
-     */
-    void resize();
-};
+        explicit ArrayList(unsigned int size);
 
+        ~ArrayList();
 
+        T add(T data);
+
+        bool append(T *dataArray, int size);
+
+        T &operator[](int index);
+
+        T remove(T data);
+
+        void reset();
+
+        void clear();
+
+        int length();
+
+    private:
+        /**
+         * Private methods of the ArrayList class
+         */
+        void resize();
+    };
+}
 #endif ARRAYLIST_H
