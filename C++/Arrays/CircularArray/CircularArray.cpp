@@ -6,11 +6,6 @@
  *  @details Circular Array implementation in C++
  ********************************************************/
 
-/* Only needed because I did not include a file where it is defined */
-#ifndef NULL
-#define NULL   ((void *) 0)
-#endif
-
 #include <iostream>
 #include "CircularArray.h"
 using namespace Arrays::CircularArray;
