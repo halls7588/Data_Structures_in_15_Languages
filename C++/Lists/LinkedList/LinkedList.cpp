@@ -40,9 +40,11 @@ void  LinkedList::destroy()
 	while(head != NULL)
 	{
 		head = head->next;
+		tmp->next = NULL;
 		delete tmp;
 		tmp = head;
 	}
+	head = tail = NULL;
 }
 
 /**

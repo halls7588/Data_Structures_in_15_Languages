@@ -12,10 +12,10 @@
 namespace Lists::LinkedList
 {
 
-/**
- * Linked List Class declaration
- * @tparam T
- */
+	/**
+	 * Linked List Class declaration
+	 * @tparam T
+	 */
 	template<typename T>
 	class LinkedList
 	{
