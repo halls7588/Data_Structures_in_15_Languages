@@ -30,7 +30,7 @@ namespace Lists::LinkedSet
 			/* Public methods of the Node struct */
 			Node();
 
-			Node(T data);
+			explicit Node(T data);
 		};
 
 	  private:

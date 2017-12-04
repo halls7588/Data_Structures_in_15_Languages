@@ -11,7 +11,6 @@
 
 namespace Lists::LinkedList
 {
-
 	/**
 	 * Linked List Class declaration
 	 * @tparam T
