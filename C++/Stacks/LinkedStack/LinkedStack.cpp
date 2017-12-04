@@ -6,8 +6,6 @@
  *  @details Linked Stack implementation in C++
  ********************************************************/
 
-#include "LinkedStack.h"
-
 #ifndef NULL
 #define NULL   ((void *) 0)
 #endif
