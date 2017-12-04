@@ -80,6 +80,17 @@ T ArrayedStack::pop()
 }
 
 /**
+ * Peeks at the top of the stack
+ * @tparam T: Generic type
+ * @return T: item at the top of the stack
+ */
+template<typename T>
+T ArrayedStack::peek()
+{
+	return isEmpty() ? NULL : array[count - 1];
+}
+
+/**
  * Determines if teh stack is empty or not
  * @return bool: if the stack is empty
  */

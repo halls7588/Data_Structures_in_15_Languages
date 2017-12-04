@@ -8,6 +8,7 @@
 
 #ifndef ARRAYEDSTACK_H
 #define ARRAYEDSTACK_H
+
 namespace Stacks::ArrayedStack
 {
 	/**
@@ -34,6 +35,8 @@ namespace Stacks::ArrayedStack
 		T push(T data);
 
 		T pop();
+
+		T peek();
 
 		bool isEmpty();
 
