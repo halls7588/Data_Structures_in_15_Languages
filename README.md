@@ -1,15 +1,3 @@
-# Update
-This project is currently on hold as i do not have the time to finish everything or until someone wants to join.
-
-#### Things that still need to get done:
-1. Remaining data structures in about 11 programming languages need to be built. 
-2. All code needs to be tested and bugs documented, issue submitted, and fixed. In the projects section, Anything under the Done column needs to be tested. anyting tested and passed needs to be moved to closed column.
-3. TypeScript, Swift, Objective-c, Scala, and Ruby I have very little knowldge of. Hoping to find someone to take these projects over, or I will eventually teach myself these languages and do them. 
-
-This is a great project for a college student to gain expirence or for another developer who wants to get expirence with data structures and algorithms. Im available to help out as needed. 
-
-If you would like to contribute please contact me @ halls7588@gmail.com. Otherwise I will get to it when I have time. A few languages have been completed but not tested. See below for details. 
-
 ## Data Structures
 A general list of Data Structures implemented in 15 different programming languages. Java, JavaScript, Kotlin, C#, C++, Objective-C, Swift, PHP, Python, Ruby, Type Script, Visual Basic, C, Scala and Go. I will be implementing 30 different Data Structures and many Algorithms with them as well as providing detailed explanations about each data structure. This is a work in progress and is a very massive project so please be patient as i have a life and a full time job and I am the only one working on this at the moment.
 This project is intended to help newer developers, code school graduates, and self-taught developers learn and grasp the basic concepts of Data Structures to help build a foundation of basic engineering concepts and algorithm design in whatever language they feel most comfortable with. The Goal on this project is to demonstrate beginning and advanced computer science and engineering principals in a simple and easy to use way. The code is written in a very simple for so that newer developer can follow along and grasp advanced topics easily.
@@ -378,3 +366,14 @@ See also the list of [contributors]( https://github.com/halls7588/Data_Structure
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+
+
+#### Things that still need to get done:
+1. Remaining data structures in about 11 programming languages need to be built. 
+2. All code needs to be tested and bugs documented, issue submitted, and fixed. In the projects section, Anything under the Done column needs to be tested. anyting tested and passed needs to be moved to closed column.
+3. TypeScript, Swift, Objective-c, Scala, and Ruby I have very little knowldge of. Hoping to find someone to take these projects over, or I will eventually teach myself these languages and do them. 
+
+This is a great project for a college student to gain expirence or for another developer who wants to get expirence with data structures and algorithms. Im available to help out as needed. 
+
+If you would like to contribute please contact me @ halls7588@gmail.com. Otherwise I will get to it when I have time. A few languages have been completed but not tested. See below for details. 
