@@ -1,15 +1,15 @@
 <?php
 /*******************************************************
- *  ArrayList.php
- *  Created by Stephen Hall on 4/19/18.
- *  Copyright (c) 2018 Stephen Hall. All rights reserved.
- *  ArrayList implementation in PHP
+ *  ArrayList.java
+ *  Created by Stephen Hall on 11/06/17.
+ *  Copyright (c) 2017 Stephen Hall. All rights reserved.
+ *  ArrayList implementation in Java
  ********************************************************/
 
 /**
  * ArrayList Class
  */
-public class ArrayList {
+class ArrayList {
 
     /**
      * Private Members
@@ -23,7 +23,7 @@ public class ArrayList {
      * ArrayList constructor initialized to a specific size
      * @param $size : Size to initialize the array to
      */
-    public function __construct($size){
+     function __construct($size){
         $this->count = 0;
         if($size > 0)
             $this->size = $size;

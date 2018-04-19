@@ -8,9 +8,8 @@
 
 /**
  * ArrayedSet Class
- * @param <T> Generic type
  */
-public class ArrayedSet {
+class ArrayedSet {
 
     /**
      * Private Members
@@ -23,7 +22,7 @@ public class ArrayedSet {
      * ArrayedSet constructor initialized to a specific size
      * @param $size : Size to initialize the array to
      */
-	public function __construct($size){
+	function __construct($size){
         $this->count = 0;
         if($size > 0)
             $this->size = $size;
