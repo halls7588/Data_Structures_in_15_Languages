@@ -369,7 +369,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 
 
-#### Things that still need to get done:
+## Things that still need to get done:
 1. Remaining data structures in about 11 programming languages need to be built. 
 2. All code needs to be tested and bugs documented, issue submitted, and fixed. In the projects section, Anything under the Done column needs to be tested. anyting tested and passed needs to be moved to closed column.
 3. TypeScript, Swift, Objective-c, Scala, and Ruby I have very little knowldge of. Hoping to find someone to take these projects over, or I will eventually teach myself these languages and do them. 
