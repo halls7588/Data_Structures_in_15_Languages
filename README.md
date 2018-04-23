@@ -377,3 +377,12 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 This is a great project for a college student to gain expirence or for another developer who wants to get expirence with data structures and algorithms. Im available to help out as needed. 
 
 If you would like to contribute please contact me @ halls7588@gmail.com. Otherwise I will get to it when I have time. A few languages have been completed but not tested. See below for details. 
+
+### Donations Excepted
+Send to:
+
+Bitcoin: 3FjpxkdTSrPz6KYk1oWf3yTFiZgei8eQ3X
+
+Ethereum: 0xa961d6886359df290B49d752405CbB7ac0adB123
+
+Monero: 43gnpSr6mruj2yxQuQaM4J8xWqcy3ogGN2YPzSZQry8EcZEjpkCE1ioTePGmaJRXBaVZetTegMNL22riuHFmcTcNJCZ3v88
