@@ -9,8 +9,7 @@
 /**
  * Class Node
  */
-class Node
-{
+class Node {
     /**
      * @var $left : left leaf in the tree
      * @var $right : right leaf in the tree
@@ -26,7 +25,7 @@ class Node
      * Node constructor.
      * @param $data: data to be help in the node
      */
-    public function __construct($data){
+    public function __construct($data) {
         $this->left = $this->right = null;
         $this->data = $data;
     }
@@ -35,42 +34,37 @@ class Node
 /**
  * Class BinaryTree
  */
-class BinaryTree
-{
+class BinaryTree {
 
     /**
-     * @var $root: root node of the tree
+     * @var $root : root node of the tree
      */
     private $root;
 
     /**
      * BinaryTree constructor.
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->root = null;
     }
 
     /**
      * Compares the data in given node to the give data for equality
-     * @param $data: data to compare
-     * @param $node: Node to compare to
-     * @return int: 1 if greater then, 0 if equal to, -1 if less then
+     * @param $data : data to compare
+     * @param $node : Node to compare to
+     * @return int : 1 if greater then, 0 if equal to, -1 if less then
      */
-    private function compare($data, $node)
-    {
+    private function compare($data, $node) {
         return (strcmp((string)$node->data, (string)$data));
     }
 
     /**
      * Inserts a new node into the tree
-     * @param $data: data to insert into the tree
-     * @return Node: Node inserted into the tree
+     * @param $data : data to insert into the tree
+     * @return Node : Node inserted into the tree
      */
-    public function Insert($data)
-    {
-        if($this->root == null)
-        {
+    public function Insert($data) {
+        if($this->root == null) {
             return ($this->root = new Node($data));
         }
         return $this->insertHelper($data, $this->root);
@@ -78,51 +72,42 @@ class BinaryTree
 
     /**
      * Recursive helper function to inset a new node into the tree
-     * @param $data: Data to insert into the tree
-     * @param $node: Current node in the tree
-     * @return Node|null: Node inserted into the tree or null
+     * @param $data : Data to insert into the tree
+     * @param $node : Current node in the tree
+     * @return Node : Node inserted into the tree or null
      */
-    private function insertHelper($data, $node){
-        try {
-            $cmp = $this->compare($data, $node);
-            switch($cmp)
-            {
-                case 1:
-                    if ($node->right == null)
-                    {
-                        $newNode = new Node($data);
-                        $node->right = $newNode;
-                        $newNode->parent = $node;
-                        return $newNode;
-                    }
-                    else
-                        return $this->insertHelper($data, $node->right);
+    private function insertHelper($data, $node) {
+        $cmp = $this->compare($data, $node);
 
-                default:
-                    if ($node->left == null)
-                    {
-                        $newNode = new Node($data);
-                        $node->left = $newNode;
-                        $newNode->parent = $node;
-                        return $newNode;
-                    }
-                    else
-                        return $this->insertHelper($data, $node->left);
-            }
-        }
-        catch(Exception $e)
-        {
-            return null;
+        switch($cmp) {
+            case 1:
+                if ($node->right == null) {
+                    $newNode = new Node($data);
+                    $node->right = $newNode;
+                    $newNode->parent = $node;
+                    return $newNode;
+                }
+                else
+                    return $this->insertHelper($data, $node->right);
+
+            default:
+                if ($node->left == null) {
+                    $newNode = new Node($data);
+                    $node->left = $newNode;
+                    $newNode->parent = $node;
+                    return $newNode;
+                }
+                else
+                    return $this->insertHelper($data, $node->left);
         }
     }
 
     /**
      * Removes a Node from the tree
-     * @param $data: Data to remove from the tree
-     * @return Node|null: Node removed from the tree
+     * @param $data : Data to remove from the tree
+     * @return Node : Node removed from the tree
      */
-    public function Remove($data)
-    {
+    public function Remove($data) {
         if($this->root != null)
             return null;
         return $this->removeHelper($data, $this->root);
@@ -130,107 +115,91 @@ class BinaryTree
 
     /**
      * Recursive helper function to remove a node from the tree
-     * @param $data: Data to remove
-     * @param $node: Current node in the tree
-     * @return Node|null: Node removed from the tree or null
+     * @param $data : Data to remove
+     * @param $node : Current node in the tree
+     * @return Node : Node removed from the tree or null
      */
-    private function removeHelper($data, $node)
-    {
-        try
-        {
-            $cmp = $this->compare($data, $node);
-            if($cmp == 1)
-                return $this->removeHelper($data, $node->right);
-            if($cmp == -1)
-                return $this->removeHelper($data, $node->left);
-            if($cmp == 0)
-            {
-                //has no children
-                if($node->left == null && $node->right == null)
-                {
-                    $node = $node->parent;
-                }
-                $tempNode = null;
-                //has one child
-                if($node->parent != null)
-                {
-                    $tempNode = $node->parent;
-                }
-                else
-                {   // this is the root node
-                    if($node->right != null)
-                    {
-                        $tempNode = $node->right;
-                        $tempNode->parent = null;
-                        $this->root->right = null;
-                        $this->root = $tempNode;
-                        return $node;
-                    }
-                    else
-                    {
-                        $tempNode = $node->left;
-                        $tempNode->parent = null;
-                        $this->root->left = null;
-                        $this->root = $tempNode;
-                        return $node;
-                    }
-                }
-                if($tempNode->left == $node)
-                {
-                    if($node->left != null)
-                    {
-                        $tempNode->left = $node->left;
-                        $node->left->parent = $tempNode;
-                        return $node;
-                    }
-                    else if($node->right != null)
-                    {
-                        $tempNode->right = $node->right;
-                        $node->right->parent = $tempNode;
-                        return $node;
-                    }
-                }
-                if($tempNode->right == $node)
-                {
-                    if($node->left != null)
-                    {
-                        $tempNode->left = $node->left;
-                        $node->left->parent = $tempNode;
-                        return $node;
-                    }
-                    else if($node->right != null)
-                    {
-                        $tempNode->right = $node->right;
-                        $node->right->parent = $tempNode;
-                        return $node;
-                    }
-                }
-                else if ($node->left != null && $node->right != null)
-                {
-                    // test for 2 children
-                    $tempNode = $node->right;
+    private function removeHelper($data, $node) {
+        $cmp = $this->compare($data, $node);
 
-                    // find min value of right child tree to replace the node
-                    while($tempNode->left != null)
-                        $tempNode = $tempNode->left;
-                    $temp = $node->data;
-                    $node->data = $tempNode->data;
-                    // replace the node with the tempNode
-                    $tempNode->data = $temp;
-                    $tempNode->parent->left = null;
+        if($cmp == 1)
+            return $this->removeHelper($data, $node->right);
+
+        if($cmp == -1)
+            return $this->removeHelper($data, $node->left);
+
+        if($cmp == 0) {
+            //has no children
+            if($node->left == null && $node->right == null) {
+                $node = $node->parent;
+            }
+            $tempNode = null;
+            //has one child
+            if($node->parent != null) {
+                $tempNode = $node->parent;
+            } else {   // this is the root node
+                if($node->right != null) {
+                    $tempNode = $node->right;
                     $tempNode->parent = null;
-                    return $tempNode;
+                    $this->root->right = null;
+                    $this->root = $tempNode;
+                    return $node;
+                } else {
+                    $tempNode = $node->left;
+                    $tempNode->parent = null;
+                    $this->root->left = null;
+                    $this->root = $tempNode;
+                    return $node;
                 }
             }
-        }catch(Exception $e){}
-            return null;
+            if($tempNode->left == $node) {
+                if($node->left != null) {
+                    $tempNode->left = $node->left;
+                    $node->left->parent = $tempNode;
+                    return $node;
+                }
+                else if($node->right != null) {
+                    $tempNode->right = $node->right;
+                    $node->right->parent = $tempNode;
+                    return $node;
+                }
+            }
+            if($tempNode->right == $node) {
+                if($node->left != null) {
+                    $tempNode->left = $node->left;
+                    $node->left->parent = $tempNode;
+                    return $node;
+                }
+                else if($node->right != null) {
+                    $tempNode->right = $node->right;
+                    $node->right->parent = $tempNode;
+                    return $node;
+                }
+            }
+            else if ($node->left != null && $node->right != null) {
+                // test for 2 children
+                $tempNode = $node->right;
+
+                // find min value of right child tree to replace the node
+                while($tempNode->left != null)
+                    $tempNode = $tempNode->left;
+
+                $temp = $node->data;
+                $node->data = $tempNode->data;
+                // replace the node with the tempNode
+                $tempNode->data = $temp;
+                $tempNode->parent->left = null;
+                $tempNode->parent = null;
+                return $tempNode;
+            }
+        }
     }
 
     /**
      * Returns the smallest node in the tree
-     * @return Node|null: Smallest Node in the tree
+     * @return Node : Smallest Node in the tree
      */
-    public function GetMin(){
+    public function GetMin() {
         if($this->root == null)
             return null;
 
@@ -242,10 +211,11 @@ class BinaryTree
         return $node;
     }
 
-    /** Returns the largest node in the tree
+    /**
+     * Returns the largest node in the tree
      * @return Node|null: Largest Node in the tree
      */
-    public function GetMax(){
+    public function GetMax() {
         if($this->root == null)
             return null;
 
@@ -259,22 +229,22 @@ class BinaryTree
 
     /**
      * Prints out the tree from the given node using Pre Order Traversal
-     * @param $node: Node to start the Pre Order Traversal at
+     * @param $node : Node to start the Pre Order Traversal at
      */
-    public function PreOrederTraversal($node){
+    public function PreOrderTraversal($node) {
         if($node != null){
             echo $node->data." ";
-            $this->PreOrederTraversal($node->left);
-            $this->PreOrederTraversal($node->right);
+            $this->PreOrderTraversal($node->left);
+            $this->PreOrderTraversal($node->right);
         }
     }
 
     /**
      * Prints out the Tree from the given node using Post Order Traversal
-     * @param $node: Node to start the Post Order Traversal at
+     * @param $node : Node to start the Post Order Traversal at
      */
-    public function PostOrderTraversal($node){
-        if($node != null){
+    public function PostOrderTraversal($node) {
+        if($node != null) {
             $this->PostOrderTraversal($node->left);
             $this->PostOrderTraversal($node->right);
             echo $node->data." ";
@@ -285,8 +255,8 @@ class BinaryTree
      * Pints out the tree from the given node using in order Traversal
      * @param $node: Node to start the In Order Traversal at
      */
-    public function InOrderedTraversal($node){
-        if($node != null){
+    public function InOrderedTraversal($node) {
+        if($node != null) {
             $this->InOrderedTraversal($node->left);
             echo $node->data." ";
             $this->InOrderedTraversal($node->right);
@@ -307,8 +277,10 @@ class BinaryTree
         while (!empty($stack)) {
             $node = array_pop($stack);
             echo $node->data." ";
+
             if($node->right != null)
                 array_push($stack, $node->right);
+
             if($node->left != null)
                 array_push($stack, $node->left);
         }
@@ -316,7 +288,7 @@ class BinaryTree
 
     /**
      * Prints out the tree from the given node using breadth first search
-     * @param $node: Node to start Breadth First Search at
+     * @param $node : Node to start Breadth First Search at
      */
     public function BreadthFirstSearch($node){
         if($node == null)
@@ -328,8 +300,10 @@ class BinaryTree
         while (count($queue) > 0) {
             $node = array_shift($queue);
             echo $node." ";
+
             if($node->left != null)
                 array_push($queue,$node->left);
+
             if($node->right != null)
                 array_push($queue,$node->right);
         }

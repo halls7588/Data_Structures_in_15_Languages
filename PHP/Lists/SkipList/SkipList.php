@@ -79,17 +79,17 @@ class SkipList {
         do {
             $current = $this->findNext($data, $current, $level);
             array_push($node->nodeList, $current->nodeList[$level]);
-            $current->nodeList[$level] = $node;
+            $current->nodeList[$level] = &$node;
         } while (($level--) > 0);
         return true;
     }
 
     /**
+     * Random function to return random number between 0-1
      * @return float : random 0-1
      */
-    function random()
-    {
-        return (float)rand() / (float)getrandmax();
+    function random() {
+        return (float)mt_rand() / (float)mt_getrandmax();
     }
 
     /**

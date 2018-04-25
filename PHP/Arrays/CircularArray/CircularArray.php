@@ -30,7 +30,6 @@ class CircularArray {
      * @return mixed
      */
     public function add($data) {
-
         $tmp = ($this->zeroIndex + $this->count) % $this->size;
         $this->array[$tmp] = $data;
         if ((($this->count + 1) / $this->size) >= 1) {

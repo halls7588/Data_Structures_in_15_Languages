@@ -9,8 +9,7 @@
 /**
  * Class Node
  */
-class Node
-{
+class Node {
     /**
      * @var $data : data to be help by the node
      * @var $next : next node in the list
@@ -24,8 +23,7 @@ class Node
      * Node constructor.
      * @param $data : data to add to the list
      */
-    function __construct($data)
-    {
+    function __construct($data){
         $this->data = $data;
         $this->next = null;
         $this->previous = null;
@@ -36,8 +34,7 @@ class Node
 /**
  * Class DoublyLinkedList
  */
-class DoublyLinkedList
-{
+class DoublyLinkedList{
 
     /**
      * Private Members
@@ -49,8 +46,7 @@ class DoublyLinkedList
     /**
      * Linked List Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->head = $this->tail = null;
         $this->count = 0;
     }
@@ -60,8 +56,7 @@ class DoublyLinkedList
      * @param $data: Data to add into the list
      * @return Node|null: Node added into the list or null
      */
-    public function Add($data)
-    {
+    public function Add($data) {
 
         // No data to insert into list
         if ($data == null)
@@ -72,16 +67,16 @@ class DoublyLinkedList
         // The Linked list is empty
         if ($this->head == null)
         {
-            $this->head = $node;
+            $this->head = &$node;
             $this->tail = $this->head;
             $this->count++;
             return $node;
         }
 
         // Add to the end of the list
-        $this->tail->next = $node;
+        $this->tail->next = &$node;
         $node->previous = $this->tail;
-        $this->tail = $node;
+        $this->tail = &$node;
         $this->count++;
         return $node;
     }
@@ -91,8 +86,7 @@ class DoublyLinkedList
      * @param $data: Data to remove from the list
      * @return Node|null: Node removed from the list or null
      */
-    public function Remove($data)
-    {
+    public function Remove($data) {
 
         // List is empty or no data to remove
         if ($this->head == null || $data == null)
@@ -100,22 +94,18 @@ class DoublyLinkedList
 
         $tmp = $this->head;
         // The data to remove what found in the first Node in the list
-        if($tmp->data == $data)
-        {
+        if($tmp->data == $data) {
             $this->head = $this->head->next;
             $this->count--;
             return $tmp;
         }
 
         // Try to find the node in the list
-        while ($tmp->next != null)
-        {
+        while ($tmp->next != null) {
             // Node was found, Remove it from the list
-            if ($tmp->next->data == $data)
-            {
-                if($tmp->next == $this->tail)
-                {
-                    $this->tail = $tmp;
+            if ($tmp->next->data == $data) {
+                if($tmp->next == $this->tail) {
+                    $this->tail = &$tmp;
                     $tmp = $tmp->next;
                     $this->tail->next = null;
                     $this->count--;
@@ -138,8 +128,8 @@ class DoublyLinkedList
 
     /**
      * Gets the first node that has the given data
-     * @param data Data to find in the list
-     * @return Node First node with matching data or null if no node was found
+     * @param $data : Data to find in the list
+     * @return Node : First node with matching data or null if no node was found
      */
     public function Find($data)
     {
@@ -163,8 +153,8 @@ class DoublyLinkedList
 
     /**
      * Gets the node at the given index
-     * @param index Index of the Node to get
-     * @return Node at passed in index
+     * @param $index : Index of the Node to get
+     * @return Node : at passed in index
      */
     public function IndexAt($index)
     {
@@ -172,7 +162,7 @@ class DoublyLinkedList
         if ($index < 0 || $index > $this->Size())
             return null;
 
-        $tmp = $this->head;
+        $tmp = &$this->head;
 
         // Move to index
         for ($i = 0; $i < $index; $i++)
@@ -198,7 +188,7 @@ class DoublyLinkedList
     public function printList()
     {
         $items = [];
-        $current = $this->head;
+        $current = &$this->head;
         while($current != null) 
         {
             array_push($items, $current->data);

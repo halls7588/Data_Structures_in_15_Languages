@@ -9,7 +9,7 @@
 /**
  * Node class for singly linked set
  */
-class Node{
+class Node {
     /**
     * Public Members
     */
@@ -49,9 +49,9 @@ class LinkedSet {
     /**
      * Adds a new node into the list with the given data
      * @param $data : Data to add into the list<
-     * @return Node added into the list
+     * @return Node : node added into the list
      */
-    public function add($data){
+    public function add($data) {
         // No data to insert into list
         if ($data == null || ($this->find($data) != null))
             return null;
@@ -59,13 +59,13 @@ class LinkedSet {
         $node = new Node($data);
         // The Linked list is empty
         if ($this->head == null) {
-            $this->head = $node;
+            $this->head = &$node;
             $this->tail = $this->head;
             $this->count++;
         } else {
             // Add to the end of the list
-            $this->tail->next = $node;
-            $this->tail = $node;
+            $this->tail->next = &$node;
+            $this->tail = &$node;
             $this->count++;
         }
         return $node;
@@ -74,9 +74,9 @@ class LinkedSet {
     /**
      * Removes the first node in the list matching the data
      * @param $data : Data to remove from the list
-     * @return Node removed from the list
+     * @return Node : node removed from the list
      */
-    public function remove($data){
+    public function remove($data) {
         // List is empty or no data to remove
         if ($this->head == null || $data == null)
             return null;
@@ -106,7 +106,7 @@ class LinkedSet {
     /**
      * Gets the first node that has the given data
      * @param $data : Data to find in the list
-     * @return Node First node with matching data or null if no node was found
+     * @return Node : First node with matching data or null if no node was found
      */
     public function find($data){
         // No list or data to find
@@ -128,7 +128,7 @@ class LinkedSet {
     /**
      * Gets the node at the given index
      * @param $index : Index of the Node to get
-     * @return Node at passed in index
+     * @return Node : node at passed in index
      */
     public function indexAt($index){
         //Index was negative or larger then the amount of Nodes in the list
