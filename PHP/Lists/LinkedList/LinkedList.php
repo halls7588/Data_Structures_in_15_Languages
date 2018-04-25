@@ -1,4 +1,4 @@
-<?php
+<?php namespace datastructures\linkedlist;
 /*******************************************************
  *  LinkedList.php
  *  Created by Stephen Hall on 10/31/17.

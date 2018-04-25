@@ -1,4 +1,4 @@
-<?php
+<?php namespace datastructures\doublylinkedlist;
 /*******************************************************
  *  DoublyLinkedList.php
  *  Created by Stephen Hall on 11/01/17.
@@ -12,9 +12,9 @@
 class Node
 {
     /**
-     * @var data: data to be help by the node
-     * @var next: next node in the list
-     * @var previous: previous node in the list
+     * @var $data : data to be help by the node
+     * @var $next : next node in the list
+     * @var $previous : previous node in the list
      */
     public $data;
     public $next;
@@ -24,7 +24,7 @@ class Node
      * Node constructor.
      * @param $data : data to add to the list
      */
-    public function __construct($data)
+    function __construct($data)
     {
         $this->data = $data;
         $this->next = null;
@@ -36,7 +36,7 @@ class Node
 /**
  * Class DoublyLinkedList
  */
-public class DoublyLinkedList
+class DoublyLinkedList
 {
 
     /**

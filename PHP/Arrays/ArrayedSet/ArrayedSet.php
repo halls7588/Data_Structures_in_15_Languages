@@ -1,4 +1,4 @@
-<?php
+<?php namespace datastructures\arrayedset;
 /*******************************************************
  *  ArrayedSet.php
  *  Created by Stephen Hall on 4/19/18.

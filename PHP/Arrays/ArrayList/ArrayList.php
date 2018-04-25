@@ -1,9 +1,9 @@
-<?php
+<?php namespace datastructures\arraylist;
 /*******************************************************
  *  ArrayList.php
  *  Created by Stephen Hall on 4/19/18.
  *  Copyright (c) 2018 Stephen Hall. All rights reserved.
- *  ArrayList implementation in Java
+ *  ArrayList implementation in PHP
  ********************************************************/
 
 /**

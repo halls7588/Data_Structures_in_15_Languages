@@ -1,4 +1,4 @@
-<?php
+<?php namespace datastructures\arrayedqueue;
 /*******************************************************
  *  ArrayedQueue.php
  *  Created by Stephen Hall on 11/01/17.

@@ -1,4 +1,4 @@
-<?php
+<?php namespace datastructures\linkedset;
 /*******************************************************
  *  Linkedset.php
  *  Created by Stephen Hall on 04/24/18.

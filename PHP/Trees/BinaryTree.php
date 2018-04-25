@@ -1,4 +1,4 @@
-<?php
+<?php namespace datastructures\binarytree;
 /*******************************************************
  *  BinaryTree.php
  *  Created by Stephen Hall on 11/01/17.
@@ -9,13 +9,13 @@
 /**
  * Class Node
  */
-public class Node
+class Node
 {
     /**
-     * @var left: left leaf in the tree
-     * @var right: right leaf in the tree
-     * @var parent: parent node in the tree
-     * @var data: data to be help by the node
+     * @var $left : left leaf in the tree
+     * @var $right : right leaf in the tree
+     * @var $parent : parent node in the tree
+     * @var $data : data to be help by the node
      */
     public $left;
     public $right;
@@ -35,7 +35,7 @@ public class Node
 /**
  * Class BinaryTree
  */
-public class BinaryTree
+class BinaryTree
 {
 
     /**

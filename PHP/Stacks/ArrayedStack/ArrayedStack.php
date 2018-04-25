@@ -1,4 +1,4 @@
-<?php
+<?php namespace datastructures\arrayedstack;
 /*******************************************************
  *  ArrayedStack.php
  *  Created by Stephen Hall on 11/01/17.

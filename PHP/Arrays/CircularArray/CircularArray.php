@@ -1,4 +1,4 @@
-<?php
+<?php namespace datastructures\circulararray;
 /*******************************************************
  *  CircularArray.php
  *  Created by Stephen Hall on 11/01/17.

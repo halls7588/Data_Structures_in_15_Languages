@@ -1,4 +1,4 @@
-<?php
+<?php namespace datastructures\sortedarrray;
 /*******************************************************
  *  SortedArray.php
  *  Created by Stephen Hall on 04/25/18.
