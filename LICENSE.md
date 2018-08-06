@@ -9,7 +9,7 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-Attribution — You must attribute the work with a hyperlink or text URL for printed works, to this repository 
+Attribution — You must attribute this work with a hyperlink or text URL for any and all code used from this repository 
 (but not in any way that suggests any endorsement of your use of the work).
 
 The above copyright notice and this permission notice shall be included in all
