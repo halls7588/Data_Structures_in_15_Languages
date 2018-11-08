@@ -335,6 +335,89 @@ Below is a list of links to each of the completed data structures in respective 
   [Directed Graph in Visual Basic](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Visual_Basic/Graphs/DirectedGraph/DirectedGraph.vb)
 </details>
 
+#### Kotlin
+
+<details>
+  <summary>Data Structures implemented</summary>
+  
+  ##### Arrays
+  
+  [Circular Array in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Arrays/CircularArray/CircularArray.kt)
+  
+  [ArrayList in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Arrays/ArrayList/ArrayList.kt)
+  
+  [Arrayed Set in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Arrays/ArrayedSet/ArrayedSet.kt)
+  
+  [Associative Array in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Arrays/AssociativeArray/AssociativeArray.kt)
+  
+  [Sorted Array in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Arrays/Sorted_Array/SortedArray.kt)
+  
+  ##### Lists
+  
+  [Doubly Linked List in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Lists/Doubly_Linked_List/DoublyLinkedList.kt)
+  
+  [Linked List in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Lists/Linked_List/LinkedList.kt)
+  
+  [Skip List in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Lists/Skip_List/SkipList.kt)
+  
+  [Linked Set in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Lists/LinkedSet/LinkedSet.kt)
+  
+  ##### Trees
+  
+  [Binary Tree in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Trees/Binary_Tree/BinaryTree.kt)
+  
+  [B-Tree in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Trees/BTree/BTree.kt)
+  
+  [Self Balancing Binary Tree in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Trees/SelfBalancingBinaryTree/SelfBalancingBinaryTree.kt)
+  
+  [Splay Tree in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Trees/SplayTree/SplayTree.kt)
+  
+  [Red Black Tree in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Trees/RedBlackTree/RedBlackTree.java)
+  
+  [AVL Tree in Java](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Trees/AVL_Tree/AVLTree.kt)
+  
+  ##### Stacks
+  
+  [Arrayed Stack in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Stacks/Arrayed_Stack/ArrayedStack.kt)
+  
+  [Circular Stack in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Stacks/CircularStack/CricularStack.kt)
+  
+  [Linked Stack in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Stacks/Linked_Stack/LinkedStack.kt)
+  
+  ##### Queues
+  
+  [Arrayed Queue in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Queues/Arrayed_Queue/ArrayedQueue.kt)
+  
+  [Priority Queue in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Queues/PriorityQueue/PriorityQueue.kt)
+  
+  [Circular Queue in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Queues/CircularQueue/CricularQueue.kt)
+  
+  [Deque in Java](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Queues/Deque/Deque.kt)
+  
+  [Linked Queue in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Queues/Linked_Queue/LinkedQueue.kt) 
+  
+  ##### Heaps
+  
+  [Linked Heap in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Heaps/LinkedHeap/LinkedHeap.kt) 
+  
+  [Arrayed Heap in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Heaps/ArrayedHeap/ArrayedHeap.kt)
+  
+  [Heap Sort in Java](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Heaps/HeapSort/HeapSort.kt) 
+  
+  ##### Hashtabels
+  
+  [Hashset in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Hashtables/HashSet/HashSet.kt) 
+  
+  [Hashtabel in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Hashtables/HashTable/Hashtable.kt) 
+  
+  ##### Graphs
+  
+  [Undirected Graph in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Graphs/UndirectedGraph/UndirectedGraph.kt)
+  
+  [Directed Graph in Kotlin](https://github.com/halls7588/Data_Structures_in_15_Languages/blob/master/Kotlin/Graphs/DirectedGraph/DirectedGraph.kt) 
+</details>
+
+
 ## Getting Started
 
 Download or clone the Repo, Load your IDE of choice, Pick your language and pick you’re Data Structure, and the code should be ready to use. Please not that this code has been tested and it may require some minor changes to work. 
