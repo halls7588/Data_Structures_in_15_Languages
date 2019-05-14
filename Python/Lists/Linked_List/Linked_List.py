@@ -1,3 +1,11 @@
+"""----------------------------------------------------
+' Linked_List.py
+' Created by Stephen Hall on 05/14/19.
+' Copyright (c) 2019 Stephen Hall. All rights reserved.
+' Linked List implementation in Python
+ ---------------------------------------------------"""
+
+
 class Node:
     """
     ' Node constructor.
