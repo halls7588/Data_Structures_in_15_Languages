@@ -3,93 +3,113 @@
  *  Created by Stephen Hall on 6/29/16.
  *  Copyright (c) 2016 Stephen Hall. All rights reserved.
  *  A Circular Array implementation in JavaScript
+ *  Update Date      Name            Description
+ *  1      10/28/19  Stephen Hall    Updated to class syntax.
+ *                                   Tested and fixed bugs
  ********************************************************/
 
 /**
- * CircularArray Object declaration
- *
- * @param none
- *
- * @return none
- * @throws none
- **/
-function CircularArray() {
+ * CircularArray class
+ */
+class CircularArray {
+  /**
+   * Constructor of the CircularArray class
+   * @constructor
+   */
+  constructor() {
     this.array = [];
-    this.size = 0;
+    this.size = 10;
     this.zeroIndex = 0;
     this.count = 0;
-    this.resize = function () {
-        this.size *= 2;
-    };
-}
+  }
 
-/**
- * Add function prototype declaration
- *      Adds a new item into the array
- *
- * @param  data: data to add to the array
- *
- * @return item added to the array
- * @throws none
- **/
-CircularArray.prototype.add = function (data) {
+  /**
+   * resize the array
+   */
+  resize() {
+    this.size *= 2;
+  }
 
-    var tmp = (this.zeroIndex + this.count) % this.size;
-    this.array[tmp] = data;
-    if (((this.count + 1) / this.size) >= 1) {
-        this.resize();
+  /**
+   * Adds a new item into the array
+   * @param {*} data: data to add
+   * @returns {*} data added to the array
+   */
+  add(data) {
+    if ((this.count + 1) / this.size >= 1) {
+      this.resize();
     }
+    let tmp = (this.zeroIndex + this.count) % this.size;
+    this.array[tmp] = data;
+
     this.count++;
     return this.array[tmp];
-};
+  }
 
-/**
- * DataAt function prototype declaration
- *      Gets the data at passes in index
- *
- * @param  i: index of the array
- *
- * @return Item at index
- * @throws none
- **/
-CircularArray.prototype.dataAt = function (i) {
-    if ((i + this.zeroIndex) % this.size < this.count && this.array[(i + this.zeroIndex) % this.size]) {
-        return (this.array[i + this.zeroIndex % this.size]);
+  /**
+   * Gets the data at passes in index
+   * @param {int} i: index to access
+   * @returns {*} data at the given index or null
+   */
+  dataAt(i) {
+    if ((i + this.zeroIndex) % this.size < this.count 
+    && this.array[(i + this.zeroIndex) % this.size]) {
+      return this.array[(i + this.zeroIndex) % this.size];
     }
     return null;
-};
+  }
 
-/**
- * Remove function prototype declaration
- *      Removes an item from the array
- *
- * @param  i: index to remove
- *
- * @return item removed from the array
- * @throws none
- **/
-CircularArray.prototype.remove = function (i) {
-    var tmp = this.array[i + this.zeroIndex % this.size];
-    this.array[i + this.zeroIndex % this.size] = this.array[this.zeroIndex];
+  /**
+   * Removes an item from the array using the given index
+   * @param {int} i: index to remove
+   * @returns {*} data removed from the array
+   */
+  remove(i) {
+    let tmp = this.array[i + (this.zeroIndex % this.size)];
+    this.array[i + (this.zeroIndex % this.size)] = this.array[this.zeroIndex];
     this.array[this.zeroIndex] = null;
     this.count--;
     this.zeroIndex = (this.zeroIndex + 1) % this.size;
     return tmp;
-};
+  }
 
-/**
- * Print function prototype declaration
- *      Prints out the array
- *
- * @param  array to print
- *
- * @return none
- * @throws none
- **/
-CircularArray.prototype.print = function (array) {
-    this.array.map(function (data) {
-        if (data !== null) {
-            console.log(data);
-        }
-    });
-};
+  /**
+   * prints the circular array in correct order
+   */
+  print() {
+    for (let i = 0; i < this.count; i++) {
+      console.log(this.array[(this.zeroIndex + i) % this.size]);
+    }
+  }
+}
+
+//tests
+
+let arr = new CircularArray();
+arr.add(5);
+arr.print();
+console.log(arr.size, arr.count);
+console.log("-----------------------");
+arr.add("gse");
+arr.add(4);
+arr.add(42);
+arr.add("signbsb");
+arr.add("99");
+arr.print();
+console.log(arr.size, arr.count);
+console.log("-----------------------");
+arr.remove(1);
+arr.remove(1);
+arr.remove(1);
+arr.print();
+console.log("-----------------------");
+arr.add("hgse");
+arr.add(9999);
+arr.add("kkk");
+arr.add("78");
+arr.add("12");
+console.log(arr.size, arr.count);
+console.log("-----------------------");
+arr.print();
+console.log("-----------------------");
+console.log(arr.dataAt(7));
