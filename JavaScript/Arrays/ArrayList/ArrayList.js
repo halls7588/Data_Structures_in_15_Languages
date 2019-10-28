@@ -8,13 +8,15 @@
  ********************************************************/
 
 /**
- * Creates an instance of ArrayList
- * @param size: optional variable to set the size of the list
- * @constructor
+ * ArrayList Class
  */
 class ArrayList {
+    /**
+     * Initialize the ArrayList
+     * @param {int} size: optional variable to set the size of the list
+     */
     constructor(size) {
-        if (size === undefined) {
+        if (size === undefined || !_isInteger(size)) {
             this.arr = [2];
             this.maxSize = 2;
             this.count = 0;
@@ -39,9 +41,8 @@ class ArrayList {
     }
 
     /**
-     * private method
      * checks if x is an integer number
-     * @param x: variable to check
+     * @param {*} x 
      * @returns {boolean}
      */
     _isInteger(x) {
@@ -53,8 +54,8 @@ class ArrayList {
 
     /**
      * Adds the given data to the list
-     * @param data: data to add to the ArrayList
-     * @returns Mixed|null
+     * @param {*} data: data to add to the ArrayList
+     * @returns {*} data inserted or null
      */
     add(data) {
         if (data === undefined || data === null)
@@ -70,8 +71,8 @@ class ArrayList {
     }
 
     /**
-     * Appends the given data to the ArrayList
-     * @param array
+     * Appends the given array data to the ArrayList
+     * @param {[]} array: array to be added into the list
      * @returns {boolean}
      */
     append(array) {
@@ -91,8 +92,8 @@ class ArrayList {
 
     /**
      * Removes the first instance of the given data from the list
-     * @param data: data to remove from the list
-     * @returns Mixed|null: data removed from the list or null
+     * @param {*} data: data to remove from the list
+     * @returns {*} data removed from the list or null
      */
     remove(data) {
         if (data === undefined || data === null)
@@ -112,8 +113,8 @@ class ArrayList {
 
     /**
      * removes what ever data is at the given index
-     * @param index: index to remove
-     * @returns Mixed|null: data removed from the list or null
+     * @param {int} index: index to remove
+     * @returns {*} data removed from the list or null
      */
     removeAt(index) {
         if (index !== undefined && index !== null && this._isInteger(index) && index < this.maxSize) {
@@ -125,6 +126,7 @@ class ArrayList {
         }
         return null;
     }
+
     /**
      * resets the list to its default state
      */
@@ -136,8 +138,8 @@ class ArrayList {
 
     /**
      * gets the data at the given index
-     * @param index: index to retrieve
-     * @returns Mixed|null: data retrieved or null
+     * @param {int} index: index to retrieve
+     * @returns {*} data retrieved or null
      */
     get(index) {
         if (index !== undefined && index !== null && this._isInteger(index) && index < this.maxSize)
@@ -147,8 +149,8 @@ class ArrayList {
 
     /**
      * sets the data at the given index with the given data
-     * @param index: index to set
-     * @param data: data to be stored at the given index
+     * @param {int} index: index to set
+     * @param {*} data: data to be stored at the given index
      * @returns {boolean} success|fail
      */
     set(index, data) {
@@ -171,12 +173,15 @@ class ArrayList {
 
     /**
      * gets the current number of elements in the list
-     * @returns {number}
+     * @returns {int}
      */
     size() {
         return this.count;
     }
 
+    /**
+     * Prints the contents of the ArrayList to the console.
+     */
     print() {
         console.log(this.arr.toString());
     }
