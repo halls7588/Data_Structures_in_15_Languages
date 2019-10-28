@@ -16,7 +16,7 @@ class ArrayList {
      * @param {int} size: optional variable to set the size of the list
      */
     constructor(size) {
-        if (size === undefined || !_isInteger(size)) {
+        if (size === undefined || !this._isInteger(size)) {
             this.arr = [2];
             this.maxSize = 2;
             this.count = 0;
