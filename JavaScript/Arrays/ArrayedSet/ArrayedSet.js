@@ -192,7 +192,7 @@ class ArrayedSet {
 
 // Tests
 
-let arr = new ArrayList(5);
+let arr = new ArrayedSet(5);
 console.log(arr.count, arr.maxSize);
 arr.append([1, 3, 5, 7, 9, 11]);
 arr.append([1, 3, 13, 7, 9, 11]);
