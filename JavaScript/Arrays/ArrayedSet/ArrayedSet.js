@@ -3,142 +3,206 @@
  *  Created by Stephen Hall on 11/15/17.
  *  Copyright (c) 2017 Stephen Hall. All rights reserved.
  *  Arrayed Set implementation in JavaScript
+ *  Update Date      Name            Description
+ *  1      10/28/19  Stephen Hall    Updated to class syntax
  ********************************************************/
 
 /**
- * Arrayed Set object
- * @param size: size to initialize to
- * @constructor
+ * ArrayList Class
  */
-function ArrayedSet(size) {
-    if(size !== undefined && size !== null && size > 0)
-        this.size = size;
-    else
-        this.size = 4;
+class ArrayedSet {
+    /**
+     * Initialize the ArrayList
+     * @param {int} size: optional variable to set the size of the list
+     */
+    constructor(size) {
+        if (size === undefined || !this._isInteger(size)) {
+            this.arr = [2];
+            this.maxSize = 2;
+            this.count = 0;
+        } else {
+            this.arr = [size];
+            this.maxSize = size;
+            this.count = 0;
+        }
+    }
 
-    this.array = [this.size];
-    this.count = 0;
+    /**
+     * private method
+     * doubles the size of the internal array
+     */
+    _resize() {
+        this.maxSize *= 2;
+        var tmp = [this.maxSize];
+        for (var i = 0; i < this.count; i++) {
+            tmp[i] = this.arr[i];
+        }
+        this.arr = tmp;
+    }
 
-    function resize() {
-        this.size *= 2;
+    /**
+     * checks if x is an integer number
+     * @param {*} x 
+     * @returns {boolean}
+     */
+    _isInteger(x) {
+        if (x === undefined || x === null)
+            return false;
+
+        return x % 1 === 0;
+    }
+
+    /**
+     * Adds the given data to the list
+     * @param {*} data: data to add to the ArrayList
+     * @returns {*} data inserted or null
+     */
+    add(data) {
+        if (data === undefined || data === null)
+            return null;
+        
+        if(this.arr.includes(data))
+            return null;
+
+        if (this.count === this.maxSize)
+            this._resize();
+
+        this.arr[this.count] = data;
+        this.count++;
+
+        return data;
+    }
+
+    /**
+     * Appends the given array data to the ArrayList
+     * @param {[]} array: array to be added into the list
+     * @returns {boolean}
+     */
+    append(array) {
+        if (array !== undefined && array !== null) {
+            if (Array.isArray(array)) {
+                for (var d in array) {
+                    this.add(array[d]);
+                }
+                return true;
+            } else {
+                this.add(array);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Removes the first instance of the given data from the list
+     * @param {*} data: data to remove from the list
+     * @returns {*} data removed from the list or null
+     */
+    remove(data) {
+        if (data === undefined || data === null)
+            return null;
+
+        var index = this.arr.indexOf(data);
+        var data = null;
+
+        if (index > -1) {
+            data = this.arr[index];
+            this.arr.splice(index, 1);
+            this.count--;
+            this.maxSize--;
+        }
+        return data;
+    }
+
+    /**
+     * removes what ever data is at the given index
+     * @param {int} index: index to remove
+     * @returns {*} data removed from the list or null
+     */
+    removeAt(index) {
+        if (index !== undefined && index !== null && this._isInteger(index) && index < this.maxSize) {
+            var data = this.arr[index];
+            this.arr.splice(index, 1);
+            this.count--;
+            this.maxSize--;
+            return data;
+        }
+        return null;
+    }
+
+    /**
+     * resets the list to its default state
+     */
+    reset() {
+        this.arr = [2];
+        this.maxSize = 2;
+        this.count = 0;
+    }
+
+    /**
+     * gets the data at the given index
+     * @param {int} index: index to retrieve
+     * @returns {*} data retrieved or null
+     */
+    get(index) {
+        if (index !== undefined && index !== null && this._isInteger(index) && index < this.maxSize)
+            return this.arr[index];
+        return null;
+    }
+
+    /**
+     * sets the data at the given index with the given data
+     * @param {int} index: index to set
+     * @param {*} data: data to be stored at the given index
+     * @returns {boolean} success|fail
+     */
+    set(index, data) {
+        if (index !== undefined && index !== null && this._isInteger(index) && index < this.maxSize) {
+            this.arr[index] = data;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * clears all the data in the list leaving it at its current size
+     */
+    clear() {
+        for (var i = 0; i < this.count; i++) {
+            this.arr[i] = [];
+        }
+        this.count = 0;
+    }
+
+    /**
+     * gets the current number of elements in the list
+     * @returns {int}
+     */
+    size() {
+        return this.count;
+    }
+
+    /**
+     * Prints the contents of the ArrayList to the console.
+     */
+    print() {
+        console.log(this.arr.toString());
     }
 }
 
-/**
- * Adds data into the array
- * @param data: data to add
- * @returns {*}; data added or null if already exists
- */
-ArrayedSet.prototype.add = function(data) {
-    if(data === null || data === undefined)
-        return null;
+// Tests
 
-    if(this.contains(data))
-        return null;
-
-    if(this.count === this.size)
-        resize();
-
-    this.array[this.count] = data;
-    this.count++;
-    return data;
-};
-
-/**
- * Appends the contents of an array to the ArrayedSet
- * @param data: array to append
- * @returns {boolean} success|fail
- */
-ArrayedSet.prototype.append = function(data){
-    if(data !== null){
-        for (var i = 0; i < data.length; i++) {
-            if(data[i] !== null )
-                this.add(data[i]);
-        }
-        return true;
-    }
-    return false;
-};
-
-/**
- * Sets the data at the given index
- * @param index: index to set
- * @param data: data to set index to
- * @returns {boolean}: success|fail
- */
-ArrayedSet.prototype.set = function(index, data) {
-    if(!this.contains(data)){
-        if(index >= 0 && index < this.size) {
-            this.array[index] = data;
-            return true;
-        }
-    }
-    return false;
-};
-
-/**
- * Gets the data at the arrays given index
- * @param index: Index to get data at
- * @returns {*}: Data at the given index or default value of T if index does not exist
- */
-ArrayedSet.prototype.get = function(index) {
-    if(index >= 0 && index < this.size)
-        return this.array[index];
-    return null;
-};
-
-/**
- * Removes the data at arrays given index
- * @param index: Index to remove
- * @returns {*}: Data removed from the array or null
- */
-ArrayedSet.prototype.remove = function(index) {
-    if (index === undefined || index === null || index < 0 || index > this.count)
-        return null;
-
-    var tmp = this.array[index];
-    this.array[index] = null;
-    this.count--;
-    return tmp;
-};
-
-/**
- * Resets the internal array to default size with no data
- */
-ArrayedSet.prototype.reset = function() {
-    this.count = 0;
-    this.size = 4;
-    this.array = [this.size];
-};
-
-/**
- * Clears all data in the array leaving size intact
- */
-ArrayedSet.prototype.clear = function() {
-    for(var i = 0; i < this.count; i++){
-        this.array[i] = null;
-    }
-    this.count = 0;
-};
-
-/**
- * Tests to see if the data exist in the list
- * @param data: data to find
- * @returns {boolean}: true|false
- */
-ArrayedSet.prototype.contains = function(data) {
-    if(data !== undefined && data !== null)
-    for(var i = 0; i < this.size; i++){
-        if(this.array[i] === data)
-            return true;
-    }
-    return false;
-};
-
-/**
- * Gets the current count of the array
- * @returns {ArrayedSet.count|*}: umber of items in the array
- */
-ArrayedSet.prototype.count = function() {
-    return this.count;
-};
+let arr = new ArrayList(5);
+console.log(arr.count, arr.maxSize);
+arr.append([1, 3, 5, 7, 9, 11]);
+arr.append([1, 3, 13, 7, 9, 11]);
+arr.print();
+console.log(arr.count, arr.maxSize);
+console.log(arr.removeAt(2));
+console.log(arr.count, arr.maxSize);
+console.log(arr.remove(9));
+console.log(arr.count, arr.maxSize);
+arr.print();
+arr.clear();
+console.log(arr.count, arr.maxSize);
+arr.print();
