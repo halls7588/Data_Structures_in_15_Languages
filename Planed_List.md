@@ -46,6 +46,9 @@
   
 # Hashtables
   * Hashtable
+     * Separate chaining
+     * Open addressing
+     * Dynamic resizing
   * Hash-Set
   
 # Graphs
